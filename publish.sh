@@ -19,12 +19,13 @@ rm -rf _posts
 rm -rf _layouts
 rm -rf about.md
 rm -rf contact.html
+rm -rf CNAME
 cp -R ../posts ./_posts
 cp -R ../layouts ./_layouts
 
 cp -R ../pages .
 cp -R ../theme/. .
-rm -rf CNAME
+rm -R ../CNAME .
 
 # copy img
 cp -R ../img ./img
