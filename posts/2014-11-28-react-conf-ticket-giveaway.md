@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "React Conf Ticket Giveaway"
+author: Zach Silveira
 date: 2014-11-28 15:09
 published: true
 categories: react

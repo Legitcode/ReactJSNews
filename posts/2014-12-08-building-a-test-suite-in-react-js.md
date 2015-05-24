@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Building a test suite in React JS"
+author: Jack Callister
 date: 2014-12-08 18:59
 published: true
 categories: react

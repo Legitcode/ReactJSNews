@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "This Week in Tweets"
+author: Zach Silveira
 date: 2014-11-04 13:25
 published: true
 categories: react

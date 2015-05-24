@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "React Style Guide"
+author: David Chang
 date: 2014-12-27 16:19
 published: true
 categories: react

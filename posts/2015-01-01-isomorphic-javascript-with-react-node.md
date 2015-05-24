@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Serverside React Rendering: Isomorphic JavaScript with ReactJS + Node"
+author: David Wells
 date: 2015-01-01 13:46
 published: true
 categories: react

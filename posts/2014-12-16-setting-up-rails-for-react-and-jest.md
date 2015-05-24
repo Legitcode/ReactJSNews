@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Setting up Rails with React and Jest"
+author: James Burnett
 date: 2014-12-16 07:43
 published: true
 categories: react

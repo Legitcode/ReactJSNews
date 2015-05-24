@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Building Components with React.js and Reflux"
+author: James Burnett
 date: 2015-04-13 21:26
 published: true
 categories: react

@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "I Hear You Want A React Europe Ticket!"
+author: Zach Silveira
 date: 2015-03-11 22:44
 published: true
 categories: react

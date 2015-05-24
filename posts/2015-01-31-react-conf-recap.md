@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "React Conf Recap"
+author: Zach Silveira
 date: 2015-01-31 17:17
 published: true
 categories: react

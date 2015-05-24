@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Getting Started with Flux"
+author: Josh Perez
 date: 2015-03-23 16:32
 published: true
 categories: react

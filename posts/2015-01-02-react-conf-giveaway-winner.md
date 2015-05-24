@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "React Conf Giveaway Winner"
+author: Zach Silveira
 date: 2015-01-02 13:39
 published: true
 categories: react

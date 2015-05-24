@@ -6,7 +6,8 @@ import moment from 'moment';
 // Get and parse the data
 import data from './data/reactjs-news.ghost.2015-05-24.json';
 const posts = data.db[0].data.posts;
-const tags = data.db[0].data.tags;
+const users = _.indexBy(data.db[0].data.users, 'id');
+const tags = _.indexBy(data.db[0].data.tags, 'id');
 const postTags = data.db[0].data.posts_tags;
 
 // Loop through posts
@@ -16,17 +17,21 @@ _.each(_.filter(posts, { status: 'published' }), (postData) => {
   const shortDate = publishDate.format('YYYY-MM-DD');
   const longDate = publishDate.format('YYYY-MM-DD HH:mm');
 
+  // Get the post author
+  const authorName = users[postData.author_id].name;
+
   // Get the tags for the post
-  const tagIdsForPost = _.pluck(_.filter(postTags, { post_id: postData.id }), 'tag_id');
-  const tagsForPost = _.compact(_.map(tags, (tag) => {
-    if (_.contains(tagIdsForPost, tag.id)) {
-      return tag.name;
-    }
-  }));
+  const tagsForPost = _(postTags)
+    .filter({ 'post_id': postData.id })
+    .pluck('tag_id')
+    .map((tagId) => {
+      return tags[tagId].name;
+    }).value();
 
   const newPost = `---
 layout: post
 title:  "${postData.title}"
+author: ${authorName}
 date: ${longDate}
 published: true
 categories: react${tagsForPost.length ? `\ntags: ${tagsForPost.join(' ')}` : ''}

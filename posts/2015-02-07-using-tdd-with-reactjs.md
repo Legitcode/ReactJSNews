@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Using Test Driven Development with React.js to Add Multi-Select to the Drag and Drop Component"
+author: James Burnett
 date: 2015-02-07 23:27
 published: true
 categories: react

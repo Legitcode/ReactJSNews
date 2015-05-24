@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "TWiR: A Conference is Coming!"
+author: Zach Silveira
 date: 2014-10-28 13:05
 published: true
 categories: react

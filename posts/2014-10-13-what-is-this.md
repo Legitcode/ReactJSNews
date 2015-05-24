@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "We're Back!"
+author: Zach Silveira
 date: 2014-10-13 00:05
 published: true
 categories: react
