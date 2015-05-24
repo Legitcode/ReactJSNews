@@ -1,17 +1,33 @@
 @charset "UTF-8";
 /*
-
   Pixyll
-
   A simple, beautiful theme for Jekyll that emphasizes content rather than
   aesthetic fluff.
-
   Best served with BASSCSS (http://jxnblk.github.io/basscss)
-
   Crafted with <3 by John Otander (@4lpine) - ©2015 John Otander
   MIT License http://opensource.org/licenses/MIT
-
 */
+#carbonads, .carbon-wrap{
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.carbon-text{
+  font-size: 20px;
+  padding: 5px;
+}
+
+.carbon-poweredby{
+  font-size: 10px;
+  float: right;
+}
 
 body {
   font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", serif;
@@ -183,8 +199,6 @@ table {
 }
 
 .pagination a, .pagination .disabled {
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   background: #fafafa;
   border-radius: 0.1875em;
@@ -518,7 +532,6 @@ footer:after {
 /*!
 Animate.css - http://daneden.me/animate
 Licensed under the MIT license - http://opensource.org/licenses/MIT
-
 Copyright (c) 2014 Daniel Eden
 */
 
@@ -558,7 +571,6 @@ Copyright (c) 2014 Daniel Eden
     opacity: 0;
 
     -webkit-transform: translateY(-20px) translate3d(0, 0, 0);
-        -ms-transform: translateY(-20px) translate3d(0, 0, 0);
             transform: translateY(-20px) translate3d(0, 0, 0);
   }
 
@@ -566,7 +578,6 @@ Copyright (c) 2014 Daniel Eden
     opacity: 1;
 
     -webkit-transform: translateY(0) translate3d(0, 0, 0);
-        -ms-transform: translateY(0) translate3d(0, 0, 0);
             transform: translateY(0) translate3d(0, 0, 0);
   }
 }
