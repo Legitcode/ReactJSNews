@@ -20,8 +20,10 @@ rm -rf _layouts
 rm -rf about.md
 rm -rf contact.html
 rm -rf CNAME
+rm -rf _scss/main.scss
 cp -R ../posts ./_posts
 cp -R ../layouts ./_layouts
+cp -R ../sass/main.scss ./_sass/main.scss
 
 cp -R ../pages .
 cp -R ../theme/. .
