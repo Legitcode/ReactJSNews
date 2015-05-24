@@ -61,6 +61,7 @@ This is a super simple React.js component. We will create a two files in the `co
 
 Starting with the `BlueBird` component:
 
+~~~javascript
     // app/assets/javascripts/components/BlueBird.jsx
     var React = require('react');
 
@@ -88,6 +89,7 @@ Starting with the `BlueBird` component:
     });
 
     module.exports = BlueBirdBody;
+~~~
 
 As you can see, this really is a very simple React component. The render function has a span telling users to `Enter Some Text` and a textarea to actual enter that text. Next, we create our container, a separate component where we will keep state.
 
@@ -130,11 +132,11 @@ This component is fairly straightforward. It holds an internal state for the tex
 Finally, we will add the component to our app:
 
 - add the component to our components.js file
-    
+
         BlueBirdContainer = require('./components/BlueBirdContainer');
 
 - add the component to our page
-    
+
         <%# app/views/pages/index.html.erb %>
         <h1>BlueBird - Index</h1>
         <%= react_component 'BlueBirdContainer' %>
@@ -311,7 +313,7 @@ It is important to note that mixins are discouraged in the React.js world these 
 
 Be warned, try to avoid being *"clever"* with these. Yes, you can manipulate the data in the `onBlueBirdChange` function. You could fire actions, ajax calls, all kinds of things. These will nearly always come back to bite you.
 
-The only thing you might want to consider doing in the `onBlueBirdChange` method is some kind of filtering. For example, if we had a lot of BlueBirds, it might be useful to specify that a component is only rendering a specific bluebird. When we get the updates we could filter out any bluebirds that do not match our id. That way `bluebirdBody` represents our bluebird. In fact, Reflux provides the `connectFilter` mixin function for that exactly purpose. 
+The only thing you might want to consider doing in the `onBlueBirdChange` method is some kind of filtering. For example, if we had a lot of BlueBirds, it might be useful to specify that a component is only rendering a specific bluebird. When we get the updates we could filter out any bluebirds that do not match our id. That way `bluebirdBody` represents our bluebird. In fact, Reflux provides the `connectFilter` mixin function for that exactly purpose.
 
 Now that our store is talking to our component, we need a way to update the store when the user types. This is where `BlueBirdActions` come in handy. We are going to update the `onBodyChange` function, replacing `setState` with an action call.
 
