@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  React Conf Giveaway Winner
+title:  "React Conf Giveaway Winner"
 date: 2015-01-02 13:39
 published: true
 categories: react

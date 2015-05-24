@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  React Conf Recap
+title:  "React Conf Recap"
 date: 2015-01-31 17:17
 published: true
 categories: react

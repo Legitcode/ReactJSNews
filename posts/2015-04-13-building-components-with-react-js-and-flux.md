@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Building Components with React.js and Reflux
+title:  "Building Components with React.js and Reflux"
 date: 2015-04-13 21:26
 published: true
 categories: react

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  This Week in Tweets
+title:  "This Week in Tweets"
 date: 2014-11-04 13:25
 published: true
 categories: react

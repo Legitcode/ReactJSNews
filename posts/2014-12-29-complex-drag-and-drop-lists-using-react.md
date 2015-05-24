@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Complex Drag and Drop Lists using React.js
+title:  "Complex Drag and Drop Lists using React.js"
 date: 2014-12-29 16:38
 published: true
 categories: react

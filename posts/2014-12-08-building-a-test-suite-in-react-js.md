@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Building a test suite in React JS
+title:  "Building a test suite in React JS"
 date: 2014-12-08 18:59
 published: true
 categories: react

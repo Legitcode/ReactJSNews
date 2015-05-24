@@ -26,7 +26,7 @@ _.each(_.filter(posts, { status: 'published' }), (postData) => {
 
   const newPost = `---
 layout: post
-title:  ${postData.title}
+title:  "${postData.title}"
 date: ${longDate}
 published: true
 categories: react${tagsForPost.length ? `\ntags: ${tagsForPost.join(' ')}` : ''}

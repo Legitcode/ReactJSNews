@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  React Style Guide
+title:  "React Style Guide"
 date: 2014-12-27 16:19
 published: true
 categories: react

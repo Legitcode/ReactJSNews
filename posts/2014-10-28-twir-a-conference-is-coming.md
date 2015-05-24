@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  TWiR: A Conference is Coming!
+title:  "TWiR: A Conference is Coming!"
 date: 2014-10-28 13:05
 published: true
 categories: react

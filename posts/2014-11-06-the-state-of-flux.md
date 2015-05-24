@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  The State of Flux
+title:  "The State of Flux"
 date: 2014-11-06 16:29
 published: true
 categories: react

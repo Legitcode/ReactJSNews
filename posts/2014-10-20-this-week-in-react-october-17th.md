@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  This Week in React: Oct 20
+title:  "This Week in React: Oct 20"
 date: 2014-10-20 18:22
 published: true
 categories: react

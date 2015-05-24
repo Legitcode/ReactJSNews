@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Testing Drag and Drop Components in React.js
+title:  "Testing Drag and Drop Components in React.js"
 date: 2015-01-25 22:50
 published: true
 categories: react

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  We're Back!
+title:  "We're Back!"
 date: 2014-10-13 00:05
 published: true
 categories: react
