@@ -8,12 +8,12 @@ published: true
 categories: react
 tags: twir
 ---
-##ReactJS Conf!
 In this second installment of _This Week in React_ we've got some awesome news! [React Conf](http://conf.reactjs.com/) is coming January 28-29. If you're interested in becoming a presenter, you can apply [here](http://conf.reactjs.com/call-for-presenters.html). 
 
 <!--more-->
 
-##ReactJS Conf!
+## ReactJS Conf!
+
 In this second installment of _This Week in React_ we've got some awesome news! [React Conf](http://conf.reactjs.com/) is coming January 28-29. If you're interested in becoming a presenter, you can apply [here](http://conf.reactjs.com/call-for-presenters.html). 
 
 You probably don't care, but I'll be going (along with hopefully the rest of the ReactJSNews team). I plan on blogging throughout the conference, this way you can experience some of the talks if even if you can't make it. The best part is going  meeting some of the React community!
