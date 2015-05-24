@@ -1,2 +1,2 @@
-ReactJSNews.com Post Converter
-==============================
+ReactJSNews.com
+===============
