@@ -3,7 +3,7 @@ title:       ReactJS News
 email:       zackify@gmail.com
 author:      Zach Silveira
 description: "ReactJS News!"
-baseurl:     "http://reactjsnews.com/"
+baseurl:     ""
 url:         "http://reactjsnews.com"
 
 # Google analytics
