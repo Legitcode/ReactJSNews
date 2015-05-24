@@ -3,8 +3,8 @@ title:       ReactJS News
 email:       your_email@example.com
 author:      Zach Silveira
 description: "ReactJS Daily News!"
-baseurl:     ""
-url:         "http://legitcode.github.io/reactjsnews"
+baseurl:     "/reactjsnews"
+url:         "http://legitcode.github.io"
 
 # Google analytics
 google_analytics:
