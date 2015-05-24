@@ -1,0 +1,27 @@
+{
+  "name": "ReactJSNews",
+  "version": "0.1.0",
+  "description": "ReactJSNews.com ==============================",
+  "private": true,
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Legitcode/ReactJSNews.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Legitcode/ReactJSNews/issues"
+  },
+  "homepage": "https://github.com/Legitcode/ReactJSNews",
+  "dependencies": {
+    "lodash": "^3.9.1",
+    "moment": "^2.10.3"
+  },
+  "devDependencies": {
+    "babel": "^5.4.7"
+  }
+}
