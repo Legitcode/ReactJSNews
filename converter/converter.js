@@ -8,7 +8,7 @@ import request from 'request';
 import data from './data/reactjs-news.ghost.2015-05-24.json';
 
 const OLD_BASE_URL = 'https://reactjsnews.com';
-const NEW_BASE_URL = '/reactjsnews';
+const NEW_BASE_URL = '/ReactJSNews';
 
 const posts = data.db[0].data.posts;
 const users = _.indexBy(data.db[0].data.users, 'id');

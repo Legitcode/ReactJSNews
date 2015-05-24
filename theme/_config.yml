@@ -10,7 +10,7 @@ url:         "http://legitcode.github.io"
 google_analytics:
 
 # Optional features
-animated:           false
+animated:           true
 show_related_posts: false
 show_post_footers:  false
 
@@ -48,7 +48,7 @@ share_hackernews: false
 markdown:     redcarpet
 redcarpet:
   extensions: ['smart', 'tables', 'with_toc_data']
-permalink:    pretty
-paginate:     3
+permalink:    :title
+paginate:     10
 sass:
   compressed: true
