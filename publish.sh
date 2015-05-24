@@ -25,7 +25,7 @@ cp -R ../layouts ./_layouts
 
 cp -R ../pages .
 cp -R ../theme/. .
-rm -R ../CNAME .
+cp -R ../CNAME .
 
 # copy img
 cp -R ../img ./img
