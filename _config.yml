@@ -1,10 +1,10 @@
 # Site settings
-title:       Pixyll
+title:       ReactJS News
 email:       your_email@example.com
-author:      John Otander
-description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
+author:      Zach Silveira
+description: "ReactJS Daily News!"
 baseurl:     ""
-url:         "http://pixyll.com"
+url:         "http://legitcode.github.io/reactjsnews"
 
 # Google analytics
 google_analytics:
