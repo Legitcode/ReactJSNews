@@ -1,6 +1,8 @@
 ---
 layout: post
 title:  "TWiR: A Conference is Coming!"
+summary: "##ReactJS Conf!
+In this second installment of _This Week in React_ we've got some awesome news! [React Conf](http://conf.reactjs.com/) is coming January 28-29. If you're interested in becoming a presenter, you can apply [here](http://conf.reactjs.com/call-for-presenters.html). "
 author: Zach Silveira
 date: 2014-10-28 13:05
 published: true

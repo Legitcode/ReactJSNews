@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Testing Drag and Drop Components in React.js"
+summary: "Welcome back! [Last time](https://reactjsnews.com/complex-drag-and-drop-lists-using-react/) we left off with a nice little Container component that allowed dragging and dropping items both internally and between components. However, despite having the ability with our [setup](https://reactjsnews.com/setting-up-rails-for-react-and-jest/), we did not write a single test. The time has come to fix that shortcoming, with lots and lots of examples."
 author: James Burnett
 date: 2015-01-25 22:50
 published: true

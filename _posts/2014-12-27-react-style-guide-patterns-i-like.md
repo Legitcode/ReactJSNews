@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "React Style Guide"
+summary: "The idea of "idiomatic" React hasn’t been explicitly written on, so I thought I’d offer some conventions that my team at Tune has been using during the past few months of adoption. For the sake of this article, scope will be limited to coding style in React components - not styling, componentization, or Flux strategies. Also, this is meant to be a living document - and I am sure there are better ideas out there - so any comments and feedback are more than welcome."
 author: David Chang
 date: 2014-12-27 16:19
 published: true

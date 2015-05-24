@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Complex Drag and Drop Lists using React.js"
+summary: "_Note: All of the code can be found on [GitHub](https://github.com/HurricaneJames/dex)._"
 author: James Burnett
 date: 2014-12-29 16:38
 published: true

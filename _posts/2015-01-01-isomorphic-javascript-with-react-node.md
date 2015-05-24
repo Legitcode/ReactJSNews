@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Serverside React Rendering: Isomorphic JavaScript with ReactJS + Node"
+summary: "Shared JavaScript that runs on both the client & server."
 author: David Wells
 date: 2015-01-01 13:46
 published: true

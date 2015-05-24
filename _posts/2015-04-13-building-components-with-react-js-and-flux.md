@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Building Components with React.js and Reflux"
+summary: "React is a great view library. If used just right, it even makes an alright controller. However, sometimes you need something more. That is where Flux can be handy."
 author: James Burnett
 date: 2015-04-13 21:26
 published: true

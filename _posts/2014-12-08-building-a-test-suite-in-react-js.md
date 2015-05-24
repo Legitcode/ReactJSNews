@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Building a test suite in React JS"
+summary: "I'm primarily a Rails developer but everyday I seem to be writing more and more front end JavaScript. While writing Ruby, tests are a given part of the process. This is not the case with JavaScript. I've always found that odd and I've also written enough JavaScript to intimately know how frustrating it can be. "
 author: Jack Callister
 date: 2014-12-08 18:59
 published: true

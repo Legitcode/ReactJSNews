@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "This Week in Tweets"
+summary: "I'm too busy to get a full post up this week, hopefully these tweets will suffice!"
 author: Zach Silveira
 date: 2014-11-04 13:25
 published: true

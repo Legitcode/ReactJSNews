@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Setting up Rails with React and Jest"
+summary: "[React](http://facebook.github.io/react/) is Awesome! [Rails](http://rubyonrails.org/) is Awesome! [Jest](https://facebook.github.io/jest/) is awesome! Using Jest with React in Rails should be Awesome Cubed... and yet it seems so difficult. "
 author: James Burnett
 date: 2014-12-16 07:43
 published: true
