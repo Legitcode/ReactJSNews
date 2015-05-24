@@ -14,16 +14,16 @@ There's a few small guidelines I have. If you're interested in getting a free ti
 
 **Create a Blog Post**
 
-- Must be at least 300 words, excluding code examples
-- It has to be completely original
-- You must be okay with me posting it on this site, credit will be given to the author.
+-   Must be at least 300 words, excluding code examples
+-   It has to be completely original
+-   You must be okay with me posting it on this site, credit will be given to the author.
 
 **Make a video**
 
 If blogging isn't your thing, you have the option of creating a video tutorial.
 
-- It must be at least five minutes long
-- needs to have the source code available
+-   It must be at least five minutes long
+-   needs to have the source code available
 
 ##Conclusion
 

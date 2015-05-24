@@ -28,7 +28,7 @@ Firstly we need something to test. The application we'll create is simply (stupi
 
 If you are coding along replace the `main.js` file with the following code.
 
-```
+```js
 var React = require('react'),
     App = require('./app');
 
@@ -37,7 +37,7 @@ React.render(<App />, document.body);
 
 Next remove the `component.js` file and create the `app.js` and `checkout.js` files.
 
-```
+```js
 var React = require('react'),
     Checkout = require('./checkout');
 
@@ -81,7 +81,7 @@ var App = React.createClass({
 module.exports = App;
 ```
 
-```
+```js
 var React = require('react');
 
 var Checkout = React.createClass({
@@ -117,7 +117,7 @@ To install these tools.
 
 To transform JSX a helper function is required. In a `support` folder create a `preprocessor.js` file to do the work.
 
-```
+```js
 var ReactTools = require('react-tools');
 
 module.exports = {
@@ -153,7 +153,7 @@ The simplest component is the `Checkout`. It accepts only one property `items` a
 
 To get this component tested create a `checkout-test.js` file inside the `__tests__` directory. It also needs some boilerplate code like so.
 
-```
+```js
 jest.dontMock('../components/checkout.js');
 
 var React = require('react/addons'),
@@ -176,7 +176,7 @@ Here Jest is told not to mock the `Checkout` component then all the necessary de
 
 To get these tests running you need to create an instance of the component, give it some items to render and finally select the DOM nodes to test.
 
-```
+```js
 describe('Checkout', function() {
 
   var CheckoutElement = TestUtils.renderIntoDocument(
@@ -190,7 +190,7 @@ describe('Checkout', function() {
 
 The final piece of the puzzle is to add the expectations to each test. 
 
-```
+```js
 ...
 it('renders each item as a li', function() {
   expect(items.length).toEqual(2);
@@ -203,7 +203,7 @@ it('displays the items count', function(){
 
 Nice and simple. We make sure there are two `li` nodes and that the items count is correct. The nice thing about React is that it's simple to test. The `Checkout` component is given data and the tests make sure it renders as expected. You can see this pattern again after testing the `App` component. 
 
-```
+```js
 jest.dontMock('../components/app.js');
 
 var React = require('react/addons'),

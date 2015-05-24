@@ -12,7 +12,7 @@ The idea of "idiomatic" React hasn’t been explicitly written on, so I thought 
 
 We lay out a component’s methods generally based on the order of its lifecycle methods:
 
-```
+```js
 React.createClass({
   displayName : '',
   propTypes: {},
@@ -28,7 +28,7 @@ Setting a displayName will help with debuggable warnings when developing - I lik
 
 If you have custom functions, I prefer to preface these with an underscore to differentiate them from methods that are a part of React's API. I typically place them immediately above the render function.
 
-```
+```js
 React.createClass({
   displayName : '',
   propTypes: {},
@@ -57,7 +57,7 @@ It is worth repeating that, in JSX, anything in {} among HTML will be evaluated 
 
 For anything more complicated, I have typically been creating a variable inside the render method, suffixed with 'Html':
 
-```
+```js
 var dinosaurHtml = '';
 if (this.state.showDinosaurs) {
   dinosaurHtml = (
@@ -81,7 +81,7 @@ return (
 
 JSX spanning multiple lines should be wrapped in parentheses like so:
 
-```
+```js
 var multilineJsx = (
   <header>
 	<Logo />
@@ -92,7 +92,7 @@ var multilineJsx = (
 
 JSX spanning a single line can disregard the parentheses,
 
-```
+```js
 var singleLineJsx = <h1>Simple JSX</h1>;
 ```
 
@@ -116,7 +116,7 @@ as opposed to the unnecessarily more verbose
 
 I used to do my list iterations like above in dinosaurHtml. I've realized that list iterations are better done inline, especially if each list item will be rendered as a component. You may even be able to reduce to one line with fat arrows:
 
-```
+```js
 render : function() {
   return (
 	<ul>
@@ -126,7 +126,7 @@ render : function() {
 }
 ```
 
-This does require the harmony flag on JSX to be included, which will toggle certain ES6 features (fat arrows, template strings, destructuring, and rest parameters), listed here: http://kangax.github.io/compat-table/es6/#jsx. If you're incurring the cost of JSX compilation, you might as well also incur the cost of ES6 transpilation as well, using either the JSX harmony flag or a separate ES6 transpiler (we use 6to5).
+This does require the harmony flag on JSX to be included, which will toggle certain ES6 features (fat arrows, template strings, destructuring, and rest parameters), listed here: <http://kangax.github.io/compat-table/es6/#jsx>. If you're incurring the cost of JSX compilation, you might as well also incur the cost of ES6 transpilation as well, using either the JSX harmony flag or a separate ES6 transpiler (we use 6to5).
 
 ## Forms
 
@@ -138,7 +138,7 @@ For storing the form state within the component or something external like a Flu
 
 where inputHandler looks something like:
 
-```
+```js
 function(fieldName, event) {
   actions.propagateValue({
     field : fieldName,
@@ -159,7 +159,7 @@ An even better pattern, though, was offered by @insin on the [Hacker News thread
 
 where inputHandler looks like:
 
-```
+```js
 function(event) {  
   actions.propagateValue({
 	field : event.target.name,

@@ -11,11 +11,13 @@ After live tweeting the whole conference this past week, I feel obligated to wri
 ##React Native
 
 This is the most talked about thing that has come from this conference. The React team has been working on a way to solve problems with building native apps. React Native allows you to use React like you normally would, but with new native-specific components. It will allow you to code once and ship an android and iOS app simultaneously. Not only does this help further the team's "Learn once, write everywhere" concept, it is even more practical than that. This tweet sums it up nicely.
+
 <blockquote class="twitter-tweet" lang="en"><p>React is now iOSmorphic too... <a href="https://twitter.com/hashtag/reactnative?src=hash">#reactnative</a></p>&mdash; Jeff Winkler (@winkler1) <a href="https://twitter.com/winkler1/status/560509563485843456">January 28, 2015</a></blockquote>
 
 If you don't get it, you really shouldn't be using React. On a more serious note, the coolest points about RN is live reloading. No waiting for it to compile your app after making a code change. The project is still in its infancy, there isn't really a complete routing solution, which is understandable considering it's not even public yet. The good news is that the [react-router](https://github.com/rackt/react-router) team has verbally committed to making it compatible with RN. 
 
 If you're curious about what these React Native components look like, I posted a picture from the conference:
+
 <blockquote class="twitter-tweet" lang="en"><p>Native components. <a href="http://t.co/X8BtTEuWk6">pic.twitter.com/X8BtTEuWk6</a></p>&mdash; ReactJS News (@ReactJSNews) <a href="https://twitter.com/ReactJSNews/status/560861371697332225">January 29, 2015</a></blockquote>
 One of the top features here is the fact that [@Vjeux](http://twitter.com/vjeux) brought over full [flexbox](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes) compatibility into React Native. So you can style things the way you're used to doing on the web.
 
@@ -36,4 +38,5 @@ Relay was mentioned a little, but after talking to some members on the team, I f
 You can see all of the conference talks [on youtube](https://www.youtube.com/playlist?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr). I hope you liked my recap of the conference. 
 
 After asking people on Twitter if there's any React jobs available I got an overwhelming response. I'm currently working on a job board built using React that'll hopefully be up soon. For now I'll continue to send out jobs and other secret stuff in the newsletter. You can subscribe to that in the sidebar!
+
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>

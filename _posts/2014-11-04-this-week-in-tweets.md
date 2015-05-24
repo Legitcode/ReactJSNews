@@ -7,7 +7,9 @@ published: true
 categories: react
 ---
 I'm too busy to get a full post up this week, hopefully these tweets will suffice!
+
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 <blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/ReactJSNews">@ReactJSNews</a> <a href="http://t.co/TVsw27rjJC">http://t.co/TVsw27rjJC</a> , <a href="http://t.co/JbWQqi1m58">http://t.co/JbWQqi1m58</a>. With React (react-bootstrap, traceur, webpack) it was really easy to build</p>&mdash; koorchik (@koorchik) <a href="https://twitter.com/koorchik/status/529619222121697281">November 4, 2014</a></blockquote>
 
 <blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/ReactJSNews">@ReactJSNews</a> <a href="https://twitter.com/eiriklv">@eiriklv</a>&#39;s <a href="http://t.co/OzUa3L92z7">http://t.co/OzUa3L92z7</a> is an amazing <a href="https://twitter.com/hashtag/reactjs?src=hash">#reactjs</a> site. Infinite scrolling, masonry, fast. Blog- <a href="http://t.co/U4dsWb1HXv">http://t.co/U4dsWb1HXv</a></p>&mdash; Jeff Winkler (@winkler1) <a href="https://twitter.com/winkler1/status/529594852745699328">November 4, 2014</a></blockquote>

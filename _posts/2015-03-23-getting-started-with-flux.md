@@ -57,7 +57,7 @@ var alt = new Alt();
 module.exports = alt;
 ```
 
----
+* * *
 
 ## Creating Actions
 
@@ -83,8 +83,7 @@ class LocationActions {
 module.exports = alt.createActions(LocationActions);
 ```
 
----
-
+* * *
 
 ## Creating a Store
 
@@ -98,7 +97,6 @@ class LocationStore {
   }
 }
 ```
-
 
 Instance variables defined anywhere in the store will become the state. This resembles how we reason about and build normal JS classes. You can initiaize these in the constructor and then update them directly in the prototype methods.
 
@@ -129,8 +127,7 @@ Finally, we export our newly created store.
 module.exports = alt.createStore(LocationStore, 'LocationStore');
 ```
 
----
-
+* * *
 
 ## Using your View
 
@@ -162,7 +159,7 @@ componentWillUnmount() {
 
 A few [mixins](https://github.com/goatslacker/alt/tree/master/mixins) are available to make this boilerplate go away.
 
----
+* * *
 
 ## Fetching Data
 
@@ -307,7 +304,7 @@ render() {
 }
 ```
 
----
+* * *
 
 ## Data Dependencies
 
@@ -399,7 +396,7 @@ setFavorites(location) {
 }
 ```
 
----
+* * *
 
 ## Conclusion
 

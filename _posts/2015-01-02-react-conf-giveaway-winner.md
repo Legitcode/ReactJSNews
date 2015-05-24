@@ -10,7 +10,6 @@ I would like to thank everybody that entered the giveaway. It was a lot harder t
 
 **David Wells** wrote about [Isomorphic React](https://reactjsnews.com/isomorphic-javascript-with-react-node/) utilizing the power of node to keep consistent code on both the client and server.
 
-
 **James Burnett** Submitted two articles, [Complex Drag and Drop in React](https://reactjsnews.com/complex-drag-and-drop-lists-using-react/) and [Setting up React with Rails and Jest](https://reactjsnews.com/setting-up-rails-for-react-and-jest/).
 
 [**David Chang**](http://davidandsuzi.com/), who previously wrote the insanely popular [State of Flux](https://reactjsnews.com/the-state-of-flux/), submitted [React Style Guide](https://reactjsnews.com/react-style-guide-patterns-i-like/).

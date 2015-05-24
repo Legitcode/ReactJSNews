@@ -20,13 +20,16 @@ First up, we've got the [biggest React resource](https://github.com/enaqx/awesom
 
 ####Components
 The first component we've got is a [custom number input field](https://github.com/tleunen/react-number-editor) made by [@Tommy](http://twitter.com/Tommy). It seems to act like a hybrind input / slider field. The component has quite a few options, the example given can be seen here:
+
 ```
 <NumberEditor min={0} max={1} step={0.01} decimals={2} onValueChange={onValueChange} />
 ```
-You can find all the options [on github]((https://github.com/tleunen/react-number-editor).
+
+You can find all the options [on github](<(https://github.com/tleunen/react-number-editor>).
 
 [**Domain Driven Forms**](https://github.com/gcanti/tcomb-form)  by [@GiulioCanti](https://twitter.com/GiulioCanti) is an awesome library for generating html forms through javascript. Creating a form is just too easy: 
-```
+
+```js
 var t = require('tcomb-form');
 
 // define a type
@@ -38,10 +41,12 @@ var Person = t.struct({
 // create the form
 var Form = t.form.createForm(Person);
 ```
+
 Now that for form is created all you need to do is reference it in a React component: `<Form />`. 
 
 [**React Select**](https://github.com/JedWatson/react-select) is another form based component. I just realized that every component being featured this week deals with forms! That wasn't planned, I swear! Anyways, this component aims to make generating select boxes easier. I like that it makes asynchronously addding options easy. Here's an example with async enabled:
-```
+
+```js
 var getOptions = function(input, callback) {
     setTimeout(function() {
         callback(null, {
