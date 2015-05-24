@@ -61,7 +61,7 @@ This is a super simple React.js component. We will create a two files in the `co
 
 Starting with the `BlueBird` component:
 
-~~~javascript
+```js
     // app/assets/javascripts/components/BlueBird.jsx
     var React = require('react');
 
@@ -89,7 +89,7 @@ Starting with the `BlueBird` component:
     });
 
     module.exports = BlueBirdBody;
-~~~
+```
 
 As you can see, this really is a very simple React component. The render function has a span telling users to `Enter Some Text` and a textarea to actual enter that text. Next, we create our container, a separate component where we will keep state.
 
