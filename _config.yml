@@ -1,13 +1,13 @@
 # Site settings
 title:       ReactJS News
-email:       your_email@example.com
+email:       zackify@gmail.com
 author:      Zach Silveira
-description: "ReactJS Daily News!"
+description: "ReactJS News!"
 baseurl:     "/ReactJSNews"
 url:         "http://legitcode.github.io"
 
 # Google analytics
-google_analytics:
+google_analytics: "UA-55670732-1"
 
 # Optional features
 animated:           true
@@ -16,7 +16,7 @@ show_post_footers:  false
 
 # Disqus post comments
 # (leave blank to disable Disqus)
-disqus_shortname:
+disqus_shortname: "reactjsnews"
 
 # Social icons
 show_social_icons: false
