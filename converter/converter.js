@@ -54,6 +54,9 @@ _.each(_.filter(posts, { status: 'published' }), (postData) => {
     postData.markdown = replaceAt(postData.markdown, match.index, newMatch, match[0].length);
   }
 
+  //Replace txt transformer
+  postData.markdown = postData.markdown.replace(/\`\`\`txt/g, '\`\`\`');
+
   const newPost = `---
 layout: post
 title:  "${postData.title}"

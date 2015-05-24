@@ -16,7 +16,7 @@ The full code for this tutorial is available [here](https://github.com/goatslack
 
 ## Setup
 
-For this tutorial I'll be assuming you're familiar with [React](https://facebook.github.io/react/), [CommonJS](http://www.commonjs.org/), [ES5 JavaScript](https://es5.github.io/), and a subset of [ES6](https://people.mozilla.org/~jorendorff/es6-draft.html) specifically the one that works with react's transform. I'll also assume you're on a modern browser or a node environment. 
+For this tutorial I'll be assuming you're familiar with [React](https://facebook.github.io/react/), [CommonJS](http://www.commonjs.org/), [ES5 JavaScript](https://es5.github.io/), and a subset of [ES6](https://people.mozilla.org/~jorendorff/es6-draft.html) specifically the one that works with react's transform. I'll also assume you're on a modern browser or a node environment.
 
 ## Installing
 
@@ -30,7 +30,7 @@ npm install alt
 
 A typical folder structure would like like this
 
-```txt
+```
 your_project
 |--actions/
 |  |--MyActions.js
@@ -88,7 +88,7 @@ module.exports = alt.createActions(LocationActions);
 
 ## Creating a Store
 
-The store is your data warehouse. This is the single source of truth for a particular piece of your application's state. 
+The store is your data warehouse. This is the single source of truth for a particular piece of your application's state.
 
 Similar to actions, we'll be creating a class for the store. Also like the actions, the class syntax is completely optional, you can use regular constructors and prototypes.
 
@@ -313,7 +313,7 @@ render() {
 
 One of the best features of using Flux's dispatcher is the ability to explicitly declare data dependencies between stores.
 
-Dealing with data dependencies is often tricky and time consuming. This is one of the reasons why flux was originally built. 
+Dealing with data dependencies is often tricky and time consuming. This is one of the reasons why flux was originally built.
 
 Flux comes with this method called `waitFor` which signals to the dispatcher that this store depends on another store for its data.
 
