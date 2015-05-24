@@ -1,3 +1,5 @@
 dependencies:
   pre:
+    - git config --global user.email 'zackify@gmail.com'
+    - git config --global user.name 'Zach Silveira'
     - bash ./publish.sh
