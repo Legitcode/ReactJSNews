@@ -3,7 +3,7 @@ layout: post
 title:  "We're Back!"
 excerpt_separator: <!--more-->
 author: Zach Silveira
-url: http://zach.codes
+author_url: http://zach.codes
 date: 2014-10-13 00:05
 published: true
 categories: react
