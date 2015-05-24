@@ -4,6 +4,11 @@ import _ from 'lodash';
 import moment from 'moment';
 import request from 'request';
 
+import mdast from 'mdast';
+import fixSyntaxPlugin from './fixSyntaxPlugin';
+
+const mParser = mdast.use(fixSyntaxPlugin);
+
 // Get and parse the data
 import data from './data/reactjs-news.ghost.2015-05-24.json';
 
@@ -54,12 +59,29 @@ _.each(_.filter(posts, { status: 'published' }), (postData) => {
     postData.markdown = replaceAt(postData.markdown, match.index, newMatch, match[0].length);
   }
 
-  //Replace txt transformer
-  postData.markdown = postData.markdown.replace(/\`\`\`txt/g, '\`\`\`');
+  // Fix Code Highlighting
+  postData.markdown = mParser.process(postData.markdown, {
+    fences: true
+  });
+
+  // Find first paragraph
+  const ast = mParser.parse(postData.markdown);
+  const firstParagraphNode = _(ast.children).filter({ type: 'paragraph' }).first();
+
+  ast.children.unshift(firstParagraphNode, {
+    type: 'text',
+    value: '<!--more-->'
+  });
+
+  postData.markdown = mParser.stringify(ast, {
+    fence: '~',
+    fences: true
+  });
 
   const newPost = `---
 layout: post
 title:  "${postData.title}"
+excerpt_separator: <!--more-->
 author: ${authorName}
 date: ${longDate}
 published: true

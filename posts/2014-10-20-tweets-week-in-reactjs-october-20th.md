@@ -1,11 +1,16 @@
 ---
 layout: post
 title:  "This Week in Tweets: Oct 21"
+excerpt_separator: <!--more-->
 author: Ferran Negre
 date: 2014-10-20 20:30
 published: true
 categories: react
 ---
+I will try to gather all the interesting stuff I've seen during this last week. Feel free to comment and suggest more tweets.
+
+<!--more-->
+
 I will try to gather all the interesting stuff I've seen during this last week. Feel free to comment and suggest more tweets.
 
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>

@@ -1,11 +1,16 @@
 ---
 layout: post
 title:  "Building a test suite in React JS"
+excerpt_separator: <!--more-->
 author: Jack Callister
 date: 2014-12-08 18:59
 published: true
 categories: react
 ---
+I'm primarily a Rails developer but everyday I seem to be writing more and more front end JavaScript. While writing Ruby, tests are a given part of the process. This is not the case with JavaScript. I've always found that odd and I've also written enough JavaScript to intimately know how frustrating it can be. 
+
+<!--more-->
+
 I'm primarily a Rails developer but everyday I seem to be writing more and more front end JavaScript. While writing Ruby, tests are a given part of the process. This is not the case with JavaScript. I've always found that odd and I've also written enough JavaScript to intimately know how frustrating it can be. 
 
 It's a delight writing Ruby with a test suite so why is it acceptable that most JavaScript goes into production without automated tests? I believe difficulty and fear are the culprit. It's hard to get started; the tooling, workflow and even what to test are foreign. Rather than continue to deal with difficult JavaScript applications I decided to learn how to develop a test suite.
@@ -28,16 +33,16 @@ Firstly we need something to test. The application we'll create is simply (stupi
 
 If you are coding along replace the `main.js` file with the following code.
 
-```
+~~~js
 var React = require('react'),
     App = require('./app');
 
 React.render(<App />, document.body);
-```
+~~~
 
 Next remove the `component.js` file and create the `app.js` and `checkout.js` files.
 
-```
+~~~js
 var React = require('react'),
     Checkout = require('./checkout');
 
@@ -79,9 +84,9 @@ var App = React.createClass({
 });
 
 module.exports = App;
-```
+~~~
 
-```
+~~~js
 var React = require('react');
 
 var Checkout = React.createClass({
@@ -103,7 +108,7 @@ var Checkout = React.createClass({
 });
 
 module.exports = Checkout;
-```
+~~~
 
 Take 5 minutes to read how the application works. To run the application execute `webpack -w` (install [webpack](https://www.npmjs.org/package/webpack) if you need it), in another terminal change directory into the site `cd site` and run a server `python -m SimpleHTTPServer`. Now the application is available on `http://localhost:8000`. Time to get testing.
 
@@ -117,7 +122,7 @@ To install these tools.
 
 To transform JSX a helper function is required. In a `support` folder create a `preprocessor.js` file to do the work.
 
-```
+~~~js
 var ReactTools = require('react-tools');
 
 module.exports = {
@@ -125,11 +130,11 @@ module.exports = {
     return ReactTools.transform(src);
   }
 };
-```
+~~~
 
 To use the preprocessor add this configuration inside the `package.json` file. It adds test script and informs Jest of the preprocessor function. It also makes sure that React itself is not automatically mocked!
 
-```
+~~~
 "scripts": {
   "test": "jest"
 },
@@ -139,7 +144,7 @@ To use the preprocessor add this configuration inside the `package.json` file. I
     "<rootDir>/node_modules/react"
   ]
 }
-```
+~~~
 
 Next add a folder called `__tests__` in the root directory. Jest is magical enough to automatically run any test in any files sitting in this directory.
 
@@ -153,7 +158,7 @@ The simplest component is the `Checkout`. It accepts only one property `items` a
 
 To get this component tested create a `checkout-test.js` file inside the `__tests__` directory. It also needs some boilerplate code like so.
 
-```
+~~~js
 jest.dontMock('../components/checkout.js');
 
 var React = require('react/addons'),
@@ -170,13 +175,13 @@ describe('Checkout', function() {
   
   });
 });
-```
+~~~
 
 Here Jest is told not to mock the `Checkout` component then all the necessary dependencies are required. Finally there are two empty tests; one to check each item is rendered, the next to make sure the item count is correct.
 
 To get these tests running you need to create an instance of the component, give it some items to render and finally select the DOM nodes to test.
 
-```
+~~~js
 describe('Checkout', function() {
 
   var CheckoutElement = TestUtils.renderIntoDocument(
@@ -186,11 +191,11 @@ describe('Checkout', function() {
   var items = TestUtils.scryRenderedDOMComponentsWithTag(CheckoutElement, 'li');
   var count = TestUtils.findRenderedDOMComponentWithTag(CheckoutElement, 'span');  
 ...}
-```
+~~~
 
 The final piece of the puzzle is to add the expectations to each test. 
 
-```
+~~~js
 ...
 it('renders each item as a li', function() {
   expect(items.length).toEqual(2);
@@ -199,11 +204,11 @@ it('renders each item as a li', function() {
 it('displays the items count', function(){
   expect(count.getDOMNode().textContent).toEqual('2');
 });
-```
+~~~
 
 Nice and simple. We make sure there are two `li` nodes and that the items count is correct. The nice thing about React is that it's simple to test. The `Checkout` component is given data and the tests make sure it renders as expected. You can see this pattern again after testing the `App` component. 
 
-```
+~~~js
 jest.dontMock('../components/app.js');
 
 var React = require('react/addons'),
@@ -232,7 +237,7 @@ describe('App', function() {
     });
   });
 });
-```
+~~~
 
 These tests follow the same create a component, give it data and expect output pattern. There's also the added complexity of component state and function calls. Clicking an item in the `App` list should add that item to the `Checkout` list. This happens via a state change in `App`. The only thing we need to test is that clicking on an item adds it to the state's selected items array.
 

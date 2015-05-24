@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Legitcode/ReactJSNews",
   "dependencies": {
     "lodash": "^3.9.1",
+    "mdast": "^0.20.1",
     "moment": "^2.10.3",
     "request": "^2.55.0"
   },
