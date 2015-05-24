@@ -3,8 +3,8 @@ title:       ReactJS News
 email:       zackify@gmail.com
 author:      Zach Silveira
 description: "ReactJS News!"
-baseurl:     "/ReactJSNews"
-url:         "http://legitcode.github.io"
+baseurl:     "/"
+url:         "https://reactjsnews.com"
 
 # Google analytics
 google_analytics: "UA-55670732-1"
