@@ -147,7 +147,7 @@ Finally, we will add the component to our app:
 
 This gives us a nice simple text box.
 
-![Basic BlueBird Container](/reactjsnews/img/BuildingInteractive-001.png)
+![Basic BlueBird Container](/ReactJSNews/img/BuildingInteractive-001.png)
 
 
 Multiple BlueBirds
@@ -170,7 +170,7 @@ Next we setup our `pages_controller.rb`.
 
 Then, when we point our browser to `http://localhost:3000/pages/bluebird`...
 
-![Double Blue Birds](/reactjsnews/img/BuildingInteractive-002.png)
+![Double Blue Birds](/ReactJSNews/img/BuildingInteractive-002.png)
 
 We get two text boxes that are completely unrelated to each other. Not surprising since we never linked the state of the two container components. So, how do we link the two components together. Well, we have a couple options.
 
@@ -324,7 +324,7 @@ We can also delete `getInitialState`. When we registered our component with the 
 
 Now, when we reload our page (http://localhost:3000/pages/bluebird), we get two text boxes that are actually linked.
 
-![BlueBirds Talking](/reactjsnews/img/BuildingInteractive-003.png)
+![BlueBirds Talking](/ReactJSNews/img/BuildingInteractive-003.png)
 
 
 Bonus Birds
@@ -356,7 +356,7 @@ As you can see, it is also a simple component. It connects the BlueBirdStore to 
 
 Finally, we add it to our application. First, add the `BlueBirdStats` component to our `components.js` file, `BlueBirdStates = require('./components/BlueBirdStats');`. Then add it to our `bluebird.html.erb` file, `<%= react_component "BlueBirdStats", {} %>`. Finally, reload the page.
 
-![BlueBird with Stats](/reactjsnews/img/BuildingInteractive-004.png)
+![BlueBird with Stats](/ReactJSNews/img/BuildingInteractive-004.png)
 
 
 More Bonus Birds
