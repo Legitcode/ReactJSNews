@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "Testing Drag and Drop Components in React.js"
-summary: "Welcome back! [Last time](https://reactjsnews.com/complex-drag-and-drop-lists-using-react/) we left off with a nice little Container component that allowed dragging and dropping items both internally and between components. However, despite having the ability with our [setup](https://reactjsnews.com/setting-up-rails-for-react-and-jest/), we did not write a single test. The time has come to fix that shortcoming, with lots and lots of examples."
+excerpt_separator: <!--more-->
 author: James Burnett
 date: 2015-01-25 22:50
 published: true
 categories: react
 ---
+Welcome back! [Last time](https://reactjsnews.com/complex-drag-and-drop-lists-using-react/) we left off with a nice little Container component that allowed dragging and dropping items both internally and between components. However, despite having the ability with our [setup](https://reactjsnews.com/setting-up-rails-for-react-and-jest/), we did not write a single test. The time has come to fix that shortcoming, with lots and lots of examples.
+
+<!--more-->
+
 Welcome back! [Last time](https://reactjsnews.com/complex-drag-and-drop-lists-using-react/) we left off with a nice little Container component that allowed dragging and dropping items both internally and between components. However, despite having the ability with our [setup](https://reactjsnews.com/setting-up-rails-for-react-and-jest/), we did not write a single test. The time has come to fix that shortcoming, with lots and lots of examples.
 
 _Note: All of the code is available on GitHub in the [Dex v2.0 tag](https://github.com/HurricaneJames/dex/tree/v2.0)._
@@ -37,16 +41,14 @@ This article picks up where ["Complex Drag and Drop Lists Using React"](https://
 
 We are using a Rails based project structure because that was how we setup our basic demo project in ["Setting up Rails with React and Jest"](https://reactjsnews.com/setting-up-rails-for-react-and-jest/). Tests are located in the `app/assets/javascripts/components/__tests__/` directory. The test file is named `[Component]-test.jsx`, where `[Component]` is the name of the component we are testing. So, the tests for Container will be in `app/assets/javascripts/components/__tests__/Container-test.jsx`, and can run it with `npm test Container`. It should be relatively easy to map this structure to whatever setup is being used.
 
-```
-# Directory Structure
-/app
-  /assets
-    /javascripts
-      /components
-        /__tests__
-          Container-test.jsx 
-        Container.jsx
-```
+    # Directory Structure
+    /app
+      /assets
+        /javascripts
+          /components
+            /__tests__
+              Container-test.jsx 
+            Container.jsx
 
 Tests are run from the command line via `npm test` or `npm test [Component]`.
 
@@ -172,9 +174,7 @@ While we are talking about "pain points", I should mention one other. Jest does 
 
 Bottom line, we need to make a few code changes so our tests can pass. First, replace all instances of `dataset.key` with `getAttribute('data-key')`. Second, we need to add the `className` prop to the selected item in `renderListItem`'s `<li />` component.
 
-```
-`className={this.state.selected.has(key) ? 'container-selected' : ''}`
-```
+    `className={this.state.selected.has(key) ? 'container-selected' : ''}`
 
 With these code changes, our tests now pass.
 
@@ -220,18 +220,14 @@ Again, we need to change our code to make the test pass. This time, add the `cla
 
 And now we realize another requirement we had forgotten about in the original list. Part of the HTML5 drag and drop spec is that, by default, drop is not allowed. The spec requires calling `event.preventDefault()` on the dragEnter and/or dragOver operations. Also, our container only allows drops for certain types. Fortunately, we know how to mock functions for the simulated event. 
 
-```
-mockEvent = {
-  dataTransfer: { types: [CONTAINER_TYPE] },
-  preventDefault: jest.genMockFunction()
-}
-```
+    mockEvent = {
+      dataTransfer: { types: [CONTAINER_TYPE] },
+      preventDefault: jest.genMockFunction()
+    }
 
 We can test that this was called using the expect `toBeCalled()` matcher. 
 
-```
-expect(mockEvent.preventDefault).toBeCalled();
-```
+    expect(mockEvent.preventDefault).toBeCalled();
 
 We only allow drops when a drop zone is activated, so it is perfectly acceptable to make this a second expectation of the current test. If you are really paranoid, you could create another test with a bad container type to verify the mock event `preventDefault()` function was `not.toBeCalled()` and that the drop zone was not activated.
 

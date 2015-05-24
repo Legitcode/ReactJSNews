@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "React Style Guide"
-summary: "The idea of "idiomatic" React hasn’t been explicitly written on, so I thought I’d offer some conventions that my team at Tune has been using during the past few months of adoption. For the sake of this article, scope will be limited to coding style in React components - not styling, componentization, or Flux strategies. Also, this is meant to be a living document - and I am sure there are better ideas out there - so any comments and feedback are more than welcome."
+excerpt_separator: <!--more-->
 author: David Chang
 date: 2014-12-27 16:19
 published: true
 categories: react
 ---
+The idea of "idiomatic" React hasn’t been explicitly written on, so I thought I’d offer some conventions that my team at Tune has been using during the past few months of adoption. For the sake of this article, scope will be limited to coding style in React components - not styling, componentization, or Flux strategies. Also, this is meant to be a living document - and I am sure there are better ideas out there - so any comments and feedback are more than welcome.
+
+<!--more-->
+
 The idea of "idiomatic" React hasn’t been explicitly written on, so I thought I’d offer some conventions that my team at Tune has been using during the past few months of adoption. For the sake of this article, scope will be limited to coding style in React components - not styling, componentization, or Flux strategies. Also, this is meant to be a living document - and I am sure there are better ideas out there - so any comments and feedback are more than welcome.
 
 ## Method Organization
@@ -51,10 +55,8 @@ As much as I can, I also prefer for all of the component's JSX to be located in 
 
 It is worth repeating that, in JSX, anything in {} among HTML will be evaluated as JavaScript. So if you want to render something simple conditionally, you can use the same conditions or ternaries as you typically would in JavaScript:
 
-```
-{this.state.show && 'This is Shown'}
-{this.state.on ? ‘On’ : ‘Off’}
-```
+    {this.state.show && 'This is Shown'}
+    {this.state.on ? ‘On’ : ‘Off’}
 
 For anything more complicated, I have typically been creating a variable inside the render method, suffixed with 'Html':
 
@@ -103,15 +105,11 @@ but anything complicated or with a likeliness of expanding could be wrapped in p
 
 Components without children should simply close themselves, as above with Logo,
 
-```
-<Logo />
-```
+    <Logo />
 
 as opposed to the unnecessarily more verbose
 
-```
-<Logo></Logo>
-```
+    <Logo></Logo>
 
 ## List Iterations
 
@@ -133,9 +131,7 @@ This does require the harmony flag on JSX to be included, which will toggle cert
 
 For storing the form state within the component or something external like a Flux store, one should typically use the LinkedStateMixin from React Addons or write your own handler(s) respectively. Using the LinkedStateMixin is fairly straightforward, documented [here](http://facebook.github.io/react/docs/two-way-binding-helpers.html). If you went with a handler to store in Flux, you could write one abstractly and then curry it for each field, like so:
 
-```
-<input type="text" value={this.state.newDinosaurName} onChange={this.inputHandler.bind(this, 'newDinosaurName')} />
-```
+    <input type="text" value={this.state.newDinosaurName} onChange={this.inputHandler.bind(this, 'newDinosaurName')} />
 
 where inputHandler looks something like:
 
@@ -150,13 +146,11 @@ function(fieldName, event) {
 
 An even better pattern, though, was offered by @insin on the [Hacker News thread](https://news.ycombinator.com/item?id=8811617), noting that instead of placing an onChange handler on every form input, you really only need one handler on the form, like so:
 
-```
-<form onChange={this.inputHandler}>
-  ...
-	<input type="text" name="newDinosaurName" value={this.state.newDinosaurName} />
-  ...
-</form>
-```
+    <form onChange={this.inputHandler}>
+      ...
+    	<input type="text" name="newDinosaurName" value={this.state.newDinosaurName} />
+      ...
+    </form>
 
 where inputHandler looks like:
 
@@ -175,20 +169,16 @@ function(event) {
 
 Instead of the long input element above, a cleaner and easier indentation would be:
 
-```
-<input
-  type="text"
-  value={this.state.newDinosaurName}
-  onChange={this.inputHandler.bind(this, 'newDinosaurName')} />
-```
+    <input
+      type="text"
+      value={this.state.newDinosaurName}
+      onChange={this.inputHandler.bind(this, 'newDinosaurName')} />
 
 as opposed to aligning attributes after the tag,
 
-```
-<input type="text"
-       value={this.state.newDinosaurName}
-       onChange={this.inputHandler.bind(this, 'newDinosaurName')} />
-```
+    <input type="text"
+           value={this.state.newDinosaurName}
+           onChange={this.inputHandler.bind(this, 'newDinosaurName')} />
 
 which is still more readable than no indentation, but takes a little more attention than it should.
 

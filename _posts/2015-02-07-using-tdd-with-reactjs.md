@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "Using Test Driven Development with React.js to Add Multi-Select to the Drag and Drop Component"
-summary: "[Test Driven Development (TDD)](http://en.wikipedia.org/wiki/Test-driven_development) is a very powerful and popular development methodology. Testing [React.js](http://facebook.github.io/react/) components is most easily accomplished with [Jest](https://facebook.github.io/jest/). However, I rarely see articles that cover the process with lots of examples, especially for React components. This article seeks to do just that. From requirements to all tests green, we will walk through the whole process."
+excerpt_separator: <!--more-->
 author: James Burnett
 date: 2015-02-07 23:27
 published: true
 categories: react
 ---
+[Test Driven Development (TDD)](http://en.wikipedia.org/wiki/Test-driven_development) is a very powerful and popular development methodology. Testing [React.js](http://facebook.github.io/react/) components is most easily accomplished with [Jest](https://facebook.github.io/jest/). However, I rarely see articles that cover the process with lots of examples, especially for React components. This article seeks to do just that. From requirements to all tests green, we will walk through the whole process.
+
+<!--more-->
+
 [Test Driven Development (TDD)](http://en.wikipedia.org/wiki/Test-driven_development) is a very powerful and popular development methodology. Testing [React.js](http://facebook.github.io/react/) components is most easily accomplished with [Jest](https://facebook.github.io/jest/). However, I rarely see articles that cover the process with lots of examples, especially for React components. This article seeks to do just that. From requirements to all tests green, we will walk through the whole process.
 
 ## Background
@@ -160,11 +164,9 @@ Now that we have item selection working, we need to turn our attention to requir
 
 These tests depend on a beforeEach that sets
 
-```
-    mockDataTransfer = { setData: jest.genMockFunction() }
-    container        = TestUtils.renderIntoDocument(<Container itemTemplate={CustomTemplate} items={randomWords} />)
-    item             = getItemFromContainer(container, 0);
-```
+        mockDataTransfer = { setData: jest.genMockFunction() }
+        container        = TestUtils.renderIntoDocument(<Container itemTemplate={CustomTemplate} items={randomWords} />)
+        item             = getItemFromContainer(container, 0);
 
 Running the tests will, as expected, produce nice red responses.
 

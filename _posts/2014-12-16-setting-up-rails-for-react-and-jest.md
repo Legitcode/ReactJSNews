@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "Setting up Rails with React and Jest"
-summary: "[React](http://facebook.github.io/react/) is Awesome! [Rails](http://rubyonrails.org/) is Awesome! [Jest](https://facebook.github.io/jest/) is awesome! Using Jest with React in Rails should be Awesome Cubed... and yet it seems so difficult. "
+excerpt_separator: <!--more-->
 author: James Burnett
 date: 2014-12-16 07:43
 published: true
 categories: react
 ---
+[React](http://facebook.github.io/react/) is Awesome! [Rails](http://rubyonrails.org/) is Awesome! [Jest](https://facebook.github.io/jest/) is awesome! Using Jest with React in Rails should be Awesome Cubed... and yet it seems so difficult. 
+
+<!--more-->
+
 [React](http://facebook.github.io/react/) is Awesome! [Rails](http://rubyonrails.org/) is Awesome! [Jest](https://facebook.github.io/jest/) is awesome! Using Jest with React in Rails should be Awesome Cubed... and yet it seems so difficult. 
 
 Recently, the author was in a position where a legacy project wanted to redesign the front-end while keeping the Rails backend. The project decided to go with a React based redesign phased in, piecemeal, over time. Eventually the old JavaScript would just disappear.
@@ -29,32 +33,28 @@ We assume a working knowledge of [Rails](http://rubyonrails.org/). However, as a
 
     -   from the `Gemfile`
 
-        ```
-            # Gemfile
-            source 'https://rubygems.org'
+                # Gemfile
+                source 'https://rubygems.org'
 
-            gem 'rails', '4.1.8'
-            gem 'sqlite3'
+                gem 'rails', '4.1.8'
+                gem 'sqlite3'
 
-            gem 'sass-rails', '~> 4.0.3'
-            gem 'coffee-rails', '~> 4.0.0'
-            gem 'uglifier', '>= 1.3.0'
-            gem 'therubyracer',  platforms: :ruby
+                gem 'sass-rails', '~> 4.0.3'
+                gem 'coffee-rails', '~> 4.0.0'
+                gem 'uglifier', '>= 1.3.0'
+                gem 'therubyracer',  platforms: :ruby
 
-            gem 'jquery-rails'
-            gem 'jbuilder', '~> 2.0'
-            gem 'spring',        group: :development
-            gem 'thin'
-        ```
+                gem 'jquery-rails'
+                gem 'jbuilder', '~> 2.0'
+                gem 'spring',        group: :development
+                gem 'thin'
 
     -   from `application.js`
 
-        ```
-            // app/assets/javascripts/application.js
-            //= require jquery
-            //= require jquery_ujs
-            //= require_tree .
-        ```
+                // app/assets/javascripts/application.js
+                //= require jquery
+                //= require jquery_ujs
+                //= require_tree .
 
 3.  `cd rex; bundle install`
 
@@ -62,13 +62,11 @@ We assume a working knowledge of [Rails](http://rubyonrails.org/). However, as a
 
 5.  Update Rails routes root to new `pages#index`.
 
-    ```
-    # config/routes.rb
-    Rails.application.routes.draw do
-      get 'pages/index'
-      root to: 'pages#index'
-    end
-    ```
+        # config/routes.rb
+        Rails.application.routes.draw do
+          get 'pages/index'
+          root to: 'pages#index'
+        end
 
 # Add in React-Rails
 
@@ -76,9 +74,7 @@ The best part of [React-Rails](https://github.com/reactjs/react-rails) is the Re
 
 1.  Add 'react-rails' to the Gemfile.
 
-    ```
-    echo "gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'" >> Gemfile
-    ```
+        echo "gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'" >> Gemfile
 
 2.  `bundle install`
 
@@ -101,20 +97,16 @@ The best part of [React-Rails](https://github.com/reactjs/react-rails) is the Re
 
     -   First, create a new `components.js` file which will include all of our React components.
 
-        ```
-          // app/assets/javascripts/components.js
-          //= require react
-          //= require react_ujs
-        ```
+              // app/assets/javascripts/components.js
+              //= require react
+              //= require react_ujs
 
     -   Then update `application.js` by removing the `require_tree` directive and including the new `components.js` code.
 
-        ```
-          // app/assets/javascripts/application.js
-          //= require jquery
-          //= require jquery_ujs
-          //= require components
-        ```
+              // app/assets/javascripts/application.js
+              //= require jquery
+              //= require jquery_ujs
+              //= require components
 
 At this point it is possible to create React components by placing them in the `components.js` file and calling them with `react_component 'ComponentName', {props}`. in the Rails views. However, there are some limitations. First, it cannot make use of Jest for testing, though Jasmine and full integration tests should work. Second, it is not possible to `require()` any node packages. For example, many React applications will want to include node packages like the [es6-promise](https://www.npmjs.com/package/es6-promise) or [reflux](https://www.npmjs.com/package/reflux) packages.
 
@@ -126,36 +118,30 @@ The general solution for adding CommonJS and `require()` for React is to use a p
 
 2.  Add browserify-rails to the gemfile.
 
-    ```
-    echo "gem 'browserify-rails', '~>0.5'" >> Gemfile
-    ```
+        echo "gem 'browserify-rails', '~>0.5'" >> Gemfile
 
 3.  `bundle install`
 
 4.  Create a package.json file.
 
-    ```
-    {
-      "name": "rex-app",
-      "devDependencies": {
-        "browserify": "~>6.3",
-        "browserify-incremental": "^1.4.0",
-        "reactify": "^0.17.1"
-      },
-      "engines": {
-        "node": ">=0.10.0"
-      }
-    }
-    ```
+        {
+          "name": "rex-app",
+          "devDependencies": {
+            "browserify": "~>6.3",
+            "browserify-incremental": "^1.4.0",
+            "reactify": "^0.17.1"
+          },
+          "engines": {
+            "node": ">=0.10.0"
+          }
+        }
 
     **Important!** Any package that needs to be `require()`d should be added to the devDependencies of `package.json`.
 
     **Update:** 2015-02-11
     The browserify-rails was updated to use browserify-incremental. This means we need to add 'browserify-incremental' to your package.json. Trying to use browserify-rails without browserify-incremental will appear to work fine, but will throw an exception when making changes to JavaScript files and refreshing the page. Please add the following to your package.json file to work with browserify-rails 0.7.2 and above.
 
-    ```
-        "browserify-incremental": "^1.4.0"
-    ```
+            "browserify-incremental": "^1.4.0"
 
 5.  `npm install`
 
@@ -163,9 +149,7 @@ The general solution for adding CommonJS and `require()` for React is to use a p
 
 6.  Enable converstion of JSX to JS by adding the following param to `config/application.rb`
 
-    ```
-    config.browserify_rails.commandline_options = "--transform reactify --extension=\".jsx\""
-    ```
+        config.browserify_rails.commandline_options = "--transform reactify --extension=\".jsx\""
 
 7.  Create a `components/` directory in `app/assets/javascripts/`. All React components will go in this directory.
 
@@ -185,17 +169,13 @@ The general solution for adding CommonJS and `require()` for React is to use a p
 
 9.  Update `components.js` to link required modules from the components directory.
 
-    ```
-    // note that this is a global assignment, it will be discussed further below
-    DemoComponent = require('./components/DemoComponent');
-    ```
+        // note that this is a global assignment, it will be discussed further below
+        DemoComponent = require('./components/DemoComponent');
 
 10. Add the demo component into our view.
 
-    ```
-    <h1>/app/views/pages/index.html.erb</h1>
-    <%= react_component 'DemoComponent', {} %>
-    ```
+        <h1>/app/views/pages/index.html.erb</h1>
+        <%= react_component 'DemoComponent', {} %>
 
 This setup gives us `require()`. However, there are some things to note. First, do not `require('react')` via CommonJS `require()`. React is being loaded globaly by react-rails via the sprocket `//= require react` directive. A second inclusion will cause React to throw errors. Second, each and every single component that should be available globally needs to be `require()`d in `components.js`. CommonJS does not have an equivalent to the sprocket `//= require_tree` directive.
 
@@ -205,25 +185,21 @@ Problem, `require('react')` is necessary if we want to use Jest. The solution so
 
 1.  Replace `//= require react` with `require('react')` in `component.js`
 
-    ```
-    //app/assets/javascripts/components.js
-    //= require_self
-    //= require react_ujs
+        //app/assets/javascripts/components.js
+        //= require_self
+        //= require react_ujs
 
-    React = require('react');
+        React = require('react');
 
-    // put components here
-    DemoComponent = require('./components/DemoComponent');
-    ```
+        // put components here
+        DemoComponent = require('./components/DemoComponent');
 
     `//= require_self` is called before `//= require react_ujs`. This allows `react.js` to be loaded from node modules instead of react-rails.
 
 2.  Update `package.json` with the following in `devDependencies`:
 
-    ```
-    "react": "^0.12.0",
-    "react-tools": "^0.12.1"
-    ```
+        "react": "^0.12.0",
+        "react-tools": "^0.12.1"
 
 3.  Run `npm install` again.
 
@@ -272,29 +248,27 @@ However, Jest really wants a CommonJS structure where everything is included via
 3.  Add and configure Jest in the `package.json`
 
 
-```
-    "devDependencies": {
-      "jest-cli": "^0.2.0",
-    },
-    "scripts": {
-      "test": "node ./node_modules/jest-cli/bin/jest.js"
-    },
-    "jest": {
-      "rootDir": "./app/assets/javascripts/components",
-      "scriptPreprocessor": "<rootDir>/__tests__/preprocessor.js",
-      "moduleFileExtensions": [ "js", "jsx"],
-      "unmockedModulePathPatterns": [
-        "react"
-      ],
-      "testFileExtensions": ["js", "jsx"],
-      "testPathIgnorePatterns": [ "preprocessor.js" ]
-    }
+        "devDependencies": {
+          "jest-cli": "^0.2.0",
+        },
+        "scripts": {
+          "test": "node ./node_modules/jest-cli/bin/jest.js"
+        },
+        "jest": {
+          "rootDir": "./app/assets/javascripts/components",
+          "scriptPreprocessor": "<rootDir>/__tests__/preprocessor.js",
+          "moduleFileExtensions": [ "js", "jsx"],
+          "unmockedModulePathPatterns": [
+            "react"
+          ],
+          "testFileExtensions": ["js", "jsx"],
+          "testPathIgnorePatterns": [ "preprocessor.js" ]
+        }
 
-* `rootDir` points to the components directory (Jest will automatically load the __tests__ path by default).
-* `scriptPreprocessor` points to our JSX preprocessor script.
-* `umockedModulePathPatterns` tells Jest not to mock out React, which we need for our components to work.
-* `testPathIgnorePatterns` tells Jest to ignore our JSX preprocessor. Placing `preprocessor.js` in a different directory would eliminate the need for this directive. However, this feels cleaner.
-```
+    * `rootDir` points to the components directory (Jest will automatically load the __tests__ path by default).
+    * `scriptPreprocessor` points to our JSX preprocessor script.
+    * `umockedModulePathPatterns` tells Jest not to mock out React, which we need for our components to work.
+    * `testPathIgnorePatterns` tells Jest to ignore our JSX preprocessor. Placing `preprocessor.js` in a different directory would eliminate the need for this directive. However, this feels cleaner.
 
 4.  `npm install`
 
@@ -325,21 +299,17 @@ The basic Rails application uses the `jquery-rails` gem. `jquery-rails` has the 
 
 The maintainers of `browserify-rails` know about the [problem](https://github.com/browserify-rails/browserify-rails/issues/9). Hopefully, a solution is implemented soon. In the mean time, one potential solution is to remove the `jquery-rails` gem, `//= require jquery` and `//= require jquery_ujs`. Another solution, if your project needs these gems, is to add jQuery to `application.js` the way react.js is added to `components.js`.
 
-```
-//= require_self
-//= require jquery_ujs
-//= components
+    //= require_self
+    //= require jquery_ujs
+    //= components
 
-$ = jQuery = require('jquery');
-```
+    $ = jQuery = require('jquery');
 
 Then add jQuery to the devDependencies of `package.json`. _(Remember that all `require()`d packages must be in package.json and `npm install`ed)_.
 
-```
-"devDependencies": {
-    "jquery": "^2.1.1"
-}
-```
+    "devDependencies": {
+        "jquery": "^2.1.1"
+    }
 
 # Conclusion
 

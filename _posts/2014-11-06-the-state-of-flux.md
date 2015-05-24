@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "The State of Flux"
-summary: "Facebook announced Flux at F8 in April as an application paradigm to complement React. But Flux has been pretty nebulous, as there hasn’t been much code released. The examples in Facebook’s Flux repository gave a better idea of its overall composition, but there was still a ton of boilerplate involved, and that’s usually where a library comes along to bring some level of abstraction and convenience."
+excerpt_separator: <!--more-->
 author: David Chang
 date: 2014-11-06 16:29
 published: true
 categories: react
 ---
+Facebook announced Flux at F8 in April as an application paradigm to complement React. But Flux has been pretty nebulous, as there hasn’t been much code released. The examples in Facebook’s Flux repository gave a better idea of its overall composition, but there was still a ton of boilerplate involved, and that’s usually where a library comes along to bring some level of abstraction and convenience.
+
+<!--more-->
+
 Facebook announced Flux at F8 in April as an application paradigm to complement React. But Flux has been pretty nebulous, as there hasn’t been much code released. The examples in Facebook’s Flux repository gave a better idea of its overall composition, but there was still a ton of boilerplate involved, and that’s usually where a library comes along to bring some level of abstraction and convenience.
 
 Assuming a prior knowledge of Flux’s inner workings, here’s a comparison of the following Flux libraries that have been developed by the community:

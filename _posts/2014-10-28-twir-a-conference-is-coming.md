@@ -1,14 +1,18 @@
 ---
 layout: post
 title:  "TWiR: A Conference is Coming!"
-summary: "##ReactJS Conf!
-In this second installment of _This Week in React_ we've got some awesome news! [React Conf](http://conf.reactjs.com/) is coming January 28-29. If you're interested in becoming a presenter, you can apply [here](http://conf.reactjs.com/call-for-presenters.html). "
+excerpt_separator: <!--more-->
 author: Zach Silveira
 date: 2014-10-28 13:05
 published: true
 categories: react
 tags: twir
 ---
+##ReactJS Conf!
+In this second installment of _This Week in React_ we've got some awesome news! [React Conf](http://conf.reactjs.com/) is coming January 28-29. If you're interested in becoming a presenter, you can apply [here](http://conf.reactjs.com/call-for-presenters.html). 
+
+<!--more-->
+
 ##ReactJS Conf!
 In this second installment of _This Week in React_ we've got some awesome news! [React Conf](http://conf.reactjs.com/) is coming January 28-29. If you're interested in becoming a presenter, you can apply [here](http://conf.reactjs.com/call-for-presenters.html). 
 
@@ -23,9 +27,7 @@ First up, we've got the [biggest React resource](https://github.com/enaqx/awesom
 ####Components
 The first component we've got is a [custom number input field](https://github.com/tleunen/react-number-editor) made by [@Tommy](http://twitter.com/Tommy). It seems to act like a hybrind input / slider field. The component has quite a few options, the example given can be seen here:
 
-```
-<NumberEditor min={0} max={1} step={0.01} decimals={2} onValueChange={onValueChange} />
-```
+    <NumberEditor min={0} max={1} step={0.01} decimals={2} onValueChange={onValueChange} />
 
 You can find all the options [on github](<(https://github.com/tleunen/react-number-editor>).
 

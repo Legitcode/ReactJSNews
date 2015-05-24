@@ -1,13 +1,17 @@
 ---
 layout: post
 title:  "This Week in React: Oct 20"
-summary: "This is the first weekly roundup on ReactJS News! We've been busy working on making this site awesome for you guys, and it's coming along. Let's get started."
+excerpt_separator: <!--more-->
 author: Zach Silveira
 date: 2014-10-20 18:22
 published: true
 categories: react
 tags: twir
 ---
+This is the first weekly roundup on ReactJS News! We've been busy working on making this site awesome for you guys, and it's coming along. Let's get started.
+
+<!--more-->
+
 This is the first weekly roundup on ReactJS News! We've been busy working on making this site awesome for you guys, and it's coming along. Let's get started.
 
 ##React DnD

@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "React Conf Ticket Giveaway"
-summary: "The first ever React conference is happening in January at Facebook's headquarters. The sad part is that the demand is so high, not everyone who wants to go will be able to. This is part of the reason I'll be giving away a ticket. The other reason is to create more tutorials and guides for the community. You're probably wondering what that has to do with a giveaway, but you're about to find out!"
+excerpt_separator: <!--more-->
 author: Zach Silveira
 date: 2014-11-28 15:09
 published: true
 categories: react
 ---
+The first ever React conference is happening in January at Facebook's headquarters. The sad part is that the demand is so high, not everyone who wants to go will be able to. This is part of the reason I'll be giving away a ticket. The other reason is to create more tutorials and guides for the community. You're probably wondering what that has to do with a giveaway, but you're about to find out!
+
+<!--more-->
+
 The first ever React conference is happening in January at Facebook's headquarters. The sad part is that the demand is so high, not everyone who wants to go will be able to. This is part of the reason I'll be giving away a ticket. The other reason is to create more tutorials and guides for the community. You're probably wondering what that has to do with a giveaway, but you're about to find out!
 
 ##The Details

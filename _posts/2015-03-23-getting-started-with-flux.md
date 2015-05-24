@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "Getting Started with Flux"
-summary: "[Flux](http://facebook.github.io/flux/docs/overview.html) is an application architecture for building complex user interfaces. It eschews MVC in favor of unidirectional data flow. What this means is that data enters through a single place (your actions) and then flows outward through to their state manager (the store) and finally onto the view. The view can then restart the flow by calling other actions in response to user input."
+excerpt_separator: <!--more-->
 author: Josh Perez
 date: 2015-03-23 16:32
 published: true
 categories: react
 ---
+[Flux](http://facebook.github.io/flux/docs/overview.html) is an application architecture for building complex user interfaces. It eschews MVC in favor of unidirectional data flow. What this means is that data enters through a single place (your actions) and then flows outward through to their state manager (the store) and finally onto the view. The view can then restart the flow by calling other actions in response to user input.
+
+<!--more-->
+
 ## What is flux?
 
 [Flux](http://facebook.github.io/flux/docs/overview.html) is an application architecture for building complex user interfaces. It eschews MVC in favor of unidirectional data flow. What this means is that data enters through a single place (your actions) and then flows outward through to their state manager (the store) and finally onto the view. The view can then restart the flow by calling other actions in response to user input.
@@ -31,17 +35,15 @@ npm install alt
 
 A typical folder structure would like like this
 
-```
-your_project
-|--actions/
-|  |--MyActions.js
-|--stores/
-|  |--MyStore.js
-|--components/
-|  |--MyComponent.jsx
-|--alt.js
-|--app.js
-```
+    your_project
+    |--actions/
+    |  |--MyActions.js
+    |--stores/
+    |  |--MyStore.js
+    |--components/
+    |  |--MyComponent.jsx
+    |--alt.js
+    |--app.js
 
 ## Creating your first alt
 

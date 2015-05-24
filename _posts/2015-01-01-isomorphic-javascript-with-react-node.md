@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "Serverside React Rendering: Isomorphic JavaScript with ReactJS + Node"
-summary: "Shared JavaScript that runs on both the client & server."
+excerpt_separator: <!--more-->
 author: David Wells
 date: 2015-01-01 13:46
 published: true
 categories: react
 ---
+Shared JavaScript that runs on both the client & server.
+
+<!--more-->
+
 ### What is Isomorphic JavaScript ?
 
 Shared JavaScript that runs on both the client & server.
@@ -36,10 +40,8 @@ The demo uses the [griddle react](http://dynamictyped.github.io/Griddle/) compon
 
 In /server.js install the jsx transpiler:
 
-```
-// Make sure to include the JSX transpiler
-require("node-jsx").install();
-```
+    // Make sure to include the JSX transpiler
+    require("node-jsx").install();
 
 Then change components to Node friendly syntax where you module.exports the component if it's in a seperate file
 
@@ -104,28 +106,26 @@ module.exports = function(app) {
 
 The `reactOutput` variable is then passed into the template:
 
-```
-<!doctype html>
-<html>
-  <head>
-    <title>React Isomorphic Server Side Rendering Example</title>
-    <link href='/styles.css' rel="stylesheet">
-  </head>
-  <body>
-	<h1 id="main-title">React Isomorphic Server Side Rendering Example</h1>
-    <!-- reactOutput is the server compiled React Dom Nodes -->
-    <!-- comment out reactOutput to see empty non indexable source in browser -->
-    <div id="react-main-mount">
-      <%- reactOutput %>
-    </div>
+    <!doctype html>
+    <html>
+      <head>
+        <title>React Isomorphic Server Side Rendering Example</title>
+        <link href='/styles.css' rel="stylesheet">
+      </head>
+      <body>
+    	<h1 id="main-title">React Isomorphic Server Side Rendering Example</h1>
+        <!-- reactOutput is the server compiled React Dom Nodes -->
+        <!-- comment out reactOutput to see empty non indexable source in browser -->
+        <div id="react-main-mount">
+          <%- reactOutput %>
+        </div>
 
-	<!-- comment out main.js to ONLY see server side rendering -->
-	<script src="/main.js"></script>
+    	<!-- comment out main.js to ONLY see server side rendering -->
+    	<script src="/main.js"></script>
 
 
-  </body>
-</html>
-```
+      </body>
+    </html>
 
 ### Demo Install Instructions
 

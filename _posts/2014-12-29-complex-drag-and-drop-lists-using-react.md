@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "Complex Drag and Drop Lists using React.js"
-summary: "_Note: All of the code can be found on [GitHub](https://github.com/HurricaneJames/dex)._"
+excerpt_separator: <!--more-->
 author: James Burnett
 date: 2014-12-29 16:38
 published: true
 categories: react
 ---
+_Note: All of the code can be found on [GitHub](https://github.com/HurricaneJames/dex)._
+
+<!--more-->
+
 _Note: All of the code can be found on [GitHub](https://github.com/HurricaneJames/dex)._
 
 This article covers creating an HTML5 based drag and drop container that accepts items from compatible containers, has nice animations, and only uses React.js (no Flux based architectures). 
@@ -27,22 +31,20 @@ The user experience needs to be similar to the JQueryUI sortable-based widget it
 
 For this article we start with the basic React/Rails setup discussed in an earlier article on [Setting Up Rails for React and JEST](https://reactjsnews.com/setting-up-rails-for-react-and-jest/). This gives a good start point on a simple Rails based app. However, The main techniques used should work with any setup and it should be fairly easy extrapolating to other setups from there.
 
-```
-# Poor Mans Fork
-git clone https://github.com/HurricaneJames/rex dex
-cd dex
-rm -rf .git
-git init
-git add .
-git commit -m "Rex to Dex"
+    # Poor Mans Fork
+    git clone https://github.com/HurricaneJames/rex dex
+    cd dex
+    rm -rf .git
+    git init
+    git add .
+    git commit -m "Rex to Dex"
 
-# Install required packages
-bundle install
-npm install
+    # Install required packages
+    bundle install
+    npm install
 
-# Start Rails server
-rails s
-```
+    # Start Rails server
+    rails s
 
 This setup gives us a view template `app/views/pages/index.html.erb` and a route, `/pages/index`, to get there. All of our components will go into the `app/assets/javascripts/components/` directory. Any global components will be added in `app/assets/javascripts/components.js`. If you are unfamiliar with Rails, open a web browser and go to `http://localhost:3000/pages/index`. At this point, you should see the Rex Demo Component.
 
@@ -54,23 +56,21 @@ Although not required, let's change the `<h1>` element to something more useful 
 
 Normally, the data will come from a controller or a helper. Since this is just a demo/prototype, we are going to add some ugly code to our view.
 
-```
-<%
-  # NEVER PUT LOGIC LIKE THIS IN A VIEW
-  random_words = [
-    ["apple", "bannana", "watermelon", "oranges", "ice cream"],
-    [],
-    ["alpha", "beta", "gamma", "iota"],
-    ["hot dog", "mustard", "guava"],
-    ["chocolate", "ice cream", "cookies", "brownies"],
-    ["dog", "cat", "iguana", "leopard", "bear"]
-  ]
-%>
-<% random_words.each_with_index do |random_word_group, index| %>
-  <h2>Container <%= index + 1 %></h2>
-  <%= react_component 'Container', { items: random_word_group } %>
-<% end %>
-```
+    <%
+      # NEVER PUT LOGIC LIKE THIS IN A VIEW
+      random_words = [
+        ["apple", "bannana", "watermelon", "oranges", "ice cream"],
+        [],
+        ["alpha", "beta", "gamma", "iota"],
+        ["hot dog", "mustard", "guava"],
+        ["chocolate", "ice cream", "cookies", "brownies"],
+        ["dog", "cat", "iguana", "leopard", "bear"]
+      ]
+    %>
+    <% random_words.each_with_index do |random_word_group, index| %>
+      <h2>Container <%= index + 1 %></h2>
+      <%= react_component 'Container', { items: random_word_group } %>
+    <% end %>
 
 This creates an array of arrays, `random_words`, representing the data for each of our containers. Then the view loops over those and adds an `<h2>` element and the `react_component` with the random words as an `items` prop.
 
@@ -174,10 +174,8 @@ HTML5 drag and drop is based on an attribute flag and six events. The attribute 
 
 The following code examples come directly from the completed `Container.jsx` available on [GitHub](https://github.com/HurricaneJames/dex) and use the following constants:
 
-```
-ALLOWED_DROP = "move";
-DRAG_DROP_CONTENT_TYPE = "custom_container_type";
-```
+    ALLOWED_DROP = "move";
+    DRAG_DROP_CONTENT_TYPE = "custom_container_type";
 
 -   [`onDragStart`](https://developer.mozilla.org/en-US/docs/Web/Events/dragstart) is called when a drag event is initiated. The passed in event object has a very important property, `dataTransfer`. Unlike most browser events, `dataTransfer` must be modified before the end of the function.
 
@@ -195,9 +193,7 @@ DRAG_DROP_CONTENT_TYPE = "custom_container_type";
 
       _Edit: this works great with text items, but fails miserable with objects. The fix is to use JSON to stringify the data before setting it._
 
-    ```
-      e.dataTransfer.setData(DRAG_DROP_CONTENT_TYPE, JSON.stringify(this.state.items[selectedIndex]));
-    ```
+          e.dataTransfer.setData(DRAG_DROP_CONTENT_TYPE, JSON.stringify(this.state.items[selectedIndex]));
 
 -   [`onDragOver`](https://developer.mozilla.org/en-US/docs/Web/Events/dragover) is called whenever the user drags anything over an element that is listening for the event. We listen for this event on two elements in our list, drop zones and items.
 
@@ -284,10 +280,8 @@ DRAG_DROP_CONTENT_TYPE = "custom_container_type";
 
 Now that the event handlers are in place we should start using them. First, we need to add some additional items to `getInitialState`.
 
-```
-selected:  NONE_SELECTED,
-hoverOver: NO_HOVER
-```
+    selected:  NONE_SELECTED,
+    hoverOver: NO_HOVER
 
 Then we need to add the `containerAcceptsDropData` and `resetHover` functions referenced in the handlers.
 
@@ -396,21 +390,19 @@ The ObjectAssign code was adapted from Sindre Sorhus's [object-assign](https://g
 
 At this point we can drag around items, but it is a little jarring. Stuff appears and disappears rapidly. We can make it better. In a nod to the simplicity of the architecture, the fix only requires modifications to the styles object.
 
-```
-selectedItem: {
-  backgroundColor: '#333'
-},
-dropZone: {
-  height: 2,
-  backgroundColor: 'transparent',
-  transition: 'height 400ms'
-},
-activeDropZone: {
-  height: 15,
-  background: '#fff',
-  transition: 'height 150ms'
-}
-```
+    selectedItem: {
+      backgroundColor: '#333'
+    },
+    dropZone: {
+      height: 2,
+      backgroundColor: 'transparent',
+      transition: 'height 400ms'
+    },
+    activeDropZone: {
+      height: 15,
+      background: '#fff',
+      transition: 'height 150ms'
+    }
 
 The transition properties make the drop zones expand/collapse gracefully. The background colors make it obvoius what is selected and what is a drop zone.
 

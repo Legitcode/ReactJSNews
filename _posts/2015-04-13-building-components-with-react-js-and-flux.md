@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "Building Components with React.js and Reflux"
-summary: "React is a great view library. If used just right, it even makes an alright controller. However, sometimes you need something more. That is where Flux can be handy."
+excerpt_separator: <!--more-->
 author: James Burnett
 date: 2015-04-13 21:26
 published: true
 categories: react
 ---
+React is a great view library. If used just right, it even makes an alright controller. However, sometimes you need something more. That is where Flux can be handy.
+
+<!--more-->
+
 React is a great view library. If used just right, it even makes an alright controller. However, sometimes you need something more. That is where Flux can be handy.
 
 Flux is the Facebook solution to keep the MVC paradigm from becoming unmanageable. If you are wondering whether Flux is right for your project, Dan Abramov made ["The Case for Flux"](https://medium.com/@dan_abramov/the-case-for-flux-379b7d1982c6) a few weeks ago. I cannot recommend his article enough. To summarize, Dan points out that Flux is great if:
@@ -32,27 +36,23 @@ The examples in this article are based on the [Dex](https://github.com/Hurricane
 
 If you want to follow along and write code as we go grab [Dex v3.0](https://github.com/HurricaneJames/dex/tree/v3.0).
 
-```
-git clone https://github.com/HurricaneJames/dex/tree/v3.0
-cd dex
-bundle install
-npm install
-rails s
-```
+    git clone https://github.com/HurricaneJames/dex/tree/v3.0
+    cd dex
+    bundle install
+    npm install
+    rails s
 
 If you just want to jump to the end, grab [Dex v3.1](https://github.com/HurricaneJames/dex/tree/v3.1). All of the code from this article will be available there.
 
-```
-git clone https://github.com/HurricaneJames/dex/tree/v3.1
-cd dex
-bundle install
-npm install
-# separate console
-rails s
-# optional, and from a different console
-npm run fayeserver
-# open a browser and point it to http://localhost:3000/pages/index
-```
+    git clone https://github.com/HurricaneJames/dex/tree/v3.1
+    cd dex
+    bundle install
+    npm install
+    # separate console
+    rails s
+    # optional, and from a different console
+    npm run fayeserver
+    # open a browser and point it to http://localhost:3000/pages/index
 
 ## BlueBird
 
@@ -144,9 +144,7 @@ Finally, we will add the component to our app:
 
 -   start our server
 
-    ```
-      rails s
-    ```
+          rails s
 
 -   and load the page in a browser `http://localhost:3000/pages/index`).
 
@@ -158,24 +156,18 @@ This gives us a nice simple text box.
 
 Now that we have a basic component, we want to be able to add it to our page multiple times. Since we are using Rails, we can create a new view `pages/bluebird.html.erb`.
 
-```
-<h1>BlueBird</h1>
-<%= react_component "BlueBirdContainer", {} %>
-<%= react_component "BlueBirdContainer", { reverse: true } %>
-```
+    <h1>BlueBird</h1>
+    <%= react_component "BlueBirdContainer", {} %>
+    <%= react_component "BlueBirdContainer", { reverse: true } %>
 
 We add two components, the second one set to reverse. Then we add it to our `routes.rb`.
 
-```
-  get 'pages/bluebird'
-```
+      get 'pages/bluebird'
 
 Next we setup our `pages_controller.rb`.
 
-```
-  def bluebird
-  end
-```
+      def bluebird
+      end
 
 Then, when we point our browser to `http://localhost:3000/pages/bluebird`...
 
@@ -191,25 +183,21 @@ Second, we use Flux! When thinking back to Abramov's four cases, our requirement
 
 So, what is flux?
 
-```
-╔═════════╗     ╔════════════╗     ╔════════╗     ╔═════════════════╗
-║ Actions ║────>║ Dispatcher ║────>║ Stores ║────>║ View Components ║
-╚═════════╝     ╚════════════╝     ╚════════╝     ╚═════════════════╝
-     ^                                                    │
-     └────────────────────────────────────────────────────┘
-```
+    ╔═════════╗     ╔════════════╗     ╔════════╗     ╔═════════════════╗
+    ║ Actions ║────>║ Dispatcher ║────>║ Stores ║────>║ View Components ║
+    ╚═════════╝     ╚════════════╝     ╚════════╝     ╚═════════════════╝
+         ^                                                    │
+         └────────────────────────────────────────────────────┘
 
 Flux is a version of the Model View Controller paradigm that focuses on unidirectional dataflow. It specifies a dispatcher, some stores, some views, and some actions. Actions trigger the dispatcher. The dispatcher routes actions to interested stores. The stores update based on the action, and then notify the views to rerender. Then, the cycle starts all over again.
 
 There is a lot more detail, but this is where I'm going to stop. Why, because we are going to use Reflux, which is even easier.
 
-```
-╔═════════╗       ╔════════╗       ╔═════════════════╗
-║ Actions ║──────>║ Stores ║──────>║ View Components ║
-╚═════════╝       ╚════════╝       ╚═════════════════╝
-     ^                                      │
-     └──────────────────────────────────────┘
-```
+    ╔═════════╗       ╔════════╗       ╔═════════════════╗
+    ║ Actions ║──────>║ Stores ║──────>║ View Components ║
+    ╚═════════╝       ╚════════╝       ╚═════════════════╝
+         ^                                      │
+         └──────────────────────────────────────┘
 
 [Reflux](https://github.com/spoike/refluxjs) is an implementation of the basic concepts of Flux by Mikael Brassman. It greatly simplifies Flux by removing the dispatcher. Rather than actions flowing through a dispatcher, actions flow directly to the stores.
 
@@ -219,15 +207,11 @@ It is still possible to do everything with Reflux that can be done with Flux bec
 
 The first thing we will need to do is add Reflux to our project. Since we are using browserify, we can add to the `package.json` dependencies.
 
-```
-"reflux": "^0.2.7"
-```
+    "reflux": "^0.2.7"
 
 Alternatively, you can install it from the command line.
 
-```
-npm install --save reflux
-```
+    npm install --save reflux
 
 Then we need to create some actions, create a store to listen to those actions, and finally link that store to our `BlueBirdContainer` state. Fortunately, Reflux makes this easy.
 
@@ -309,9 +293,7 @@ var Reflux = require('reflux')
 
 Next, we need to connect the store to the component's state. There are a couple ways to do this. The easiest is to use the `Reflux.connect` convenience mixin on our BlueBirdContainer component.
 
-```
-mixins: [Reflux.connect(BlueBirdStore, 'bluebirdBody')],
-```
+    mixins: [Reflux.connect(BlueBirdStore, 'bluebirdBody')],
 
 It is important to note that mixins are discouraged in the React.js world these days. In fact, this is one of the very few mixins I still use. I use it because it makes the code very readable and keeps the logic simple. However, if you are dead set against mixins, or you want to use ES6 class syntax, you can fall back to calling the `listen` and `unsubscribe` functions in the `componentDidMount` and `componentWillUnmount` functions respectively.
 
@@ -384,15 +366,13 @@ Let's really see how powerful the Flux model can be. Let's connect it to a [Faye
 
 First, if you do not already have a Faye server running, it is really easy to add one for demo purposes. Update `package.json` with the required dependencies.
 
-```
-"dependencies": {
-  "faye": "^1.1.1",
-  "http": "0.0.0"
-},
-"scripts": {
-  "fayeserver": "node fayeserver.js"
-},
-```
+    "dependencies": {
+      "faye": "^1.1.1",
+      "http": "0.0.0"
+    },
+    "scripts": {
+      "fayeserver": "node fayeserver.js"
+    },
 
 Then, add the actual server code.
 
@@ -485,17 +465,13 @@ Finally, we should talk a little bit about hydration. Hydrating a store means ge
 
 In Rails, this can be accomplished by changing the body tag in 'application.html.erb'.
 
-```
-<body <%= yield :seed_attributes %>>
-```
+    <body <%= yield :seed_attributes %>>
 
 Then, somewhere in the view chain, add `content_for`. For this demo, we will add it to `bluebird.html.erb`. We should probably consider adding it to `index.html.erb`, but we will skip that to show what happens when no hydration data is present.
 
-```
-<% content_for :seed_attributes do %>
-data-bluebird-store="an initial message"
-<% end %>
-```
+    <% content_for :seed_attributes do %>
+    data-bluebird-store="an initial message"
+    <% end %>
 
 Normally, we would seed with some data from the database, but you get the point. It is possible to pack just about anything into the `data-attributes`. For more complex stores, we generally use JSON. Rails has an awesome `json_escape` helper function you should be sure to check out. Combined with the [jbuilder](https://github.com/rails/jbuilder) gem, it is possible to export some really complex data structures.
 

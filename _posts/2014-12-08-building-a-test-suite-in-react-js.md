@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "Building a test suite in React JS"
-summary: "I'm primarily a Rails developer but everyday I seem to be writing more and more front end JavaScript. While writing Ruby, tests are a given part of the process. This is not the case with JavaScript. I've always found that odd and I've also written enough JavaScript to intimately know how frustrating it can be. "
+excerpt_separator: <!--more-->
 author: Jack Callister
 date: 2014-12-08 18:59
 published: true
 categories: react
 ---
+I'm primarily a Rails developer but everyday I seem to be writing more and more front end JavaScript. While writing Ruby, tests are a given part of the process. This is not the case with JavaScript. I've always found that odd and I've also written enough JavaScript to intimately know how frustrating it can be. 
+
+<!--more-->
+
 I'm primarily a Rails developer but everyday I seem to be writing more and more front end JavaScript. While writing Ruby, tests are a given part of the process. This is not the case with JavaScript. I've always found that odd and I've also written enough JavaScript to intimately know how frustrating it can be. 
 
 It's a delight writing Ruby with a test suite so why is it acceptable that most JavaScript goes into production without automated tests? I believe difficulty and fear are the culprit. It's hard to get started; the tooling, workflow and even what to test are foreign. Rather than continue to deal with difficult JavaScript applications I decided to learn how to develop a test suite.
@@ -130,17 +134,15 @@ module.exports = {
 
 To use the preprocessor add this configuration inside the `package.json` file. It adds test script and informs Jest of the preprocessor function. It also makes sure that React itself is not automatically mocked!
 
-```
-"scripts": {
-  "test": "jest"
-},
-"jest": {
-  "scriptPreprocessor": "<rootDir>/support/preprocessor.js",
-  "unmockedModulePathPatterns": [
-    "<rootDir>/node_modules/react"
-  ]
-}
-```
+    "scripts": {
+      "test": "jest"
+    },
+    "jest": {
+      "scriptPreprocessor": "<rootDir>/support/preprocessor.js",
+      "unmockedModulePathPatterns": [
+        "<rootDir>/node_modules/react"
+      ]
+    }
 
 Next add a folder called `__tests__` in the root directory. Jest is magical enough to automatically run any test in any files sitting in this directory.
 
