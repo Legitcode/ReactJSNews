@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "We're Back!"
-excerpt: "As some of you may know, ReactJS News started out as a hacker news type site focused on letting anyone post links to their latest React creations. A couple months back, I had to travel and didn't have internet access for a few months. During this time the server crashed, we were using a meteor app just by doing `meteor up`, pretty stupid, I know. Now that I'm back, myself and [Jorge](https://github.com/vasco3) are working on making this site more awesome than it ever was. "
+excerpt_separator: <!--more-->
 author: Zach Silveira
 date: 2014-10-13 00:05
 published: true
 categories: react
 ---
+As some of you may know, ReactJS News started out as a hacker news type site focused on letting anyone post links to their latest React creations. A couple months back, I had to travel and didn't have internet access for a few months. During this time the server crashed, we were using a meteor app just by doing `meteor up`, pretty stupid, I know. Now that I'm back, myself and [Jorge](https://github.com/vasco3) are working on making this site more awesome than it ever was. 
+
+<!--more-->
+
 As some of you may know, ReactJS News started out as a hacker news type site focused on letting anyone post links to their latest React creations. A couple months back, I had to travel and didn't have internet access for a few months. During this time the server crashed, we were using a meteor app just by doing `meteor up`, pretty stupid, I know. Now that I'm back, myself and [Jorge](https://github.com/vasco3) are working on making this site more awesome than it ever was. 
 
 ##What's Coming

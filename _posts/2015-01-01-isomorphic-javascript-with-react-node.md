@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "Serverside React Rendering: Isomorphic JavaScript with ReactJS + Node"
-excerpt: "Shared JavaScript that runs on both the client & server."
+excerpt_separator: <!--more-->
 author: David Wells
 date: 2015-01-01 13:46
 published: true
 categories: react
 ---
+Shared JavaScript that runs on both the client & server.
+
+<!--more-->
+
 ### What is Isomorphic JavaScript ?
 
 Shared JavaScript that runs on both the client & server.
@@ -36,16 +40,16 @@ The demo uses the [griddle react](http://dynamictyped.github.io/Griddle/) compon
 
 In /server.js install the jsx transpiler:
 
-```
+~~~
 // Make sure to include the JSX transpiler
 require("node-jsx").install();
-```
+~~~
 
 Then change components to Node friendly syntax where you module.exports the component if it's in a seperate file
 
 Also make sure to `React.createFactory` your component for it to be rendered server side
 
-```js
+~~~js
 /** @jsx React.DOM */
 
 var React = require('react/addons');
@@ -80,11 +84,11 @@ var ReactApp = React.createClass({
 /* Module.exports instead of normal dom mounting */
 module.exports.ReactApp = ReactApp;
 /* Normal mounting happens inside of /main.js and is bundled with browerify */
-```
+~~~
 
 Now the magic happens with routes using `React.renderToString` inside /app/routes/coreRoutes.js:
 
-```js
+~~~js
 var React = require('react/addons');
 var ReactApp = React.createFactory(require('../components/ReactApp').ReactApp);
 
@@ -100,11 +104,11 @@ module.exports = function(app) {
 	});
 
 };
-```
+~~~
 
 The `reactOutput` variable is then passed into the template:
 
-```
+~~~
 <!doctype html>
 <html>
   <head>
@@ -125,7 +129,7 @@ The `reactOutput` variable is then passed into the template:
 
   </body>
 </html>
-```
+~~~
 
 ### Demo Install Instructions
 

@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "Testing Drag and Drop Components in React.js"
-excerpt: "Welcome back! [Last time](https://reactjsnews.com/complex-drag-and-drop-lists-using-react/) we left off with a nice little Container component that allowed dragging and dropping items both internally and between components. However, despite having the ability with our [setup](https://reactjsnews.com/setting-up-rails-for-react-and-jest/), we did not write a single test. The time has come to fix that shortcoming, with lots and lots of examples."
+excerpt_separator: <!--more-->
 author: James Burnett
 date: 2015-01-25 22:50
 published: true
 categories: react
 ---
+Welcome back! [Last time](https://reactjsnews.com/complex-drag-and-drop-lists-using-react/) we left off with a nice little Container component that allowed dragging and dropping items both internally and between components. However, despite having the ability with our [setup](https://reactjsnews.com/setting-up-rails-for-react-and-jest/), we did not write a single test. The time has come to fix that shortcoming, with lots and lots of examples.
+
+<!--more-->
+
 Welcome back! [Last time](https://reactjsnews.com/complex-drag-and-drop-lists-using-react/) we left off with a nice little Container component that allowed dragging and dropping items both internally and between components. However, despite having the ability with our [setup](https://reactjsnews.com/setting-up-rails-for-react-and-jest/), we did not write a single test. The time has come to fix that shortcoming, with lots and lots of examples.
 
 _Note: All of the code is available on GitHub in the [Dex v2.0 tag](https://github.com/HurricaneJames/dex/tree/v2.0)._
@@ -37,7 +41,7 @@ This article picks up where ["Complex Drag and Drop Lists Using React"](https://
 
 We are using a Rails based project structure because that was how we setup our basic demo project in ["Setting up Rails with React and Jest"](https://reactjsnews.com/setting-up-rails-for-react-and-jest/). Tests are located in the `app/assets/javascripts/components/__tests__/` directory. The test file is named `[Component]-test.jsx`, where `[Component]` is the name of the component we are testing. So, the tests for Container will be in `app/assets/javascripts/components/__tests__/Container-test.jsx`, and can run it with `npm test Container`. It should be relatively easy to map this structure to whatever setup is being used.
 
-```
+~~~
 # Directory Structure
 /app
   /assets
@@ -46,7 +50,7 @@ We are using a Rails based project structure because that was how we setup our b
         /__tests__
           Container-test.jsx 
         Container.jsx
-```
+~~~
 
 Tests are run from the command line via `npm test` or `npm test [Component]`.
 
@@ -73,24 +77,24 @@ As stated previously, there are probably more, but this is a good start. Next we
 
 Jest tests follow the standard 'describe/it' syntax from Jasmine. Also, remember that Jest does automocking, so we need to tell it not to mock our test target. The file will start with something like the following.
 
-```js
+~~~js
 jest.dontMock('../Container');
 
 describe('Container', function() {
   // it('should put some tests in here', function() {});
 });
-```
+~~~
 
 _Side note: Jest provides an `it.only()` function to run a single test. This is highly useful when trying to fix a single test at a time._
 
 ### When given a list of items, it should render them all to the screen.
 
-```js
+~~~js
 it('should display items, by default, in a text template (span element)', function() {
   var container = TestUtils.renderIntoDocument(<Container items={randomWords} />);
   expect(container.getDOMNode().textContent).toBe(randomWords.join(''));
 });
-```
+~~~
 
 First, we start with the `it()` function. Like `describe()`, `it()` expects two parameters, a description and a function. We told Jest not to automock `Container` earlier, so `require()` works like normal. The `Container` is then rendered into the fake DOM with the React `TestUtils.renderIntoDocument()` function. By using a `jsx` extension, the `Container-test.jsx` will automatically convert `<Container items={randomWords} />` into plain JavaScript. The returned `container` is the component that was rendered, and is the basis for all further testing.
 
@@ -98,7 +102,7 @@ Jest tests pass if all expectations pass or if there are no expectations. An exp
 
 ### When given a list of items and a template, it should render the list using the template for each item.
 
-```js
+~~~js
 var CustomTemplate = React.createClass({
   displayName: 'CustomTemplate',
   propTypes: { item: React.PropTypes.any.isRequired },
@@ -110,7 +114,7 @@ it('should display items with a custom template', function() {
   var items = TestUtils.scryRenderedDOMComponentsWithClass(container, 'customFinder').map(function(item) { return item.getDOMNode().textContent; });
   expect(items).toEqual(randomWords);
 });
-```
+~~~
 
 Just like the last test, we start with `renderIntoDocument`. However, this time we add the `itemTemplate={CustomTemplate}` property. The CustomTemplate is very similar to the default TextTemplate. The only difference between the default `TextTemplate` defined in `Container.jsx` is that we add `className="customFinder"` to make it easy to find our rendered elements.
 
@@ -122,25 +126,25 @@ Finally, we run our actual `expect()` test. This time we check that `items` is e
 
 As we saw in the previous article, setting the `draggable` attribute is required for HTML5 Drag and Drop. That means we should probably guarantee that any refactoring does not forget to include it.
 
-```js
+~~~js
 it('should mark items as draggable', function() {
   var container = TestUtils.renderIntoDocument(<Container itemTemplate={CustomTemplate} items={randomWords} />)
     , item = TestUtils.scryRenderedDOMComponentsWithTag(container, 'li')[1];
   expect(item.getDOMNode().getAttribute('draggable')).toBeTruthy();
 });
-```
+~~~
 
 As with the last test, this one starts by creating a `container`. We then use `scryRenderedDOMComponentsWithTag()` to grab all of the 'li' components, keeping the second one (the first component is a drop zone). Finally, we test for the `draggable` attribute, expecting it `toBeTruthy()`.
 
 Of course, now that we think about it, it is probably important to be sure that drop zones are not accidentally marked as draggable. Normally, we would not test whether something was not marked. However, drop zones are very similar to items, so it makes sense. It also helps to reinforce that drop zones are always present and not generated during drag operations.
 
-```js
+~~~js
 it('should not mark drop zones as draggable', function() {
   var container = TestUtils.renderIntoDocument(<Container itemTemplate={CustomTemplate} items={randomWords} />)
     , dropZone = TestUtils.scryRenderedDOMComponentsWithTag(container, 'li')[0];
   expect(dropZone.getDOMNode().getAttribute('draggable')).toBeFalsy();
 });
-```
+~~~
 
 ### Dragging an item should highlight the item being dragged.
 
@@ -150,7 +154,7 @@ In the original article we "highlighted" an item using the [React: CSS in JS](ht
 
 For historical, _and stupidity_ reasons, we modified the code to add a className attribute and test for that attirbute. We are keeping that solution here. See the **Changes** section at the bottom for an explanation.
 
-```js
+~~~js
 it('highlights item as selected when being dragged', function() {
   var container = TestUtils.renderIntoDocument(<Container itemTemplate={CustomTemplate} items={randomWords} />)
     , item = getItemFromContainer(container, 0)
@@ -162,7 +166,7 @@ it('highlights item as selected when being dragged', function() {
 function getItemFromContainer(container, itemId) {
   return TestUtils.scryRenderedDOMComponentsWithTag(container, 'li')[2*itemId + 1];
 }
-```
+~~~
 
 We do a couple things differently in this test. First we pull the  `scryRenderedDOMComponentsWithTag` logic into a separate function. This is both more readable and [DRYer](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Then we make sure the class name is blank initially. Next we simulate a dragStart event so the container only marks dragged items as selected. Then we check whether the className was applied. While we do not actually know that it was highlighted, we know a specific class was added, and presumably that class will trigger some highlighting.
 
@@ -172,9 +176,9 @@ While we are talking about "pain points", I should mention one other. Jest does 
 
 Bottom line, we need to make a few code changes so our tests can pass. First, replace all instances of `dataset.key` with `getAttribute('data-key')`. Second, we need to add the `className` prop to the selected item in `renderListItem`'s `<li />` component.
 
-```
+~~~
 `className={this.state.selected.has(key) ? 'container-selected' : ''}`
-```
+~~~
 
 With these code changes, our tests now pass.
 
@@ -182,7 +186,7 @@ With these code changes, our tests now pass.
 
 As we saw in the last test, React TestUtils `Simulate` functions do not replicate the `dataTransfer` event property, but we can mock it on a per call basis. To work with HTML5 Drag and Drop, we must call `dataTransfer.setData()`, so it is probably a really good idea to make sure the call was made.
 
-```js
+~~~js
 var CONTAINER_TYPE = 'custom_container_type';
 it('should set the data transfer with the correct type and the items to being dragged', function() {
   var container = TestUtils.renderIntoDocument(<Container itemTemplate={CustomTemplate} items={randomWords} />)
@@ -191,13 +195,13 @@ it('should set the data transfer with the correct type and the items to being dr
   TestUtils.Simulate.dragStart(item, { dataTransfer: mockDataTransfer });
   expect(mockDataTransfer.setData).toBeCalledWith(CONTAINER_TYPE, '["apple"]');
 });
-```
+~~~
 
 This test is almost the same as the last one. In fact, many devs would combine this test with the last test, but I have found it makes requirements easier to determine if the tests are lower level. However it is arranged, it is important to check that the `mockDataTransfer.setData()` function was called with the right data type, `'custom_container_type'`, and the proper JSON representation of the data. For convenience later, we extract the dataType `'custom_container_type'` into the global variable, `CONTAINER_TYPE`.
 
 ### Dragging over a dropZone should highlight the drop zone.
 
-```js
+~~~js
 var CONTAINER_DROP_ZONE_ACTIVE = 'container-dropZone-active';
 it('shows the current dropzone when hovering over drop zone', function() {
   var container = TestUtils.renderIntoDocument(<Container itemTemplate={CustomTemplate} items={randomWords} />)
@@ -210,7 +214,7 @@ it('shows the current dropzone when hovering over drop zone', function() {
 function getDropZone(container, itemId) {
   return TestUtils.scryRenderedDOMComponentsWithTag(container, 'li')[2*itemId];
 }
-```
+~~~
 
 ~~Just like our test to see if selected items were highlighted, we run into pain point #1 (no access to style properties) all over again. Again, using the className solution works. This time we simulate a `dragOver` event. ~~
 
@@ -220,22 +224,22 @@ Again, we need to change our code to make the test pass. This time, add the `cla
 
 And now we realize another requirement we had forgotten about in the original list. Part of the HTML5 drag and drop spec is that, by default, drop is not allowed. The spec requires calling `event.preventDefault()` on the dragEnter and/or dragOver operations. Also, our container only allows drops for certain types. Fortunately, we know how to mock functions for the simulated event. 
 
-```
+~~~
 mockEvent = {
   dataTransfer: { types: [CONTAINER_TYPE] },
   preventDefault: jest.genMockFunction()
 }
-```
+~~~
 
 We can test that this was called using the expect `toBeCalled()` matcher. 
 
-```
+~~~
 expect(mockEvent.preventDefault).toBeCalled();
-```
+~~~
 
 We only allow drops when a drop zone is activated, so it is perfectly acceptable to make this a second expectation of the current test. If you are really paranoid, you could create another test with a bad container type to verify the mock event `preventDefault()` function was `not.toBeCalled()` and that the drop zone was not activated.
 
-```js
+~~~js
 it('should not activate a dropzone when the container type is wrong', function() {
   var container = TestUtils.renderIntoDocument(<Container itemTemplate={CustomTemplate} items={randomWords} />)
     , dropZone = getDropZone(container, 0)
@@ -245,13 +249,13 @@ it('should not activate a dropzone when the container type is wrong', function()
   expect(dropZone.props.className).not.toBe(CONTAINER_DROP_ZONE_ACTIVE);
   expect(mockEvent.preventDefault).not.toBeCalled();
 });
-```
+~~~
 
 ### Dragging over the top half of an item should active the pervious drop zone.
 
 At this point we have started repeating ourselves. So first we are going to make use of the very helpful `beforeEach()` function. `beforeEach()` will run before each of the tests in a `describe()` block. This gives us a way of setting up some common variables and making sure they are the same for each test. As a side note, Jasmine has three other [Setup and Teardown](http://jasmine.github.io/2.1/introduction.html#section-Setup_and_Teardown) functions that you might find useful.
 
-```js
+~~~js
 var container, item, dropZoneAbove, dropZoneBelow, mockEvent;
 beforeEach(function() {
   mockEvent     = {
@@ -263,13 +267,13 @@ beforeEach(function() {
   dropZoneAbove = getDropZone(container, 2)
   dropZoneBelow = getDropZone(container, 3)
 });
-```
+~~~
 
 Do not forget to refactor the previous tests in the same describe block to use the variables defined in beforeEach, otherwise there is unnecessary duplicate code.
 
 Now, run the tests again. If every thing is still green, it is time to check that dragging over the top half of an item activates the drop zone above that item.
 
-```js
+~~~js
 it('shows previous drop zone when hovering over top half of item', function() {
   mockEvent.clientY = 2;
   overItem.getDOMNode().offsetTop = 0;
@@ -282,13 +286,13 @@ it('shows previous drop zone when hovering over top half of item', function() {
   expect(dropZoneBelow.props.className).toBe('');
   expect(mockEvent.preventDefault).toBeCalled();
 });
-```
+~~~
 
 Notice that we are specifying the mouse position (`clientY`) and item dimensions (`offsetTop` and `offsetHeight`). Interestingly, this test did pass in this environment. However, it might throw errors in other environments because those values are used but not defined. Also, Be sure to note that we have three expectations for this test. The first two check that the right drop zone was activated. The last checks that this method of activating a drop zone also calls prevent default.
 
 ### Dragging over the bottom half of an item should active the next drop zone.
 
-```js
+~~~js
 it('shows next drop zone when hovering over bottom half of item', function() {
   mockEvent.clientY = 7
   overItem.getDOMNode().offsetTop = 0;
@@ -301,7 +305,7 @@ it('shows next drop zone when hovering over bottom half of item', function() {
   expect(dropZoneBelow.props.className).toBe(CONTAINER_DROP_ZONE_ACTIVE);
   expect(mockEvent.preventDefault).toBeCalled();
 });
-```
+~~~
 
 This test looks almost identical to the last test. The only change is our mouse position (`clientY`) is now 7. We define the item to be 10px high with `offsetHeight`, so this puts the drag event in the bottom half of the item.
 
@@ -311,7 +315,7 @@ Unlike the last test, this one will fail without the mouse position and item dim
 
 This was an important fix from the last article. Otherwise drop zones remain active after dragging the item out of the container, even when just dragging over a container.
 
-```js
+~~~js
 it("should clear any active drop zones when the dragged item leaves the container", function() {
   var containerElement = TestUtils.findRenderedDOMComponentWithTag(container, 'ul').getDOMNode();
 
@@ -326,7 +330,7 @@ it("should clear any active drop zones when the dragged item leaves the containe
   TestUtils.Simulate.dragLeave(containerElement, mockEvent);
   expect(TestUtils.scryRenderedDOMComponentsWithClass(container, CONTAINER_DROP_ZONE_ACTIVE).length).toBe(0);
 });
-```
+~~~
 
 First, our `container` is the React element, not the list element where we attached the `onDragLeave` event handler. That means we need to capture the `'ul'` element to `containerElement`. This is done with `findRenderedDOMComponentWithTag()`. So far we have been using the `scry` versions of these functions. `scry` will find all, `find` will find the single instance and throw an error if it is unable.
 
@@ -340,17 +344,17 @@ Finally, we simulate the drag leave and check that the number of active drop zon
 
 For our drop testing we will use a new beforeEach setup.
 
-```js
+~~~js
 beforeEach(function() {
   container = TestUtils.renderIntoDocument(<Container itemTemplate={CustomTemplate} items={randomWords.slice(0)} />);
   overItem  = getDropZone(container, randomWords.length)
   mockEvent = { dataTransfer: { types: [CONTAINER_TYPE] } }
 });
-```
+~~~
 
 This will give us a container, with `overItem` pointing to the last dropZone and a basic mockEvent. Then we can test whether dropping adds the item.
 
-```js
+~~~js
 it('adds dropped items to currently selected drop zone', function() {
     mockEvent.dataTransfer.getData = function() { return '"peaches"'; };
 
@@ -359,13 +363,13 @@ it('adds dropped items to currently selected drop zone', function() {
     var items = TestUtils.scryRenderedDOMComponentsWithClass(container, 'customFinder').map(function(item) { return item.getDOMNode().textContent; });
     expect(items).toEqual(randomWords.concat(["peaches"]));
 });
-```
+~~~
 
 First, we add a mock getData function that just returns `"peaches"`. Then we simulate a drag over to activate a drop zone, and we simulate a drop event to put that data into the container. Finally, we extract the items and see if our new item has been appended to the end.
 
 ### Dropping should remove selected items from the original list.
 
-```js
+~~~js
 it('removes selected items', function() {
   var item = getItemFromContainer(container, 0);
   mockEvent.dataTransfer.dropEffect = "move";
@@ -379,7 +383,7 @@ it('removes selected items', function() {
   // array where first item is now last
   expect(items).toEqual(randomWords.slice(1).concat(randomWords[0]));
 });
-```
+~~~
 
 This time we grab the first item in the container. We setup the mockEvent dataTransfer with that item's information. Then we simulate all of the events that normally happen, including the dragEnd. Then we check that the result is the list with with the first item removed and pinned to the end (`randomWords.slice(1).concat(randomWords[0])`).
 

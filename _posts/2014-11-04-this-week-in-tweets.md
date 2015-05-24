@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "This Week in Tweets"
-excerpt: "I'm too busy to get a full post up this week, hopefully these tweets will suffice!"
+excerpt_separator: <!--more-->
 author: Zach Silveira
 date: 2014-11-04 13:25
 published: true
 categories: react
 ---
+I'm too busy to get a full post up this week, hopefully these tweets will suffice!
+
+<!--more-->
+
 I'm too busy to get a full post up this week, hopefully these tweets will suffice!
 
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>

@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "React Conf Recap"
-excerpt: "After live tweeting the whole conference this past week, I feel obligated to write up on it. I'll be covering the main stuff announced, at any point feel free to leave a comment or a reply on Twitter [@ReactJSNews](http://twitter.com/reactjsnews) with any questions. I try my best to respond to everyone."
+excerpt_separator: <!--more-->
 author: Zach Silveira
 date: 2015-01-31 17:17
 published: true
 categories: react
 ---
+After live tweeting the whole conference this past week, I feel obligated to write up on it. I'll be covering the main stuff announced, at any point feel free to leave a comment or a reply on Twitter [@ReactJSNews](http://twitter.com/reactjsnews) with any questions. I try my best to respond to everyone.
+
+<!--more-->
+
 After live tweeting the whole conference this past week, I feel obligated to write up on it. I'll be covering the main stuff announced, at any point feel free to leave a comment or a reply on Twitter [@ReactJSNews](http://twitter.com/reactjsnews) with any questions. I try my best to respond to everyone.
 
 ##React Native

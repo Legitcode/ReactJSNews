@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "I Hear You Want A React Europe Ticket!"
-excerpt: "The React Europe team has been kind enough to offer me two tickets. One for me to use, and another to giveaway. I'm excited about this conference, but I'm not 100% sure yet if I'll be going. Either way, someone will win a ticket. If I do end up being able to go, I'll be helping at the check in booth, so anyone who didn't see me at the first conference definitely would this time!"
+excerpt_separator: <!--more-->
 author: Zach Silveira
 date: 2015-03-11 22:44
 published: true
 categories: react
 ---
+The React Europe team has been kind enough to offer me two tickets. One for me to use, and another to giveaway. I'm excited about this conference, but I'm not 100% sure yet if I'll be going. Either way, someone will win a ticket. If I do end up being able to go, I'll be helping at the check in booth, so anyone who didn't see me at the first conference definitely would this time!
+
+<!--more-->
+
 The React Europe team has been kind enough to offer me two tickets. One for me to use, and another to giveaway. I'm excited about this conference, but I'm not 100% sure yet if I'll be going. Either way, someone will win a ticket. If I do end up being able to go, I'll be helping at the check in booth, so anyone who didn't see me at the first conference definitely would this time!
 
 ##The Details

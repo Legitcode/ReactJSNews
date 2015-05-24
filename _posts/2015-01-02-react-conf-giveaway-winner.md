@@ -1,12 +1,16 @@
 ---
 layout: post
 title:  "React Conf Giveaway Winner"
-excerpt: "I would like to thank everybody that entered the giveaway. It was a lot harder than I thought it would be to choose a winner. I know that everyone who entered tried very hard. Before going into who won, here's a little recap of what was submitted."
+excerpt_separator: <!--more-->
 author: Zach Silveira
 date: 2015-01-02 13:39
 published: true
 categories: react
 ---
+I would like to thank everybody that entered the giveaway. It was a lot harder than I thought it would be to choose a winner. I know that everyone who entered tried very hard. Before going into who won, here's a little recap of what was submitted.
+
+<!--more-->
+
 I would like to thank everybody that entered the giveaway. It was a lot harder than I thought it would be to choose a winner. I know that everyone who entered tried very hard. Before going into who won, here's a little recap of what was submitted.
 
 **David Wells** wrote about [Isomorphic React](https://reactjsnews.com/isomorphic-javascript-with-react-node/) utilizing the power of node to keep consistent code on both the client and server.
