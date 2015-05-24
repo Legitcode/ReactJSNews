@@ -16,9 +16,12 @@ git clone git://github.com/skevy/pixyll build
 cd build/
 rm -rf .git/
 rm -rf _posts
+rm -rf _layouts
 rm -rf about.md
 rm -rf contact.html
 cp -R ../posts ./_posts
+cp -R ../layouts ./_layouts
+
 cp -R ../pages .
 cp -R ../theme/. .
 rm -rf CNAME
