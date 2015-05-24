@@ -31,20 +31,22 @@ The user experience needs to be similar to the JQueryUI sortable-based widget it
 
 For this article we start with the basic React/Rails setup discussed in an earlier article on [Setting Up Rails for React and JEST](https://reactjsnews.com/setting-up-rails-for-react-and-jest/). This gives a good start point on a simple Rails based app. However, The main techniques used should work with any setup and it should be fairly easy extrapolating to other setups from there.
 
-    # Poor Mans Fork
-    git clone https://github.com/HurricaneJames/rex dex
-    cd dex
-    rm -rf .git
-    git init
-    git add .
-    git commit -m "Rex to Dex"
+~~~
+# Poor Mans Fork
+git clone https://github.com/HurricaneJames/rex dex
+cd dex
+rm -rf .git
+git init
+git add .
+git commit -m "Rex to Dex"
 
-    # Install required packages
-    bundle install
-    npm install
+# Install required packages
+bundle install
+npm install
 
-    # Start Rails server
-    rails s
+# Start Rails server
+rails s
+~~~
 
 This setup gives us a view template `app/views/pages/index.html.erb` and a route, `/pages/index`, to get there. All of our components will go into the `app/assets/javascripts/components/` directory. Any global components will be added in `app/assets/javascripts/components.js`. If you are unfamiliar with Rails, open a web browser and go to `http://localhost:3000/pages/index`. At this point, you should see the Rex Demo Component.
 
@@ -56,21 +58,23 @@ Although not required, let's change the `<h1>` element to something more useful 
 
 Normally, the data will come from a controller or a helper. Since this is just a demo/prototype, we are going to add some ugly code to our view.
 
-    <%
-      # NEVER PUT LOGIC LIKE THIS IN A VIEW
-      random_words = [
-        ["apple", "bannana", "watermelon", "oranges", "ice cream"],
-        [],
-        ["alpha", "beta", "gamma", "iota"],
-        ["hot dog", "mustard", "guava"],
-        ["chocolate", "ice cream", "cookies", "brownies"],
-        ["dog", "cat", "iguana", "leopard", "bear"]
-      ]
-    %>
-    <% random_words.each_with_index do |random_word_group, index| %>
-      <h2>Container <%= index + 1 %></h2>
-      <%= react_component 'Container', { items: random_word_group } %>
-    <% end %>
+~~~
+<%
+  # NEVER PUT LOGIC LIKE THIS IN A VIEW
+  random_words = [
+    ["apple", "bannana", "watermelon", "oranges", "ice cream"],
+    [],
+    ["alpha", "beta", "gamma", "iota"],
+    ["hot dog", "mustard", "guava"],
+    ["chocolate", "ice cream", "cookies", "brownies"],
+    ["dog", "cat", "iguana", "leopard", "bear"]
+  ]
+%>
+<% random_words.each_with_index do |random_word_group, index| %>
+  <h2>Container <%= index + 1 %></h2>
+  <%= react_component 'Container', { items: random_word_group } %>
+<% end %>
+~~~
 
 This creates an array of arrays, `random_words`, representing the data for each of our containers. Then the view loops over those and adds an `<h2>` element and the `react_component` with the random words as an `items` prop.
 
@@ -80,19 +84,19 @@ Updating the browser shows that the view worked as expected. However, there are 
 
 Now we can add in a container component. First, add the non-existant Container to our `components.js` file, `Container = require('./components/Container');`. Then, create the container component, `app/assets/javascripts/components/Container.jsx`.
 
-```js
+~~~js
 var React = require('react');
 var Container = React.createClass({ displayName: "Container",
   render: function() { return <ul /> }
 });
 module.exports = Container;
-```
+~~~
 
 Reload the browser and notice that the error went away. Inspecting the DOM shows that React loaded the `<ul>` as expected. Next, we will add the items.
 
 As with all React classes, we will start with props and state.
 
-```js
+~~~js
 // in the Container createClass
 propTypes: {
   items: React.PropTypes.array.isRequired,
@@ -109,13 +113,13 @@ getInitialState: function() {
     items: this.props.items,
   };
 },
-```
+~~~
 
 The Container class will accept two props, `items` and `itemTemplate`. The `items` come from the array we passed in. The `itemTemplate` defaults to a `TextTemplate` since our `index.html.erb` does not provide anything. One of the requirements was that containers be able to support different types of data. Setup like this, each container can support a different view of the data, which is what we needed. If one view per container does not meet the needs of other projects, it is possible to pass in the template as part of the items, or to determine the proper template based on some data in the item.
 
 The `TextTemplate` is just a simple span element. By convention we have specified that all templates accept an `item` prop. In this case, that item is just text, so it works perfectly.
 
-```js
+~~~js
 // app/assets/javascripts/components/Container.jsx
 var TextTemplate = React.createClass({ displayName: "Container-TextTemplate",
   propTypes: {
@@ -125,11 +129,11 @@ var TextTemplate = React.createClass({ displayName: "Container-TextTemplate",
     return <span>{this.props.item}</span>;
   }
 });
-```
+~~~
 
 We will also update the `render` function to add the new items and template.
 
-```js
+~~~js
 renderListElement: function(item, key) {
   return(
     <li key={key} style={styles.item}>{item}</li>
@@ -142,11 +146,11 @@ render: function() {
         style={styles.container}>{items}</ul>
   );
 }
-```
+~~~
 
 Notice the `style={}` prop. This is a convention proposed by Christopher "vjeux" Chedeau in his presentation on [React: CSS in JS](https://speakerdeck.com/vjeux/react-css-in-js). Whether this is a good idea or not is debatable, but it worked well for this demo.
 
-```js
+~~~js
 var styles = {
   container: {
     maxWidth: 550,
@@ -162,7 +166,7 @@ var styles = {
     padding: 3
   }
 }
-```
+~~~
 
 ## Integrating HTML5 Drag Events
 
@@ -174,12 +178,14 @@ HTML5 drag and drop is based on an attribute flag and six events. The attribute 
 
 The following code examples come directly from the completed `Container.jsx` available on [GitHub](https://github.com/HurricaneJames/dex) and use the following constants:
 
-    ALLOWED_DROP = "move";
-    DRAG_DROP_CONTENT_TYPE = "custom_container_type";
+~~~
+ALLOWED_DROP = "move";
+DRAG_DROP_CONTENT_TYPE = "custom_container_type";
+~~~
 
 -   [`onDragStart`](https://developer.mozilla.org/en-US/docs/Web/Events/dragstart) is called when a drag event is initiated. The passed in event object has a very important property, `dataTransfer`. Unlike most browser events, `dataTransfer` must be modified before the end of the function.
 
-    ```js
+    ~~~js
       onDragStart: function(e) {
         var selectedIndex = parseInt(e.currentTarget.dataset.key);
         e.dataTransfer.effectAllowed = ALLOWED_DROP_EFFECT;
@@ -187,17 +193,19 @@ The following code examples come directly from the completed `Container.jsx` ava
 
         this.setState({ selected: selectedIndex });
       },
-    ```
+    ~~~
 
       Here we set the `dataTransfer.effectAllowed` to accept `move`. It can be modified to `copy`, `copyMove`, or several others as required. We also call `dataTransfer.setData` with the item we wish to transfer. The data type (`DRAG_DROP_CONTENT_TYPE`) is used when checking if a drag event is coming from one of our containers or from something else, for example dragging a file into the browser or a non-compatible element. It will also be used to retrieve the data on a `drop` event.
 
       _Edit: this works great with text items, but fails miserable with objects. The fix is to use JSON to stringify the data before setting it._
 
-          e.dataTransfer.setData(DRAG_DROP_CONTENT_TYPE, JSON.stringify(this.state.items[selectedIndex]));
+    ~~~
+      e.dataTransfer.setData(DRAG_DROP_CONTENT_TYPE, JSON.stringify(this.state.items[selectedIndex]));
+    ~~~
 
 -   [`onDragOver`](https://developer.mozilla.org/en-US/docs/Web/Events/dragover) is called whenever the user drags anything over an element that is listening for the event. We listen for this event on two elements in our list, drop zones and items.
 
-    ```js
+    ~~~js
       onDragOverItem: function(e) {
         if(this.containerAcceptsDropData(e.dataTransfer.types)) { e.preventDefault(); } 
         var over = parseInt(e.currentTarget.dataset.key);
@@ -209,7 +217,7 @@ The following code examples come directly from the completed `Container.jsx` ava
         var dropZoneId = parseInt(e.currentTarget.dataset.key);
         if(dropZoneId !== this.state.hoverOver) { this.setState({ hoverOver: dropZoneId }); }
       },
-    ```
+    ~~~
 
       By default, `onDragOver` events will reset the current drag operation to `none`, preventing a drop. So the first thing we do is check if we can support any of the dataTransfer types and `preventDefault` if we do. Next, by convention, we have added a `data-key` attribute to our elements that gives us the index in the item array (`currentTarget.dataset.key`). Drop zones then guarante the new key matches the current `hoverOver` value. 
 
@@ -221,7 +229,7 @@ The following code examples come directly from the completed `Container.jsx` ava
 
       We might be tempted to ignore this one too, but we need it to clean up an ugly user-facing bug. Without `onDragLeave`, draging an item from Container 1, over Container 2, and into Container 3 leaves an empty drop zone highlighted in Container 2.
 
-    ```js
+    ~~~js
       onDragLeaveContainer: function(e) {
         var x = e.clientX
           , y = e.clientY
@@ -231,13 +239,13 @@ The following code examples come directly from the completed `Container.jsx` ava
           , right  = left + e.currentTarget.offsetWidth;
         if(y <= top || y >= bottom || x <= left || x >= right) { this.resetHover(); }
       },
-    ```
+    ~~~
 
       `onDragLeaveContainer` is added to the container `<ul>` component and checks to see if the point was on or outside of the container bounding rectangle. If the pointer is outside the rectangle, we know that the `dragleave` event was actually leaving the component and not just entering a child element. When the dragged element leaves the container, we `resetHover` which deselected the drop zone.
 
 -   [`onDrop`](https://developer.mozilla.org/en-US/docs/Web/Events/drop) is called when there was a valid drop event. It is during this event that we add the new element into our list.
 
-    ```js
+    ~~~js
       onDrop: function(e) {
         var data   = e.dataTransfer.getData(DRAG_DROP_CONTENT_TYPE);
         if(this.state.hoverOver !== NO_HOVER) {
@@ -249,7 +257,7 @@ The following code examples come directly from the completed `Container.jsx` ava
           this.setState(this.state);
         }
       },
-    ```
+    ~~~
 
       First, we grab the data. We already know that `DRAG_DROP_CONTENT_TYPE` is supported because we allowed drop with `onDragOver`. Then we check that a drop zone is active and splice the dropped data into that section of the array. If the selected drop zone is above the selected item, we bump the selected item pointer so it still points to the originally selected item. If the drop is on a different container, then `selected` will be set to `NONE_SELECTED` which will be less than `hoverOver`. Finally, we reset the drop zone pointer as it is now filled with the new element.
       
@@ -259,7 +267,7 @@ The following code examples come directly from the completed `Container.jsx` ava
 
 -   [`onDragEnd`](https://developer.mozilla.org/en-US/docs/Web/Events/dragend) is called when the drag operation is over, whether successful or not _(see the "Gotchas" section below for an exception to the rule)_. It is called on the same element that responded to `onDragStart`. It is the very last event called.
 
-    ```js
+    ~~~js
       onDragEnd: function(e) {
         if(e.dataTransfer.dropEffect === ALLOWED_DROP_EFFECT) {
           this.state.items.splice(this.state.selected, 1);
@@ -272,7 +280,7 @@ The following code examples come directly from the completed `Container.jsx` ava
           this.setState({ hoverOver: NO_HOVER, selected: NONE_SELECTED });
         }
       },
-    ```
+    ~~~
 
       Here we check if the drop effect was successful, ie. `move`. `dropEffect` will be set to `none` when the drop failed or was cancelled. Assuming the drop was successful, the selected item is spliced out of the item array and discarded. `hoverOver` and `selected` are reset regardless.
 
@@ -280,23 +288,25 @@ The following code examples come directly from the completed `Container.jsx` ava
 
 Now that the event handlers are in place we should start using them. First, we need to add some additional items to `getInitialState`.
 
-    selected:  NONE_SELECTED,
-    hoverOver: NO_HOVER
+~~~
+selected:  NONE_SELECTED,
+hoverOver: NO_HOVER
+~~~
 
 Then we need to add the `containerAcceptsDropData` and `resetHover` functions referenced in the handlers.
 
-```js
+~~~js
 containerAcceptsDropData: function(transferTypes) {
   return Array.prototype.indexOf.call(transferTypes, DRAG_DROP_CONTENT_TYPE) !== -1;
 },
 resetHover: function(e) {
   if(this.state.hoverOver !== NO_HOVER) { this.setState({ hoverOver: NO_HOVER }); }
 },
-```
+~~~
 
 Finally, we need to update our render function.
 
-```js
+~~~js
 render: function() {
   var items = this.renderListElements();
   return (
@@ -306,11 +316,11 @@ render: function() {
         style={styles.container}>{items}</ul>
   );
 }
-```
+~~~
 
 Render still has responsibility for rendering the list, but now it also listens for `onDrop` and `onDragLeave` events. Previously, items used the common `items.map`. Now, this is extracted to a `renderListElement` function.
 
-```js
+~~~js
 renderListElements: function() {
   var items = [];
   for(var i=0, length=this.state.items.length;i<length;i++) {
@@ -320,13 +330,13 @@ renderListElements: function() {
   items.push(this.renderDropZone(i));
   return items;
 },
-```
+~~~
 
 Instead of adding a single `<li>` element for each item, we are adding drop zone elements between all items. We also use also create a template for each of the data items and pass that template off to `renderListElement`. Outside of this demo, it would probably be better to maintain a cache of itemTemplates instead of recreating them on every render. Fortunately, React's virtual DOM keeps the performance snappy anyway.
 
 The actual `<li>` is injected by two render functions, `renderListElement` and `renderDropZone`.
 
-```js
+~~~js
 renderListElement: function(item, key) {
   return(
     <li key={key}
@@ -345,7 +355,7 @@ renderDropZone: function(index) {
              style={merge(styles.dropZone, this.state.hoverOver === index && styles.activeDropZone)}
              onDragOver={this.onDragOverDropZone}></li>;
 },
-```
+~~~
 
 Both functions return a `<li>` component that has an appropriate `key` for React. The component also stores that key in `data-key` for easy access in the handlers. We use the style object mentioned above and added a `merge` function to add in style properties for selected items and active drop zones.
 
@@ -353,7 +363,7 @@ List elements are marked as `draggable` and listen for `onDragOver`, `onDragStar
 
 The merge function is taken almost directly from the [React: CSS in JS](https://speakerdeck.com/vjeux/react-css-in-js) presentation. However, that presentation uses ES6 Object.assign, which currently only works with Firefox. So we modified it a bit.
 
-```js
+~~~js
 function merge() {
   var res = {};
   for (var i=0; i<arguments.length; ++i) {
@@ -382,7 +392,7 @@ var objectAssign = Object.assign || function (target, source) {
   }
   return to;
 };
-```
+~~~
 
 The ObjectAssign code was adapted from Sindre Sorhus's [object-assign](https://github.com/sindresorhus/object-assign) code.
 
@@ -390,19 +400,21 @@ The ObjectAssign code was adapted from Sindre Sorhus's [object-assign](https://g
 
 At this point we can drag around items, but it is a little jarring. Stuff appears and disappears rapidly. We can make it better. In a nod to the simplicity of the architecture, the fix only requires modifications to the styles object.
 
-    selectedItem: {
-      backgroundColor: '#333'
-    },
-    dropZone: {
-      height: 2,
-      backgroundColor: 'transparent',
-      transition: 'height 400ms'
-    },
-    activeDropZone: {
-      height: 15,
-      background: '#fff',
-      transition: 'height 150ms'
-    }
+~~~
+selectedItem: {
+  backgroundColor: '#333'
+},
+dropZone: {
+  height: 2,
+  backgroundColor: 'transparent',
+  transition: 'height 400ms'
+},
+activeDropZone: {
+  height: 15,
+  background: '#fff',
+  transition: 'height 150ms'
+}
+~~~
 
 The transition properties make the drop zones expand/collapse gracefully. The background colors make it obvoius what is selected and what is a drop zone.
 

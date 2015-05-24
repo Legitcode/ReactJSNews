@@ -40,14 +40,16 @@ The demo uses the [griddle react](http://dynamictyped.github.io/Griddle/) compon
 
 In /server.js install the jsx transpiler:
 
-    // Make sure to include the JSX transpiler
-    require("node-jsx").install();
+~~~
+// Make sure to include the JSX transpiler
+require("node-jsx").install();
+~~~
 
 Then change components to Node friendly syntax where you module.exports the component if it's in a seperate file
 
 Also make sure to `React.createFactory` your component for it to be rendered server side
 
-```js
+~~~js
 /** @jsx React.DOM */
 
 var React = require('react/addons');
@@ -82,11 +84,11 @@ var ReactApp = React.createClass({
 /* Module.exports instead of normal dom mounting */
 module.exports.ReactApp = ReactApp;
 /* Normal mounting happens inside of /main.js and is bundled with browerify */
-```
+~~~
 
 Now the magic happens with routes using `React.renderToString` inside /app/routes/coreRoutes.js:
 
-```js
+~~~js
 var React = require('react/addons');
 var ReactApp = React.createFactory(require('../components/ReactApp').ReactApp);
 
@@ -102,30 +104,32 @@ module.exports = function(app) {
 	});
 
 };
-```
+~~~
 
 The `reactOutput` variable is then passed into the template:
 
-    <!doctype html>
-    <html>
-      <head>
-        <title>React Isomorphic Server Side Rendering Example</title>
-        <link href='/styles.css' rel="stylesheet">
-      </head>
-      <body>
-    	<h1 id="main-title">React Isomorphic Server Side Rendering Example</h1>
-        <!-- reactOutput is the server compiled React Dom Nodes -->
-        <!-- comment out reactOutput to see empty non indexable source in browser -->
-        <div id="react-main-mount">
-          <%- reactOutput %>
-        </div>
+~~~
+<!doctype html>
+<html>
+  <head>
+    <title>React Isomorphic Server Side Rendering Example</title>
+    <link href='/styles.css' rel="stylesheet">
+  </head>
+  <body>
+	<h1 id="main-title">React Isomorphic Server Side Rendering Example</h1>
+    <!-- reactOutput is the server compiled React Dom Nodes -->
+    <!-- comment out reactOutput to see empty non indexable source in browser -->
+    <div id="react-main-mount">
+      <%- reactOutput %>
+    </div>
 
-    	<!-- comment out main.js to ONLY see server side rendering -->
-    	<script src="/main.js"></script>
+	<!-- comment out main.js to ONLY see server side rendering -->
+	<script src="/main.js"></script>
 
 
-      </body>
-    </html>
+  </body>
+</html>
+~~~
 
 ### Demo Install Instructions
 

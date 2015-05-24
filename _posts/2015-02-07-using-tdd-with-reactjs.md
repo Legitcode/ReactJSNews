@@ -46,7 +46,7 @@ With these requirements in hand, let's get started.
 
 Since we are using TDD now, we will start with the tests. First up, clicking on an item.
 
-```js
+~~~js
 describe("Selecting Items", function() {
   var container, item;
   beforeEach(function() {
@@ -66,11 +66,11 @@ describe("Selecting Items", function() {
     expect(item.props.className).toBe('');
   });
 });
-```
+~~~
 
 These are both fairly simple to understand and appropriately red when running `npm test Container`. Next up, dragging. We already test that items are selected when dragged. But we should make sure that selected items are not un-selected when dragged.
 
-```js
+~~~js
 describe("Drag Start", function() {
   // ...
   it('should keep previously selected items as selected when dragged', function() {
@@ -81,7 +81,7 @@ describe("Drag Start", function() {
   });
   // ...
 });
-```
+~~~
 
 This test also fails because we do not yet handle the click event. So let's turn these tests green.
 
@@ -114,23 +114,23 @@ Now that we have a Set implementation, we need to replace the old `state.selecte
 
 -   `onClickOnListItem()` [new function]
 
-    ```js
+    ~~~js
       onClickOnListItem: function(e) {
         var selectedIndex = parseInt(e.currentTarget.getAttribute('data-key'));
         this.toggleSelectedItem(selectedIndex);
         this.setState({ selected: this.state.selected });
       },
-    ```
+    ~~~
 
       Notice that we are using `getAttribute('data-key')` because Jest does not support the `dataset` property of elements.
 
 -   `toggleSelectedItem()` [new function]
 
-    ```js
+    ~~~js
       toggleSelectedItem: function(selectedIndex) {
         return this.state.selected.has(selectedIndex) ? this.state.selected.delete(selectedIndex) : this.state.selected.add(selectedIndex);
       },
-    ```
+    ~~~
 
 With these changes, the tests for selecting items should go green.
 
@@ -142,31 +142,33 @@ Now that we have item selection working, we need to turn our attention to requir
 
 -   it should not mark a previously selected item as not selected when dragging it
 
-    ```js
+    ~~~js
       it('should keep previously selected items as selected when dragged', function() {
         TestUtils.Simulate.click(item);
         expect(item.props.className).toBe('container-selected');
         TestUtils.Simulate.dragStart(item, { dataTransfer: mockDataTransfer });
         expect(item.props.className).toBe('container-selected');
       });
-    ```
+    ~~~
 
 -   it should add all of the items to the datatransfer
 
-    ```js
+    ~~~js
       it("should put all selected items into the data transfer", function() {
         TestUtils.Simulate.click(item);
         var item2 = getItemFromContainer(container, 1);
         TestUtils.Simulate.dragStart(item2, { dataTransfer: mockDataTransfer });
         expect(mockDataTransfer.setData).toBeCalledWith(CONTAINER_TYPE, '["apple","banana"]');
       });
-    ```
+    ~~~
 
 These tests depend on a beforeEach that sets
 
-        mockDataTransfer = { setData: jest.genMockFunction() }
-        container        = TestUtils.renderIntoDocument(<Container itemTemplate={CustomTemplate} items={randomWords} />)
-        item             = getItemFromContainer(container, 0);
+~~~
+    mockDataTransfer = { setData: jest.genMockFunction() }
+    container        = TestUtils.renderIntoDocument(<Container itemTemplate={CustomTemplate} items={randomWords} />)
+    item             = getItemFromContainer(container, 0);
+~~~
 
 Running the tests will, as expected, produce nice red responses.
 
@@ -174,7 +176,7 @@ Running the tests will, as expected, produce nice red responses.
 
 Now we need to turn that red to green. Looking at our first set of errors leads to `onDragStart`. It is doing many bad things, from trying to set `selected = selectedIndex` to not including all of the items. So we can start by changing that function.
 
-```js
+~~~js
 onDragStart: function(e) {
   var selectedIndex = parseInt(e.currentTarget.getAttribute('data-key'));
   this.state.selected.add(selectedIndex);
@@ -182,17 +184,17 @@ onDragStart: function(e) {
   e.dataTransfer.setData(DRAG_DROP_CONTENT_TYPE, JSON.stringify(this.getSelectedItems()));
   this.setState({ selected: this.state.selected });
 },
-```
+~~~
 
 First, instead of straight assignment, we add the selected index to the selected set. We still limit the drop effect, but now we stringify all the selected items with the help of a `getSelectedItems()` function. Finally we set the new state.
 
 `getSelectedItems()` is fairly simple. It just copies out the selected items into an array, sorts them, and maps the resulting ids to the actual items.
 
-```js
+~~~js
 getSelectedItems: function() {
   return this.state.selected.toArray().sort().map(function(itemIndex) { return this.state.items[itemIndex]; }, this);
 },
-```
+~~~
 
 A colleague asked me, "why are you sorting the selected items?" We sort the array because Set does not specify or guarantee an order to the items it contains. So, we sort the array to guarantee the component works the same on every possible implementation and environment. This produces an array of items that matches the order of the items as they are displayed.
 
@@ -206,7 +208,7 @@ The drag over operations did not change, but we do need to address the differenc
 
 Starting with our test:
 
-```js
+~~~js
 it('adds dropped items to currently selected drop zone', function() {
     var randomDropWords = '["peaches", "cream"]';
     mockEvent.dataTransfer.getData = function() { return randomDropWords; };
@@ -216,11 +218,11 @@ it('adds dropped items to currently selected drop zone', function() {
     var items = TestUtils.scryRenderedDOMComponentsWithClass(container, 'customFinder').map(function(item) { return item.getDOMNode().textContent; });
     expect(items).toEqual(randomWords.concat(["peaches", "cream"]));
 });
-```
+~~~
 
 In the original test we only added "peaches". This time we are adding `["peaches", "cream"]`. The only other thing that changes is we expect items to equal a slightly longer list. It is still red, but now we can make the changes required to turn this red to green, and they are fairly straight forward.
 
-```js
+~~~js
 onDrop: function(e) {
   var data = JSON.parse(e.dataTransfer.getData(DRAG_DROP_CONTENT_TYPE));
   if(this.state.hoverOver !== NO_HOVER) {
@@ -233,7 +235,7 @@ onDrop: function(e) {
     });
   }
 },
-```
+~~~
 
 First we change the splice function to add in all of the data with a little trick. Instead of calling `this.state.items` directly, we call `Array.prototype.splice.apply`. Then we pass in `this.state.items` as the `this` argument for the function and an array for our parameters. If you are unfamiliar with this trick, I highly recommend reading John Resig's and Bear Bibeault's excellent book "[Secrets of the JavaScript Ninja](http://www.amazon.com/Secrets-JavaScript-Ninja-John-Resig/dp/193398869X/)."
 
@@ -245,7 +247,7 @@ The previous test, `it('removes selected items', function() {...}`, should still
 
 _The astute reader will also notice that we made a _faux pas_ in our previous version in that we are setting state variables directly. We are going to clean that up now too._
 
-```js
+~~~js
 onDragEnd: function(e) {
   if(e.dataTransfer.dropEffect === ALLOWED_DROP_EFFECT) {
     this.removeSelectedItems();
@@ -262,17 +264,17 @@ onDragEnd: function(e) {
     this.setState({ hoverOver: NO_HOVER, selected: this.state.selected });
   }
 },
-```
+~~~
 
 We moved the code for removing selected items into a a separate function, `removeSelectedItems()`. Then we properly clear the set. We set the state correctly. We also fixed the second if statement to properly clear and set the state when the drag operation was cancelled.
 
 The new function to remove selected items is a little more complex than the original splice.
 
-```js
+~~~js
 removeSelectedItems: function() {
   return this.state.selected.toArray().sort().reverse().map(function(itemId) { return this.state.items.splice(itemId, 1); }, this);
 },
-```
+~~~
 
 We start by converting the selected set into an array and, as before, sorting it. We then reverse that sort so we start from the last selected item first. Going from the first would mess up the indices with every item we removed.
 
@@ -280,7 +282,7 @@ Performance of reverse is unlikely to become a problem with the number of items 
 
 We could run our test now, but we are forgetting that we took a pass on `correctSelectedAfterDrop()` in the `onDrop()` function. We need to implement that for real now. Feel free to run the tests, but it will still be red.
 
-```js
+~~~js
 correctSelectedAfterDrop: function(droppedItems) {
   if(this.state.hoverOver !== NO_HOVER) {
     var bumpSet = []
@@ -290,7 +292,7 @@ correctSelectedAfterDrop: function(droppedItems) {
     bumpSet.forEach(function(itemId) { this.state.selected.add(itemId + bumpBy); }, this);
   }
 },
-```
+~~~
 
 First we start by creating a bumpSet. This is an array of selected indices that are greater than or equal to the dropZone index, `hoverOver`. You may remember from an earlier article that we have to correct our selected index pointers for those selected items below the active drop zone because `drop` adds new items to the container before we remove the old ones. Once we have identified the item indices that need to change, we remove each of them from the selected set. Finally, we add them back, bumped by the number of items dropped into the container.
 

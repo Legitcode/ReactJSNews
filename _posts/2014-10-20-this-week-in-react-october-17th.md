@@ -17,7 +17,7 @@ This is the first weekly roundup on ReactJS News! We've been busy working on mak
 ##React DnD
 First off, we've got a [React Drag n' drop library](https://github.com/gaearon/react-dnd). I've had to make something like this at work, but this would have been so much easier to use. Creating a drop target with this mixin is very easy, as we can see from its documentation:
 
-```js
+~~~js
 var { DragDropMixin } = require('react-dnd'),
     ItemTypes = require('./ItemTypes');
 
@@ -52,13 +52,13 @@ var ImageBlock = React.createClass({
     );
   }
 );
-```
+~~~
 
 Want to play around with it? Check out [this JSFiddle](http://jsbin.com/sutopepobu/1/edit?html,js,output)!
 ##Morearty.js
 [Morearty.js](https://github.com/moreartyjs/moreartyjs) aims to help those who need more advanced state handling in React. What's cool is that component state is transferred to sub-components in a binding attribute and can be retrieved using a custom method. This can be really useful when you have two components interacting together. Creating states (contexts) in morearty is pretty simple: 
 
-```js
+~~~js
 var Ctx = Morearty.createContext(
   { // initial state
     nowShowing: 'all',
@@ -72,7 +72,7 @@ var Ctx = Morearty.createContext(
     requestAnimationFrameEnabled: true
   }
 );
-```
+~~~
 
 Take a look at [the docs](https://github.com/moreartyjs/moreartyjs) for more information.
 
