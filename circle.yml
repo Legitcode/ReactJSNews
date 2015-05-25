@@ -1,3 +1,5 @@
+general:
+  build_dir: .
 dependencies:
   pre:
     - git config --global user.email 'zackify@gmail.com'
