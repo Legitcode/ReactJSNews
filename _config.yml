@@ -4,7 +4,7 @@ email:       zackify@gmail.com
 author:      Zach Silveira
 description: "ReactJS News!"
 baseurl:     ""
-url:         "http://reactjsnews.com"
+url:         "https://reactjsnews.com"
 
 # Google analytics
 google_analytics: "UA-55670732-1"
