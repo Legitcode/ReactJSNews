@@ -10,7 +10,7 @@ rm -rf build/ gh-pages/
 git clone -b gh-pages git@github.com:Legitcode/ReactJSNews gh-pages/
 
 # clone theme
-git clone git://github.com/skevy/pixyll build
+git clone git://github.com/Legitcode/pixyll build
 
 # copy posts
 cd build/
