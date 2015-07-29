@@ -109,6 +109,7 @@ The props are very self explanatory, except for toggleButton. It expects a compo
 ###Boron Modal
 
 [Boron](http://madscript.com/boron/) comes out of the box with some animations.
+
 ~~~js
 var Modal = require('boron/DropModal');
 var Example = React.createClass({
