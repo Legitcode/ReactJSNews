@@ -137,5 +137,33 @@ var Example = React.createClass({
 
 The author suggests placing a ref on the modal. Then you can open and close it via `this.refs.modal.show()` and `this.refs.modal.hide()`.
 
+### React Modal Dialog
+
+[React modal dialog](http://www.qimingweng.comreact-modal-dialog) is an idiomatic way to show dialogs. You simply stick the dialog component in when you want to show one, and take it out when you don't.
+
+```js
+import {ModalContainer, ModalDialog} from 'react-modal-dialog';
+
+// In a render function:
+class Button extends React.Component {
+  state = {
+    isShowingDialog: false
+  }
+  render() {
+    return (
+      <a className="button>Button Text
+      	{this.state.isShowingDialog ?
+          <ModalContainer onClose={...}>
+            <ModalDialog onClose={...}>
+            <h1>Dialog Content</h1>
+            <p>More Content. Anything goes here</p>
+            </ModalDialog>
+          </ModalContainer>
+        : null}
+      </a>
+    )
+  }
+}
+```
 
 Thanks for checking out the post, don't forget to follow [@ReactJSNews](http://twitter.com/reactjsnews) for more content! Leave a comment if you have any suggestions. As always, you're welcome to modify this post (or write your own!) by sending in a pull request on [github](http://github.com/legitcode/reactjsnews)!
