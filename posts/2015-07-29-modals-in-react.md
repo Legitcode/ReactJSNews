@@ -11,7 +11,6 @@ categories: react, modal
 Have you wanted to use some type of modal in React but didn't know where to start?
 I'll be going over a few community-built components that help you create modals.
 
-<!--more-->
 
 There's been a few times I've needed a modal in the app I'm building. Thankfully the community has made a few really good components for this.
 Let's jump right in to the first:
