@@ -160,3 +160,26 @@ class Button extends React.Component {
 ~~~
 
 Thanks for checking out the post, don't forget to follow [@ReactJSNews](http://twitter.com/reactjsnews) for more content! Leave a comment if you have any suggestions. As always, you're welcome to modify this post (or write your own!) by sending in a pull request on [github](http://github.com/legitcode/reactjsnews)!
+
+###Simple React Modal
+
+After writing this post, I realized many of these modals have limitations and force things on you. In my case, most forced some css rules that I could not override. For this reason, I [made my own](https://github.com/zackify/simple-react-modal).
+
+~~~js
+import Modal from 'simple-modal'
+import 'simple-react-modal/dist/modal' //import the base css
+
+//inside the render
+<a onClick={()=>{this.refs.modal.show()}}>Open Modal</a>
+<Modal ref="modal"
+className="simple-modal your-class"
+closeOnOuterClick={false}>
+
+<a className="close" onClick={()=>{this.refs.modal.hide()}}>X</a>
+<div>hey</div>
+
+</Modal>
+
+~~~
+
+You can import the base css, or not at all and completely design it yourself. It's more of a skeleton. 
