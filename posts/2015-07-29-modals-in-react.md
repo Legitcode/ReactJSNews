@@ -100,13 +100,10 @@ Those are the top three modal components out there. At my work, we use popovers 
 
 The props are very self explanatory, except for toggleButton. It expects a component or some jsx to be passed into it.
 
-##Community Submitted Components
-
-The following were added after the original post.
-
 ###Boron Modal
 
 [Boron](http://madscript.com/boron/) comes out of the box with some animations.
+
 ~~~js
 var Modal = require('boron/DropModal');
 var Example = React.createClass({
