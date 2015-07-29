@@ -21,18 +21,18 @@ You can check out a demo of it right [here](http://elemental-ui.com/modal). The 
 
 ~~~js
 <Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} backdropClosesModal>
-	<ModalHeader text="Live Demo" showCloseButton onClose={this.toggleModal} />
-	<form action="#" onSubmit={this.submitForm} noValidate>
-		<ModalBody>
-			<FormField label="Email">
-				<FormInput label="Email" type="email" name="email" ref="email" value={this.state.email} onChange={updateInput} required />
-			</FormField>
-		</ModalBody>
-		<ModalFooter>
-			{submitButton}
-			<Button onClick={this.toggleModal} type="link-cancel" disabled={this.state.formProcessing}>Cancel</Button>
-		</ModalFooter>
-	</form>
+  <ModalHeader text="Live Demo" showCloseButton onClose={this.toggleModal} />
+  <form action="#" onSubmit={this.submitForm} noValidate>
+    <ModalBody>
+      <FormField label="Email">
+        <FormInput label="Email" type="email" name="email" ref="email" value={this.state.email} onChange={updateInput} required />
+      </FormField>
+    </ModalBody>
+    <ModalFooter>
+      {submitButton}
+      <Button onClick={this.toggleModal} type="link-cancel" disabled={this.state.formProcessing}>Cancel</Button>
+    </ModalFooter>
+  </form>
 </Modal>
 ~~~
 
@@ -46,12 +46,12 @@ The root `modal` component expects two props, a boolean called `show`, and a fun
 
 ~~~js
 <Modal show={this.state.showModal} onHide={this.close}>
- <Modal.Header closeButton>
-   <Modal.Title>Modal heading</Modal.Title>
- </Modal.Header>
- <Modal.Body>
-   <h4>Text in a modal</h4>
-   </Modal.Body>
+  <Modal.Header closeButton>
+    <Modal.Title>Modal heading</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <h4>Text in a modal</h4>
+  </Modal.Body>
   <Modal.Footer>
     <Button onClick={this.close}>Close</Button>
   </Modal.Footer>
@@ -74,11 +74,7 @@ It doesn't have any sub components. It accepts `isOpen` (bool) and `onRequestClo
 
 ~~~js
 
-<Modal
-  isOpen={bool}
-  onRequestClose={fn}
-  closeTimeoutMS={n}
->
+<Modal isOpen={bool} onRequestClose={fn} closeTimeoutMS={n}>
   <h1>Modal Content</h1>
   <p>Etc.</p>
 </Modal>
@@ -95,43 +91,40 @@ Those are the top three modal components out there. At my work, we use popovers 
   isOpen={true}
   topOffset={10}
   leftOffset={10}>
-
   <div>
     content
   </div>
-
 </Popover>
 
 ~~~
 
 The props are very self explanatory, except for toggleButton. It expects a component or some jsx to be passed into it.
 
-##Extras
+##Community Submitted Components
 
-The following were submitted after the original post by contributors on github.
+The following were added after the original post.
 
 ###Boron Modal
 
 [Boron](http://madscript.com/boron/) comes out of the box with some animations.
-
 ~~~js
 var Modal = require('boron/DropModal');
 var Example = React.createClass({
-    showModal: function(){
-        this.refs.modal.show();
-    },
-    hideModal: function(){
-        this.refs.modal.hide();
-    },
-    render: function() {
-        return (
-            <button onClick={this.showModal}>Open</button>
-            <Modal ref="modal">
-                <h2>I am a dialog</h2>
-                <button onClick={this.hideModal}>Close</button>
-            </Modal>
-        );
-    }
+  showModal: function(){
+    this.refs.modal.show();
+  },
+  hideModal: function(){
+    this.refs.modal.hide();
+  },
+  render: function() {
+    return (
+      <button onClick={this.showModal}>Open</button>
+      <Modal ref="modal">
+        <h2>I am a dialog</h2>
+        <button onClick={this.hideModal}>Close</button>
+      </Modal>
+    );
+  }
 });
 ~~~
 
