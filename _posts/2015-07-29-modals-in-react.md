@@ -3,8 +3,8 @@ layout: post
 title:  "Modals in React"
 excerpt_separator: <!--more-->
 author: Zach Silveira
-date: 2015-07-29 14:00
-published: false
+date: 2015-07-29 00:35
+published: true
 categories: react, modal
 ---
 
