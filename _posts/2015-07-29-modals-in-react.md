@@ -104,4 +104,6 @@ Those are the top three modal components out there. At my work, we use popovers 
 
 ~~~
 
-The props are very self explanatory, except for toggleButton. It expects a component or some jsx to be passed into it. Thanks for checking out the post, don't forget to follow [@ReactJSNews](http://twitter.com/reactjsnews) for more content! Leave a comment if you have any suggestions. As always, you're welcome to modify this post (or write your own!) by sending in a pull request on [github](http://github.com/legitcode/reactjsnews)!
+The props are very self explanatory, except for toggleButton. It expects a component or some jsx to be passed into it. 
+
+Thanks for checking out the post, don't forget to follow [@ReactJSNews](http://twitter.com/reactjsnews) for more content! Leave a comment if you have any suggestions. As always, you're welcome to modify this post (or write your own!) by sending in a pull request on [github](http://github.com/legitcode/reactjsnews)!
