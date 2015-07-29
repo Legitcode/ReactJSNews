@@ -163,7 +163,7 @@ Thanks for checking out the post, don't forget to follow [@ReactJSNews](http://t
 
 ###Simple React Modal
 
-After writing this post, I realized many of these modals have limitations and force things on you. In my case, most forced some css rules that I could not override. For this reason, I [made my own](https://github.com/zackify/simple-react-modal).
+After writing this post, I realized many of these modals have limitations and force things on you. In my case, most forced some css rules that I could not override. For this reason, I [made my own](https://github.com/zackify/simple-react-modal). You can view a demo [here](http://zach.codes/simple-react-modal/) with the default styling.
 
 ~~~js
 import Modal from 'simple-modal'
@@ -182,4 +182,4 @@ closeOnOuterClick={false}>
 
 ~~~
 
-You can import the base css, or not at all and completely design it yourself. It's more of a skeleton. 
+You can import the base css, or not at all and completely design it yourself. It's more of a skeleton.
