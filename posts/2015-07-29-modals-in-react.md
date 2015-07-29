@@ -139,7 +139,7 @@ The author suggests placing a ref on the modal. Then you can open and close it v
 
 ### React Modal Dialog
 
-[React modal dialog](http://www.qimingweng.comreact-modal-dialog) is an idiomatic way to show dialogs. You simply render the dialog component in when you want to show one, and don't render it when you don't. This is achieved through through a 'portal'.
+[React modal dialog](http://www.qimingweng.com/react-modal-dialog) is an idiomatic way to show dialogs. You simply render the dialog component in when you want to show one, and don't render it when you don't. This is achieved through through a 'portal'.
 
 ~~~js
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
