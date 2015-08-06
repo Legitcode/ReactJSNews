@@ -2,7 +2,7 @@
 layout: post
 title:  "React.Component vs React.createClass"
 excerpt_separator: <!--more-->
-author: Zach Silveira
+author: Naman Goel & Zach Silveira
 date: 2015-07-29 14:00
 published: false
 categories: react, alt
