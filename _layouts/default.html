@@ -7,20 +7,6 @@
 
     <div class="post p2 p-responsive wrap" role="main">
       <div class="measure">
-        <script>
-          /**
-          * Function that tracks a click on an outbound link in Google Analytics.
-          * This function takes a valid URL string as an argument, and uses that URL string
-          * as the event label.
-          */
-          var trackOutboundLink = function(url) {
-             ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
-               function () {
-               document.location = url;
-               }
-             });
-          }
-        </script>
         <script async type="text/javascript" data-cfasync="false" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=reactjsnews" id="_carbonads_js"></script>
         {{ content }}
       </div>
