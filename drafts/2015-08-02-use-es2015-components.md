@@ -85,6 +85,7 @@ ES6 classes make you explicitly bind your methods. Which makes everything cleare
 
 ### Move over Mixins, use Higher-Order-Components
 Go to any conversation about ES6 classes, and you’ll find someone telling you to use composition over inheritance. You may have seen this meme before:
+
 ![Compose all the things](https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRW8W5l3CTR2UAHMvtdvCT-hyJc3Od5gJnyXyS6qrQQDXWLPevMkr164v_S)
 
 The fact is that inheritance is a terrible way to code. It’s error-prone, clunky and hard to understand. It can lead to extremely brittle code, and forces you to write all your code the same way. Mixins are definitely a much better solution, but developers still tend to abuse them to do things that could simply be done with composition. Who said you can’t be functional with classes? As an added bonus, Higher-Order-Component will work with both kinds of classes, and will be forward compatible with pure functions.
