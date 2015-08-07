@@ -3,9 +3,9 @@ layout: post
 title:  "React.Component vs React.createClass"
 excerpt_separator: <!--more-->
 author: Naman Goel & Zach Silveira
-date: 2015-07-29 14:00
-published: false
-categories: react, alt
+date: 2015-08-06 21:35
+published: true
+categories: react
 ---
 
 React has supported building components two different ways for a few months. You can extend from `React.Component` or use `React.createClass` which has been available since the beginning of React. Is there a good reason to use one over the other?
