@@ -9,7 +9,9 @@ categories: react
 ---
 
 React has supported building components two different ways for a few months. You can extend from `React.Component` or use `React.createClass` which has been available since the beginning of React. Is there a good reason to use one over the other?
+
 <!--more-->
+
 Maybe, maybe not. That's up to you. Big names in the React community generally lean the same way:
 
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/ReactJSNews">@ReactJSNews</a> &quot;you should switch because you want to look cool and argue about mixins&quot; :P</p>&mdash; Ryan Florence (@ryanflorence) <a href="https://twitter.com/ryanflorence/status/627985314393382912">August 2, 2015</a></blockquote>
