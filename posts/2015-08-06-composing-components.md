@@ -54,7 +54,7 @@ class Counter extends React.Component {
 
 ~~~
 
-If you think stage: 0 is way too extreme, there are other options out there. You can, for example, use an autobind decorator: https://github.com/andreypopp/autobind-decorator
+If you think stage: 0 is way too extreme, there are other options out there. You can, for example, use an [autobind decorator](https://github.com/andreypopp/autobind-decorator):
 
 But decorators are a stage: 0 feature, I hear you say. Yes, but you don’t need stage: 0:
 
