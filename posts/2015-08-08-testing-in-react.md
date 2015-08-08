@@ -33,13 +33,13 @@ be able to choose which assertion style they'd like to use.
 It took me awhile to choose a library for this, but in the end I chose [SinonJS](http://sinonjs.org/). A lot of people prefer
 this library, and it has a nice Chai integration, which makes for nice readable assertions.
 
-```es6
+```javascript
 expect(SessionStub).to.have.been.calledWith({ email: "foo@bar.com", password: "foobar123" });
 ```
 
 As opposed to the standard Sinon syntax
 
-```es6
+```javascript
 assert(SessionStub.calledOnce);
 ```
 
@@ -131,7 +131,7 @@ The next thing we need to do is get Sinon and Chai working with our test suite. 
 beginning of each test to make everything available. Coming from the Ruby and Rails world, I typically don't like to repeat
 code a lot, and so I created a `test_helper.js` file to help DRY up my test code. 
 
-```es6
+```javascript
 import React from 'react/addons';
 import chai from 'chai';
 import sinon from 'sinon';
@@ -157,7 +157,7 @@ export {
 This essentially imports all the files that are needed in every test, pulls in Chai and Sinon, and tells Chai to use
 sinonChai for Sinon assertions. Then at the top of all of our test files we can just do this:
 
-```es6
+```javascript
 import {
   React,
   sinon,
@@ -176,7 +176,7 @@ and see how all of this has come together.
 
 #### Test Setup
 
-```es6
+```javascript
 import {
   React,
   sinon,
@@ -193,7 +193,7 @@ that we will be stubbing.
 
 #### Setting up for each test
 
-```es6
+```javascript
 describe('NewSession component', () => {
   let data = {
     form: {
@@ -246,7 +246,7 @@ in each test instance, otherwise the created stubs will have an effect in other 
 This is the stuff I was talking about at the beginning of this post. Just testing to make sure that everything was rendered
 as expected.
 
-```es6
+```javascript
   it('should generate a login form', () => {
     expect(inputs.length).to.equal(2);
     expect(button).to.not.equal(null);
@@ -258,7 +258,7 @@ but with this setup you have options as outlined in the [Chai docs](http://chaij
 
 Next I want to test to make sure that an error message is displayed if the email field is left blank:
 
-```es6
+```javascript
   it('should render an error when the email is invalid', () => {
     let emailInput = inputs.find((el) => { return el.props.name == 'email' }),
         emailError = React.findDOMNode(emailInput).parentNode.querySelector("div.error");
@@ -276,7 +276,7 @@ of that input. Then all I have to do is run the assertion.
 The last thing I'd like to touch on is how I'm using stubbing with SinonJS. Here's a couple of examples of testing that a
 form validates before submitting:
 
-```es6
+```javascript
   it('should submit the form when valid', () => {
     let sessionStub = sandbox.stub(sessionActions, "create");
 
