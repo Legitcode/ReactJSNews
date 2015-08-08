@@ -14,6 +14,13 @@ combination of tools to use to test my code has been, well, difficult. I typical
 and Rails. Both Ruby and Rails have a great testing ecosystem, and getting up and running with unit tests is dead simple,
 and there are lots of great posts out there on how to get started.
 
+<!--more-->
+
+In the last 4 months I've started writing all of my front end code using React, and I love it. However, deciding on what
+combination of tools to use to test my code has been, well, difficult. I typically write all of my server side using Ruby
+and Rails. Both Ruby and Rails have a great testing ecosystem, and getting up and running with unit tests is dead simple,
+and there are lots of great posts out there on how to get started.
+
 I haven't found the same to be true in the React ecosystem. There are quite a few posts out there on how to get setup, but
 typically they only go so far as showing you how to test that an `<h1>` tag was rendered with the text `Hello World!` inside
 of it. That's great, but what if you have a more complex UI? What if you're using flux and your user interactions trigger
