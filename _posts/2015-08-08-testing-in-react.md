@@ -1,16 +1,25 @@
+---
+layout: post
+title:  "Unit and Functional Testing React Components"
+excerpt_separator: <!--more-->
+author: Daren Haener
+date: 2015-08-08 15:00
+published: false
+categories: react, testing
+---
 ## Unit and Functional testing React Components
 
 In the last 4 months I've started writing all of my front end code using React, and I love it. However, deciding on what
 combination of tools to use to test my code has been, well, difficult. I typically write all of my server side using Ruby
 and Rails. Both Ruby and Rails have a great testing ecosystem, and getting up and running with unit tests is dead simple,
-and there are lots of great posts out there on how to get started. 
+and there are lots of great posts out there on how to get started.
 
 I haven't found the same to be true in the React ecosystem. There are quite a few posts out there on how to get setup, but
 typically they only go so far as showing you how to test that an `<h1>` tag was rendered with the text `Hello World!` inside
 of it. That's great, but what if you have a more complex UI? What if you're using flux and your user interactions trigger
 actions and interactions with stores? How do you use mocks and stubs?
 
-Facebook recommends and uses Jest for all of their testing needs, and there are lots of great blog posts out there as to why 
+Facebook recommends and uses Jest for all of their testing needs, and there are lots of great blog posts out there as to why
 a lot of people don't like using Jest, and I agree with them so I won't go into a lot of detail. But the two biggest ones
 are how slow Jest tests run and the way that Jest automatically mocks out everything and you have explicitly tell it to not
 mock out certain components.
@@ -26,7 +35,7 @@ testing of multiple browsers to my CI build.
 I have used [Jasmine](http://jasmine.github.io/) before, and I like it, but I chose Mocha because it tries very hard to
 be simple, flexible, and agnostic about the other tools that you want to use in conjunction with it. It also has a nice
 integration with [ChaiJS](http://chaijs.com/). I really like that I can use ChaiJS to allow the developers on my team to
-be able to choose which assertion style they'd like to use. 
+be able to choose which assertion style they'd like to use.
 
 ### Mocking and Stubbing
 
@@ -57,7 +66,7 @@ I started by installing all my dependencies:
 $ npm install --save-dev mocha mocha-babel node-jsdom sinon sinon-chai chai
 ```
 
-Ok great, we've all of our dependencies installed, but how do we put it all together. 
+Ok great, we've all of our dependencies installed, but how do we put it all together.
 
 The first thing we need to is get Mocha setup. I like to be able to run my tests by just using `npm test`, so the first thing
 we have to do is add a line to our `package.json` file:
@@ -74,7 +83,7 @@ directory. You'll also notice the --compilers flag. We write all of our React co
 have our test suites follow the same convention. This tells Mocha to use the Babel compiler for all of the test files.
 
 Next we're going to want to get our Mocha options setup. We do this using a `mocha.opts` file. You can see above I'm using the
---opts flag to tell Mocha where to look for this file. By default it looks in the `test` directory, but because I am 
+--opts flag to tell Mocha where to look for this file. By default it looks in the `test` directory, but because I am
 using this inside of a Rails project, all of my javascript related files live one directory deeper in the javascript directory.
 
 My `mocha.opts` file is pretty simple:
@@ -103,12 +112,12 @@ var doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
 // get the window object out of the document
 var win = doc.defaultView;
 
-// set globals for mocha that make access to document and window feel 
+// set globals for mocha that make access to document and window feel
 // natural in the test environment
 global.document = doc;
 global.window = win;
 
-// take all properties of the window object and also attach it to the 
+// take all properties of the window object and also attach it to the
 // mocha global object
 propagateToGlobal(win);
 
@@ -129,7 +138,7 @@ post.
 
 The next thing we need to do is get Sinon and Chai working with our test suite. This essentially requires some setup at the
 beginning of each test to make everything available. Coming from the Ruby and Rails world, I typically don't like to repeat
-code a lot, and so I created a `test_helper.js` file to help DRY up my test code. 
+code a lot, and so I created a `test_helper.js` file to help DRY up my test code.
 
 ```javascript
 import React from 'react/addons';
@@ -214,7 +223,7 @@ describe('NewSession component', () => {
         }
       }
     }
-  }   
+  }
 
   var sandbox, loginForm, inputs, button;
 
@@ -237,7 +246,7 @@ want to start with valid data.
 
 Next I create a before each block that gets run before each test, and essentially creates the login form, then finds the
 submit button and inputs. You'll also notice that I've setup a Sinon sandbox. This allows me to isolate all of my stubs
-in each test instance, otherwise the created stubs will have an effect in other tests on down the road. 
+in each test instance, otherwise the created stubs will have an effect in other tests on down the road.
 
 #### Some actual testing
 
@@ -292,13 +301,13 @@ form validates before submitting:
 
     input.value = 'foo';
     TestUtils.Simulate.click(button);
-    
+
     expect(sessionStub).to.not.have.been.called;
   });
 ```
 
 The first assertion stubs out the action that is triggered when the submit button is clicked on the form, and simply
-expects that it is called with the correct parameters (in the case that the form is valid). In the second test, 
+expects that it is called with the correct parameters (in the case that the form is valid). In the second test,
 I am specifically changing the value of the input to something that is invalid, and testing that the action was never
 triggered.
 
@@ -307,6 +316,6 @@ store does what it's supposed to, because I am also testing the store.
 
 #### Wrap up
 
-This has been my experience in setting up a testing suite for React components (and Flux). It's probably not perfect, 
+This has been my experience in setting up a testing suite for React components (and Flux). It's probably not perfect,
 but it is what feels the best to me. Like I said before, I haven't seen many posts that go into this level of detail,
 so I hope it will be of value to you!
