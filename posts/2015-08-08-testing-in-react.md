@@ -2,7 +2,7 @@
 layout: post
 title:  "Unit and Functional Testing React Components"
 excerpt_separator: <!--more-->
-author: Daren Haener
+author: Darin Haener
 date: 2015-08-08 15:00
 published: false
 categories: react, testing
