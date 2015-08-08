@@ -4,7 +4,7 @@ title:  "Unit and Functional Testing React Components"
 excerpt_separator: <!--more-->
 author: Darin Haener
 date: 2015-08-08 15:00
-published: false
+published: true
 categories: react, testing
 ---
 ## Unit and Functional testing React Components
