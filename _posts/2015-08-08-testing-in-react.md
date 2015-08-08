@@ -7,7 +7,6 @@ date: 2015-08-08 15:00
 published: true
 categories: react, testing
 ---
-## Unit and Functional testing React Components
 
 In the last 4 months I've started writing all of my front end code using React, and I love it. However, deciding on what
 combination of tools to use to test my code has been, well, difficult. I typically write all of my server side using Ruby
