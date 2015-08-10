@@ -62,7 +62,7 @@ This makes for really nice, readable assertion, and it can be mixed in with all 
 
 ### Putting it all together
 
-One thing I stated earlier that I wanted to be able to do was headless testing. I reeally like to have a fast, tight, feedback
+One thing I stated earlier that I wanted to be able to do was headless testing. I really like to have a fast, tight, feedback
 loop while testing and writing code. This setup has allowed me to do that, and I can rely on my CI builds to do the full browser
 testing.
 
