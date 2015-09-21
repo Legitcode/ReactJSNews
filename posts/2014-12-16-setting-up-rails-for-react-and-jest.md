@@ -278,7 +278,7 @@ However, Jest really wants a CommonJS structure where everything is included via
 
 ~~~
     "devDependencies": {
-      "jest-cli": "^0.2.0",
+      "jest-cli": "^0.5.4",
     },
     "scripts": {
       "test": "node ./node_modules/jest-cli/bin/jest.js"
@@ -299,6 +299,15 @@ However, Jest really wants a CommonJS structure where everything is included via
 * `umockedModulePathPatterns` tells Jest not to mock out React, which we need for our components to work.
 * `testPathIgnorePatterns` tells Jest to ignore our JSX preprocessor. Placing `preprocessor.js` in a different directory would eliminate the need for this directive. However, this feels cleaner.
 ~~~
+
+  **Update:** 2015-09-21
+  The original version of this post used `"jest-cli": "^0.2.0"`, which [began producing errors](https://github.com/facebook/jest/issues/378) with certain versions of Node. The version has been updated to `"jest-cli": "^0.5.4",` which solves that issue. However due a decision by the JSDOM package to support io.js rather than node when they were separated, this requires version using Node v4.0.0 or higher. When it comed to Jest, your options are:
+  
+  * Jest 0.4 with Node 0.10
+  * Jest 0.5 with io.js 2+ or Node v4.0+
+  * In the future it will be Jest 0.6+ with Node 4.0+ only.
+  
+  You can read more about this in [this github issue](https://github.com/facebook/jest/issues/243).
 
 4.  `npm install`
 
