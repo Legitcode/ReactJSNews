@@ -3,8 +3,8 @@ layout: post
 title:  "Your First Immutable React & Redux App"
 excerpt_separator: <!--more-->
 author: Zach Silveira
-date: 2015-11-17 21:35
-published: false
+date: 2015-11-18 19:35
+published: true
 categories: react, redux
 ---
 
@@ -15,7 +15,7 @@ I've been back from [Nodevember](http://nodevember.org) for two days now. I took
 
 ###What this covers
 
-I'm the kind of person who doesn't always understand *big words*. The redux docs to me, use a lot of these. I'd like to make everything seems as simple as possible so that you can wrap your head around it. After all, how hard can it be to understand [2kb's of code ;)](http://redux.js.org/). We will go through the process of setting up our app, from installing node, to creating our package.json and understanding how that works. If you understand that, and I'm sure a vast majority of your do, skip ahead to where we [start building the app](#app).
+I'm the kind of person who doesn't always understand *big words*. The redux docs to me, use a lot of these. I'd like to make everything seems as simple as possible so that you can wrap your head around it. After all, how hard can it be to understand [2kb's of code ;)](http://redux.js.org/). We will go through the process of setting up our app, from installing node, to creating our package.json and understanding how that works. If you understand that, and I'm sure a vast majority of your do, skip ahead to where we [start building the app](#more-setup). Just make sure you [add every npm module we'll be using](https://github.com/Legitcode/redux-tutorial/blob/master/package.json) first.
 
 **P.S.** All of the code below is [on github](https://github.com/Legitcode/redux-tutorial)
 
