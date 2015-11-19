@@ -15,7 +15,7 @@ I've been back from [Nodevember](http://nodevember.org) for two days now. I took
 
 ###What this covers
 
-I'm the kind of person who doesn't always understand *big words*. The redux docs to me, use a lot of these. I'd like to make everything seems as simple as possible so that you can wrap your head around it. After all, how hard can it be to understand [2kb's of code ;)](http://redux.js.org/). We will go through the process of setting up our app, from installing node, to creating our package.json and understanding how that works. If you understand that, and I'm sure a vast majority of your do, skip ahead to where we [start building the app](#more-setup). Just make sure you [add every npm module we'll be using](https://github.com/Legitcode/redux-tutorial/blob/master/package.json) first.
+I'm the kind of person who doesn't always understand *big words*. The redux docs to me, use a lot of these. I'd like to make everything seem as simple as possible so that you can wrap your head around it. After all, how hard can it be to understand [2kb's of code ;)](http://redux.js.org/). We will go through the process of setting up our app, from installing node, to creating our package.json and understanding how that works. If you understand that, and I'm sure a vast majority of your do, skip ahead to where we [start building the app](#more-setup). Make sure you [add every npm module we'll be using](https://github.com/Legitcode/redux-tutorial/blob/master/package.json) first.
 
 **P.S.**
 All of the code below is [on github](https://github.com/Legitcode/redux-tutorial)
@@ -25,6 +25,7 @@ Clone it, `npm install`, and `npm start` to see the finished version of this tut
 ##Setup
 
 The first thing we need to do is make sure we have `node` installed. The best way to do this is by using [nvm](https://github.com/creationix/nvm). Paste this into your terminal, and you'll have nvm installed:
+
 ```
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
 ```
@@ -45,7 +46,7 @@ Now that it's installed, restart your terminal and do `nvm install 5.0` (or what
 ###Create our project
 
 Now that we have node installed, it's time to create our project folder. I'll do `mkdir todo` and then `cd` into it. You can name it anything you'd like.
-The way npm packages work is very simple. Every module has a `package.json` file. This file includes any dependencies you may need inside of your React app. To get started, run `npm init` inside of your project folder. Go through the steps, you should end up with something like this:
+The way npm packages work is very simple. Every module has a `package.json`. This file includes any dependencies you may need inside of your React app. To get started, run `npm init` inside of your project folder. Go through the steps, you should end up with something like this:
 
 ```js
 {
@@ -68,13 +69,15 @@ You may be a little confused as to why we need this for every package, but I'll 
 
 ###Install our dependencies
 
-For this project we need a few packages. If you follow this tutorial and add on to it, you'll probably end up with a lot more packages! Let's install React, but save it too!
+For this project we need a few packages. If you follow this tutorial and add on to it, you'll probably end up with *a lot* of packages! Let's install React, and save it too!
+
 ```
 npm install react --save
 ```
-Doing `--save` adds React to our package.json as a dependency. This way, other people can run your app by running `npm install` and (hopefully) `npm start`!
 
-Go ahead and install `redux`, `react-redux`, and `webpack-dev-server`. Save those as well. Webpack will bundle our code, and the dev server will let us actually interact with our app. We need to install webpack globally by doing `npm install webpack -g`.
+Doing `--save` adds React to our package.json as a dependency. This way, other people can run our app by running `npm install` and (hopefully) `npm start`!
+
+Go ahead and install `redux`, `react-redux`, and `webpack-dev-server`. Save those as well. Webpack will bundle our code, and the dev server will let us actually interact with our app.
 
 **Edit** After building out the rest of this tutorial, I realized there are a lot more dependencies than I expected. You can see all of the ones you'll need on the [example repo](https://github.com/Legitcode/redux-tutorial/blob/master/package.json#L15). Add them to your `package.json` and run `npm install` to get them all.
 
@@ -95,6 +98,7 @@ Let's get the boring stuff out of the way so that when we start coding, we can a
 </body>
 </html>
 ```
+
 Create a file called `webpack.config.js` as well, and put in
 
 ```js
@@ -124,6 +128,9 @@ module.exports = {
 }
 ```
 
+You can look at the [webpack docs](https://webpack.github.io/docs/) to get a complete understanding of everything in our config. The basic idea is that our entry point is the root js file for our app. You can have many of these for other pages. The output specifies where the built version will go, after it is ran through any loaders. The babel loader we included will transform any cool new [ES2015 features](https://babeljs.io/docs/learn-es2015/) we will use into ES5. This way the code will run in older browsers! The last part to understand is the `resolve` section. It tells webpack what file extensions to look for when importing things into our js files.
+
+
 We're almost done with the setup, I promise! The final step is to add a start script to our `package.json`, this way we can type `npm start` and our server will start. Under the `scripts` section in your package.json, add `"start": "webpack-dev-server"`.
 
 We are all set to actually build this app! You shouldn't have any issues with the setup because I've been running every command on a brand new Macbook as I'm writing this tutorial. However, feel free to leave a comment with any issues you've ran into!
@@ -132,9 +139,10 @@ We are all set to actually build this app! You shouldn't have any issues with th
 
 Now that we've got all that out of the way, let's start by writing two actions that our todo app will need. When you decide to use Redux, you should never think of writing `this.setState` inside of a component again. All of your application state should be encapsulated inside of redux from here on out. Create a folder in your project called `actions`.
 
-For the purpose of this tutorial we will make these inside of the same file. You can split them up into multiple files, follow the [duck philosophy](https://github.com/erikras/ducks-modular-redux), or do something else you like. This is part of the reason redux is so nice, you can do this however you want. I think after going through this whole tutorial you will truly understand this.
+For the purpose of this tutorial we will make these inside of the same file. You can split them up into multiple files, follow the [duck philosophy](https://github.com/erikras/ducks-modular-redux), or do something else. This is part of the reason redux is so nice, you can do this however you want. I think after going through this whole tutorial you will truly understand this.
 
 **Our first actions**
+
 create `index.js` inside of your `actions` folder.
 
 ```js
@@ -176,7 +184,7 @@ Oh yeah, I lied. There's another package you need to install, `immutable`. You c
 
 ###Hold up
 
-We've done a lot so far. Setup the project from nothing, installed some things, and written our actions and the start of our reducer. You might be a little confused as to how this is actually going to work. We're getting there, but the basic idea is this. Your component wants to fire off an event, like adding a todo. You dispatch an action (like the ones we created). Next, the corresponding reducer will be called. If the action is `addTodo` in our case, the todo will be pushed to the current state and a new copy will be returned. The store is then updated. After writing our components we will go over hooking our store into our app.
+We've done a lot so far. Setup the project from nothing, installed some things, written our actions, and started our reducer. You might be a little confused as to how this is actually going to work. We're getting there, but the basic idea is this: Your component wants to fire off an event, like adding a todo. You dispatch an action (like the ones we created). Next, the corresponding reducer will be called. If the action is `addTodo` in our case, the todo will be pushed to the current state and a new copy will be returned. The store is then updated. After writing our components we will go over hooking our store into our app.
 
 ###Reducer -> store
 
@@ -187,6 +195,7 @@ import { createStore } from 'redux';
 import todos from '../reducers/todo'
 export default createStore(todos)
 ```
+
 `createStore` brings together actions and reducers, among other things. You can get the low-down on that [here](http://redux.js.org/docs/basics/Store.html). You may also be wondering how you would go about having multiple stores, since your app needs many of them for different things, right? Wrong. In redux, you always have one store, with many *reducers*. We won't go into that in this tutorial, but after you finish, you can [go learn about that](http://redux.js.org/docs/basics/Reducers.html#splitting-reducers).
 
 
@@ -237,7 +246,7 @@ render(
 )
 ```
 
-This is how you render your top-level app using redux. It will inject your redux state as props and pass in any changes automatically. This is why we can use stateless components! You may notice we need to also `npm install react-dom`, I forgot about that one. In case you couldn't tell, I'm writing this tutorial as I build the example repo.
+This is how you render your top-level app using redux. It will inject your redux state as props and pass in any changes automatically. This is why we can use stateless components! Don't forget to `npm install react-dom` before the next step!
 
 ###First look
 
