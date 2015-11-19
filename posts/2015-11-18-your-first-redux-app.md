@@ -147,7 +147,7 @@ export function addTodo(todo){
 
 export function deleteTodo(index){
   return {
-    type: 'addTodo',
+    type: 'deleteTodo',
     index
   }
 }
@@ -321,4 +321,6 @@ This is about the end of our tutorial. I've set you up to build out the rest of 
 
 ##Conclusion
 
-I hope that you followed along and really understood everything we did. If you got stuck, take a look at the [code on github](https://github.com/Legitcode/redux-tutorial). If that doesn't help, you can leave a comment below. Lastly, if there's something I could have explained better, [send a pull request](https://github.com/Legitcode/ReactJSNews). This whole post is on github after all!
+I hope that you followed along and really understood everything we did. If you got stuck, take a look at the [code on github](https://github.com/Legitcode/redux-tutorial). If that doesn't help, you can leave a comment below. Lastly, if there's something I could have explained better, [send a pull request](https://github.com/Legitcode/ReactJSNews). This whole post is on github after all.
+
+If you finished everything in the tutorial, implement the `deleteTodo` action, and then whatever you'd like!
