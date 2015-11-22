@@ -260,7 +260,6 @@ We're one small step from adding todos to this thing. Let's make another statele
 
 ```js
 import React from 'react'
-import { connect } from 'react-redux'
 
 const newTodo = ({onChange}) => (
   <div>
