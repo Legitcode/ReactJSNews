@@ -8,5 +8,5 @@ Entering is simple:
 2. Add a post in the `posts` folder on anything React related!
 3. Send a pull request!
 
-I'll choose the most influential one as the winner. I will choose the one that is most popular, gets the most interaction, and is all around the most useful.
+I'll choose the most influential one as the winner. It may be the most popular, get the most interaction, or is all around the most useful.
 [@davidchizzle](http://twitter.com/davidchizzle) won last year's contest. You can try asking him how he did it if you get stuck! Good luck!
