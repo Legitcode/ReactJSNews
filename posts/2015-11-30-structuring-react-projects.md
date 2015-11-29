@@ -4,7 +4,7 @@ title:  "How to Structure a React Project?"
 excerpt_separator: <!--more-->
 author: Juho Vepsäläinen
 date: 2015-11-30 19:35
-published: false
+published: true
 categories: react
 ---
 
