@@ -192,7 +192,7 @@ Now that we have our reducer setup, let's  create our store. In the root of our 
 
 ```js
 import { createStore } from 'redux';
-import todos from '../reducers/todo'
+import todos from './reducers/todos'
 export default createStore(todos)
 ```
 
@@ -260,7 +260,6 @@ We're one small step from adding todos to this thing. Let's make another statele
 
 ```js
 import React from 'react'
-import { connect } from 'react-redux'
 
 const newTodo = ({onChange}) => (
   <div>
