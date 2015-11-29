@@ -13,6 +13,11 @@ Programming is a bit like gardening. While trying to keep the bugs out, we prefe
 There are multiple ways to structure your project. I believe it is far better to evolve the structure as you go rather than to stick with some dogma. I will go through some basic approaches next to provide some food for thought.
 
 <!--more-->
+
+**Editor's Note:** 
+
+Please check out the [React Indie Bundle](http://www.reactindiebundle.com/). Juho and many other members of the React community help put it together. All of the proceeds go towards awesome people in our community.
+
 Programming is a bit like gardening. While trying to keep the bugs out, we prefer to keep everything neat and organized lest we want to end up in the jungle. A poor structure just slows us down and makes it easier for bugs to crawl into the system.
 
 There are multiple ways to structure your project. I believe it is far better to evolve the structure as you go rather than to stick with some dogma. I will go through some basic approaches next to provide some food for thought.
