@@ -14,6 +14,10 @@ We already know how to build backend applications - generating html, sending it 
 
 <!--more-->
 
+Building a frontend application is hard. Compared to building backend applications, you have way too much mutable state to manage and in the end your whole code base is so complex that nobody wants to touch anything.
+
+We already know how to build backend applications - generating html, sending it to the browser, repeat - without it ending in a nightmare of complexity, but building frontend stuff is very complicated. Backend is easy, frontend is hard. So, why don't we just build the frontend like the backend?
+
 # Building it like a backend application
 
 A good old web application usually consists of a router mapping the current url to a controller action which will render the whole page including the outer layout. The big picture looks like this:
