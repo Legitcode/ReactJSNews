@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Build a react based application"
+title:  "Building a React-based Application"
 excerpt_separator: <!--more-->
 author: Marc Scholten
 date: 2015-12-01 17:15
@@ -18,7 +18,7 @@ Building a frontend application is hard. Compared to building backend applicatio
 
 We already know how to build backend applications - generating html, sending it to the browser, repeat - without it ending in a nightmare of complexity, but building frontend stuff is very complicated. Backend is easy, frontend is hard. So, why don't we just build the frontend like the backend?
 
-# Building it like a backend application
+## Building it like a backend application
 
 A good old web application usually consists of a router mapping the current url to a controller action which will render the whole page including the outer layout. The big picture looks like this:
 
