@@ -26,7 +26,7 @@ A good old web application usually consists of a router mapping the current url 
 
 By replicating this cycle in our frontend application we can - <em>together with react</em> - reach an easier to understand application design with less mutable parts.
 
-# Implementing it
+## Implementing it
 When the user is navigating to a different view, we will just use links. When the user clicks a link an event handler will tell the router to render the new page (by using `window.history.pushState`). Our frontend application flow now looks like this:
 
 ![](http://mpscholten.github.io/assets/great-new-react-application.png)
@@ -36,7 +36,7 @@ This leads to a one-directional data flow which is easier to reason about than a
 Let's take a look to some example code.
 
 
-# The Application Component 
+## The Application Component 
 
 ```js
 // Application.jsx
@@ -105,7 +105,7 @@ If a view is updating the user (e.g. account settings) it will not mutate the us
 The user object is passed down from the `Application` to the views by [currying](https://en.wikipedia.org/wiki/Currying) the route actions (`postAction` in the code below) with the user.
 
 
-# The Link Component
+## The Link Component
 
 ```js
 // Link.jsx
@@ -124,7 +124,7 @@ class Link {
 A `Link` component will render good old `<a href="..">..</a>` elements, but will intercept the `onClick` event to use `window.history.pushState` instead of doing a real http request.
 
 
-# The Views
+## The Views
 
 ```js
 // PostView.jsx
@@ -157,12 +157,12 @@ You can see that the view modules only export their routes and their url generat
 
 It's the views responsibility to display the full page including an outer layout. This is just like a view in [rails](https://github.com/railstutorial/sample_app_rails_4/blob/master/app/views/users/show.html.erb) or [symfony](https://github.com/symfony/symfony-demo/blob/master/app/Resources/views/default/homepage.html.twig). The best way to do this is by introducing an `OuterLayout` component.
 
-# Why not flux
+## Why not flux
 
 Flux is IMO a great pattern for building hybrid react apps (so not using react everywhere). In case you’re using a pure react based application you don’t need data stores and dispatchers. Data stores and dispatchers lead to mutable state and indirect code. Having multiple data stores also introduces multiple sources of truth, which increases complexity. If your app is only using react for some parts flux is a great solution, but if you are using react for everything you are better of with direct code and immutable data.
 
 
-# Takeaways
+## Takeaways
 
 By building your react application like a backend application - introducing clearly seperated views, communicating only via urls - you will archieve a simple single directed data flow. By using immutable data structures the only major state (so, ignoring ui state like animation state) is a tuple of the user data structure and the current url.
 
@@ -172,11 +172,14 @@ By building your react application like a backend application - introducing clea
 
 <div id="note-0">
 </div>
-[0] An example user object could look like this: `{ id: 1, email: 'hello@example.com', posts: [{title: 'My first post', content: 'Lorem ipsum'}] }`.
+[0] An example user object could look like this: 
+
+```{ id: 1, email: 'hello@example.com', posts: [{title: 'My first post', content: 'Lorem ipsum'}] }```.
 
 <div id="note-1">
 </div>
 [1] Usually you do this after sending an ajax request to the server. With promises this could look like this:
+
 ```js
 // The user has changed his email via the AccountView
 updateEmail(newEmail)
@@ -186,4 +189,5 @@ updateEmail(newEmail)
     })
     .catch(error => ...)
 ```
+
 where `updateEmail` is doing an ajax request and returning a [Promise](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Promise).
