@@ -17,6 +17,7 @@ We already know how to build backend applications - generating html, sending it 
 # Building it like a backend application
 
 A good old web application usually consists of a router mapping the current url to a controller action which will render the whole page including the outer layout. The big picture looks like this:
+
 ![](http://mpscholten.github.io/assets/good-old-web-application.png)
 
 By replicating this cycle in our frontend application we can - <em>together with react</em> - reach an easier to understand application design with less mutable parts.
