@@ -17,14 +17,14 @@ We already know how to build backend applications - generating html, sending it 
 # Building it like a backend application
 
 A good old web application usually consists of a router mapping the current url to a controller action which will render the whole page including the outer layout. The big picture looks like this:
-![](/assets/good-old-web-application.png)
+![](http://mpscholten.github.io/assets/good-old-web-application.png)
 
 By replicating this cycle in our frontend application we can - <em>together with react</em> - reach an easier to understand application design with less mutable parts.
 
 # Implementing it
 When the user is navigating to a different view, we will just use links. When the user clicks a link an event handler will tell the router to render the new page (by using `window.history.pushState`). Our frontend application flow now looks like this:
 
-![](/assets/great-new-react-application.png)
+![](http://mpscholten.github.io/assets/great-new-react-application.png)
 
 This leads to a one-directional data flow which is easier to reason about than a bidirectional data flow which you can usually find in frontend applications.
 
