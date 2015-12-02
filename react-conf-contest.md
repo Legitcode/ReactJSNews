@@ -11,4 +11,4 @@ Entering is simple:
 I'll choose the most influential one as the winner. It may be the most popular, get the most interaction, or is all around the most useful.
 [@davidchizzle](http://twitter.com/davidchizzle) won last year's contest. You can try asking him how he did it if you get stuck! Good luck!
 
-**The winner will be announced January 15th, 2016**
+**The winner will be announced December 19th**
