@@ -8,6 +8,8 @@ published: true
 categories: react
 ---
 
+This post originally appeared on the [RisingStack blog](https://blog.risingstack.com/graffiti-mongoose-mongodb-for-graphql/).
+
 With the Mongoose adapter for [Graffiti](https://blog.risingstack.com/start-using-graphql-with-graffiti/), you can use your existing Mongoose schema for developing a GraphQL application.
 
 We are going to cover the following topics:
@@ -17,7 +19,6 @@ We are going to cover the following topics:
 * Relay & GraphQL
 * Getting started with Graffiti
 * Graffiti TodoMVC - a Relay example
-* 
 
 <!--more-->
 
