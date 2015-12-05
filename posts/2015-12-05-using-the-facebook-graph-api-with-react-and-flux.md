@@ -3,10 +3,15 @@ layout: post
 title:  "Using and Testing the Facebook API with React and Flux"
 excerpt_separator: <!--more-->
 author: Suby Raman
-date: 2015-12-04 20:43
+date: 2015-12-05 00:30
 published: true
 categories: react
 ---
+
+For giving us React and Flux, I've seen relatively little about integrating Facebook's own Graph API with their development tools. The tools are so new that there's precious little instruction out there about how to answer questions that are easier to answer with other architectures, like:
+
+<!--more-->
+
 
 **Clone the example code:**
 
