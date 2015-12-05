@@ -1,4 +1,12 @@
-# Using and Testing the Facebook API with React and Flux
+---
+layout: post
+title:  "Using and Testing the Facebook API with React and Flux"
+excerpt_separator: <!--more-->
+author: Suby Raman
+date: 2015-12-04 20:43
+published: true
+categories: react
+---
 
 **Clone the example code:**
 
