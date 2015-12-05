@@ -11,7 +11,7 @@ categories: react
 **Clone the example code:**
 
 ```
-git@github.com:subyraman/react-flux-facebook-api-example.git
+git clone git@github.com:subyraman/react-flux-facebook-api-example.git
 ```
 
 **Check out the running example at: http://reactfluxfbapi.herokuapp.com**
