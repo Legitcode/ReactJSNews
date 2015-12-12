@@ -524,9 +524,10 @@ export default apiFactory({
 Very few tutorials explain how to deal with localization in a regular SPA. No tutorials at all say how to deal with localization in an isomorphic environment. In general, it is not an issue for most of the developers because there is no need to support other languages except English. But it is really important topic, so I've decided to describe localization issues in the separate post. It will be end to end React applications localization guide (including isomorphic issues).
 
 ## Statistics
-Universal (isomorphic) code - 2396 SLOC (93.3%)
-Client specific code - 33 SLOC (1.2%)
-Server specific code - 139 SLOC (5.4%)
+
+* Universal (isomorphic) code - 2396 SLOC (93.3%)
+* Client specific code - 33 SLOC (1.2%)
+* Server specific code - 139 SLOC (5.4%)
 
 While all codebase growths, isomorphic part of the code growths the most. So, code reuse rate will become higher with time.
 
