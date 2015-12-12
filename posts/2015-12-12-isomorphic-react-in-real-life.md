@@ -8,9 +8,11 @@ published: true
 categories: react, redux, isomorphic
 ---
 
-This post is not a tutorial. There are enough of them on the Internet. It is always more interesting to look at a real production app. A lot of tutorials and boilerplates show how to write isomorphic ReactJS applications, but they do not cover a lot of real-life problems we've faced in production (styling, data-fetching, vendor-prefixes, configutation etc). So we decided to share our experience at github and develop the app in a [public repo](https://github.com/webbylab/itsquiz-wall). The post describes all the issues and howto to deal with them. Originally it appeared on the [koorchik's blog](http://blog.koorchik.com/isomorphic-react/).
+This post is not a tutorial. There are enough of them on the Internet. It is always more interesting to look at a real production app. A lot of tutorials and boilerplates show how to write isomorphic ReactJS applications, but they do not cover a lot of real-life problems we've faced in production (styling, data-fetching, vendor-prefixes, configutation etc). So we decided to share our experience at github and develop the app in a [public repo](https://github.com/webbylab/itsquiz-wall). The post describes all the issues and howto to deal with them. 
 
 <!--more-->
+
+Ths post originally appeared on the [koorchik's blog](http://blog.koorchik.com/isomorphic-react/).
 
 ## Preface
 
