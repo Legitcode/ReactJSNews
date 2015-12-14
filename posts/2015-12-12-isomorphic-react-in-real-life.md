@@ -149,6 +149,7 @@ Such approach makes our code more modular. Moreover, if we import a component it
 This approach works great with webpack. But it will not work in pure nodejs, because you cannot import "less" files. So I've started looking for a solution.
 
 The first possible one was [require.extensions](https://nodejs.org/api/globals.html#globals_require_extensions) but
+
 1. Feature stability: 0
 2. Status: "deprecated"
 3. Does not work with babel-node. I am not sure why, more investigation required.
@@ -164,6 +165,7 @@ I've decided to try inline styles because:
 3. Inline styles solve a lot of CSS issues without hacks - [React: CSS in JS by vjeux](https://speakerdeck.com/vjeux/react-css-in-js)
 
 There are several issues I've faced using them:
+
 1. You should emulate pseudo css attributes like :hover, :active, :focus with JavaScript.
 2. You should manage vendor prefixes by your own
 3. You should emulate media queries with JavaScript
@@ -181,7 +183,7 @@ We've switched to Radium but when we run our application in isomorphic mode we r
 
 Here is the issue on Github ["Prefixing breaks server rendering"](https://github.com/FormidableLabs/radium/issues/201). Yes, there is a solution for it now: using Radium's autoprefixer on client side and detect browser by user-agent and insert different prefixes (with [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer)) for requests from different browser on server. I tried, but that time the solution was not reliable. Maybe now it works better (you can check it by your own :)).
 
-The second problem is that you cannot use media queries. Your server does not have any information about your browser window size, resolution, orientation etc. Here is a related issue https://github.com/FormidableLabs/radium/issues/53.
+The second problem is that you cannot use media queries. Your server does not have any information about your browser window size, resolution, orientation etc. Here is a [related issue](https://github.com/FormidableLabs/radium/issues/53).
 
 **Solution that works**
 
@@ -259,6 +261,7 @@ Firstly, it is a good idea to move your bundle.js to the end of markup. In this 
 This works. But moving the bundle.js to the end also moves styles to the end (as they are packed into the same bundle). So, a browser will render markup without CSS and after that it will load bundle.js (with CSS in it) and only after that it will apply styles. In this case, you will get blinking UI.
 
 Therefore, the right way is to split your bundle into two parts and load everything in the following order:
+
 1. Load CSS
 2. Load components HTML markup
 3. Load JS
@@ -280,6 +283,7 @@ Therefore, the right way is to split your bundle into two parts and load everyth
 And the cool thing about webpack is that it has a lot of plugins and loaders. We use [extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin) to extract css to a separate bundle.
 
 Your config will look similar to this one.
+
 ```javascript
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -355,6 +359,7 @@ For making http request you can use something like [axios](https://www.npmjs.com
 It is the easy part. More complex part is not to create api library but to use it in isomorphic environment.
 
 **How client usually works**
+
 1. React component rendering.
 2. Show loading spinner
 3. Fetch all the component (pgge) dependent data
@@ -363,6 +368,7 @@ It is the easy part. More complex part is not to create api library but to use i
 So, the idea is simple. A user will wait for data but will not wait for UI response. So, you should render immediately without data and show spinner and show the data when it was fetched.
 
 **How server usually works**
+
 1. Preload all required data for the page
 2. Render the page (with data) to string
 3. Send HTML markup to client
@@ -467,7 +473,7 @@ match({ routes, location: req.url }, (error, redirectLocation, {components, para
 });
 ```
 
-Here is the whole server app - https://github.com/WebbyLab/itsquiz-wall/blob/master/server/app.js
+[Here is the whole server app](https://github.com/WebbyLab/itsquiz-wall/blob/master/server/app.js)
 
 ### Isomorphic configuration
 
