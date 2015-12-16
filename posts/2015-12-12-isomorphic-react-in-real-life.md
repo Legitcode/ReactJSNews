@@ -16,7 +16,7 @@ Ths post originally appeared on the [koorchik's blog](http://blog.koorchik.com/i
 
 ## Preface
 
-Let's start with the term "Isomorphic application". An isomorphic JavaScript application is just a JavaScript application that can run both client-side and server-side (in most cases it is a single-page application that can be run on server). I do not like the word "isomorphic", I believe that programmers should struggle complexity (not only in code) and the word "isomorphic" сomlicates understanding, therefore it increases complexity :). There is another name for isomorphic JavaScript - "Universal JavaScript", but in my opinion the word "Universal" is too general. So, in this post, I will use the word "isomorphic" ( even if do not like it :) ).
+Let's start with the term "Isomorphic application". An isomorphic JavaScript application is just a JavaScript application that can run both client-side and server-side (in most cases it is a single-page application that can be run on server). I do not like the word "isomorphic", I believe that programmers should struggle complexity (not only in code) and the word "isomorphic" complicates understanding, therefore it increases complexity :). There is another name for isomorphic JavaScript - "Universal JavaScript", but in my opinion the word "Universal" is too general. So, in this post, I will use the word "isomorphic" ( even if do not like it :) ).
 
 How do people see an isomorphic app? You can find diagramms in the internet like this one:
 
