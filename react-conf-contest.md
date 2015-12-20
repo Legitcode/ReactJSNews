@@ -1,3 +1,6 @@
+
+**2016 Winner:** [@koorchik](http://twitter.com/koorchik) won with his post on [The Pain and the Joy of creating isomorphic apps in ReactJS](https://reactjsnews.com/isomorphic-react-in-real-life). It was hard choosing a winner this year, every post submitted was great. Thanks to everyone for entering :)
+
 ##Win a ticket to React Conf 2016
 
 Thanks to [@vjeux](http://twitter.com/vjeux), I'm able to give away another ticket to [React Conf](http://conf.reactjs.com) this year!
