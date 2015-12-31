@@ -44,7 +44,7 @@ var DemoComponent = React.createClass({
   render: function() {
     return (
       <div>
-        I'm a component.
+        I am a component.
       </div> 
     ); 
   } 
@@ -52,7 +52,7 @@ var DemoComponent = React.createClass({
 ```
 [Don't forget to follow along in the JSFiddle](http://jsfiddle.net/michaelishere/52oxac3k/)
 
-Let's break down the code. The React module has a `createClass` method that takes an object as its only parameter. We define only one key to start with: `render`. The value of `render` is a function that returns a virtual DOM element. One of the keys to React's performance is its virtual DOM abstraction. Essentially, it's a difference engine that calculates the difference between the existing DOM and the DOM that is to be rendered and *only* modifies the necessary elements and attributes.
+Let's break down the code. The React module has a `createClass` method that takes an object as its only parameter. We define only one key to start with: `render`. The value of `render` is a function that returns a virtual DOM element. One of the keys to React's performance is its virtual DOM abstraction. Essentially, it calculates the difference between the existing DOM and the new elements to be rendered. Then, it *only* modifies the necessary elements and attributes.
 
 Inside the render function, you may have noticed that I included HTML markup. That's JSX. It won't pass validation as legal Javascript. Instead, it requires the [Babel transpiler](https://babeljs.io/). For this demo, I have taken care of the transpiling inside the JSFiddle so you don't have to worry about it. 
 
@@ -64,12 +64,12 @@ I totally understand your trepidation, but which concerns were we actually separ
 
 In React, the paradigm is slightly different from Angular. Each React component knows how to handle itself, but *only* itself. It knows how to take input and render its own UI. Putting the rendering code inside of the component class really makes sense. If you don't agree immediately, I get it. But, just try it out on something tangible (not a demo or tutorial) and see how you feel about it. If you still don't like it, JSX is not a requirement. You can build your React components without it.
 
-Let's get on with this walk through.
+Time to get on with this walk through.
 
 
 ## Let's Set Some Attributes... er... eh... Properties
 
-Once you get over the weird (but strangely familiar) JSX syntax, it is pretty easy to see the correlation between a React component and an Angular directive. The next logical step is to get some data into our new component. In Angular, I often create directives with isloate scopes. To pass values into the directive you use attributes. In React, the concept is similar, but the syntax is a little different. Let's take a look:
+Once you get over the weird (but strangely familiar) JSX syntax, it is pretty easy to see the correlation between a React component and an Angular directive. The next logical step is to get some data into our new component. In Angular, I often create directives with isloate scopes. To pass values into the directive you use attributes. In React, the concept is similar, but the syntax is a little different. Take a look at some code:
 
 ```javascript
 var Title = React.createClass({
@@ -82,13 +82,13 @@ var Title = React.createClass({
 ```
 [Don't forget to follow along in the JSFiddle](http://jsfiddle.net/michaelishere/52oxac3k/)
 
-That's it for the component definition. React components have a `props` property with key/value pairs for all attributes passed to them through attributes in JSX. To use this component, we just need to supply the value of the `title` property like this:
+That is it for the component definition. React components have a `props` property with key/value pairs for all attributes passed to them through attributes in JSX. To use this component, we just need to supply the value of the `title` property like this:
 
 ```javascript
 <Title title={myTitle} />
 ```
 
-Notice that in JSX, you don't need any single or double quotations surrounding your property value. You just enclose the `myTitle` variable with a single set of curly braces. Hopefully, this feels a lot like Angular's double curly brace syntax for binding to `$scope` variables. Just remember, no quotes.
+Notice that in JSX, you don't need any single or double quotations surrounding your property value. You just enclose the `myTitle` variable with a single set of curly braces. Hopefully, this feels a lot like the double curly brace syntax for binding to `$scope` variables in Angular. Just remember, no quotes.
 
 
 #### Statless Immutable Glory
