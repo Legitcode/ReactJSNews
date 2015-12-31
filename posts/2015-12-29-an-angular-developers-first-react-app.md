@@ -91,7 +91,7 @@ That is it for the component definition. React components have a `props` propert
 Notice that in JSX, you don\`t need any single or double quotations surrounding your property value. You just enclose the `myTitle` variable with a single set of curly braces. Hopefully, this feels a lot like the double curly brace syntax for binding to `$scope` variables in Angular. Just remember, no quotes.
 
 
-#### Statless Immutable Glory
+#### Stateless Immutable Glory
 A key difference between React and Angular at this level is the immutability of properties. A React component should never change the value of `this.props` or any of its keys. Angular doesn\`t have this same restriction in place for directives with isolate scopes. Instead, in Angular you have dynamic data binding that keeps watching the values of `$scope` variables and rendering the changes in your directive in real time.
 
 In React, whenever possible, you should build stateless components with immutable properties. That means that, given the same set of properties and input, the component should:
