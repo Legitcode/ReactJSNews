@@ -59,7 +59,7 @@ To perform the same task in React you just need to think natively. Under the hoo
 
 ```javascript
 var RepeatModule = React.createClass({
-  getInitialState: function() {
+  getDefaultProps: function() {
     return { items: [] }
   },
   render: function() {
