@@ -168,7 +168,7 @@ By building your react application like a backend application - introducing clea
 
 <em>Thanks for reading :) If you have any suggestions [let me know](mailto:marcphilipscholten@gmail.com)!</em>
 
-<em>[Follow me on twitter](https://twitter.com/_marcscholten) if you're interested in more of this stuff!</em>
+<em>[Check out my personal blog](http://www.mpscholten.de/) if you're interested in more of this stuff!</em>
 
 <div id="note-0">
 </div>
