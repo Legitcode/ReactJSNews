@@ -9,6 +9,7 @@ categories: react, angular
 ---
 
 Improve your user's experience with animations. Learn about CSS and Javascript animations and when to use them.
+
 <!--more-->
 
 #### Getting started with animations
