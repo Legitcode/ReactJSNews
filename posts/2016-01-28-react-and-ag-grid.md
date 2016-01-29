@@ -20,7 +20,39 @@ Now ag-Grid is providing an optional React component and React rendering. ag-Grd
 
 React Components follow standard DOM interaction patterns using properties, events (callbacks) and an optional API for interacting with the components. React also uses immutability to assist state management. ag-Grid uses the same principles. ag-Grid's core interface maps directly onto what is required by React making ag-Grid and React match perfectly.
 
-![ReactAndAgGrid](https://www.ag-grid.com/react-and-ag-grid/reactAndAgGrid.png)
+To demonstrate, lets take an example of the provided example
+[example React and ag-Grid on Github](https://github.com/ceolter/ag-grid-react-example)
+
+~~~js
+    render() {
+        return (
+            // ag-Grid comes with a React Component waiting to be used
+            <AgGridReact
+
+                // listen for events with React callbacks
+                onRowSelected={this.onRowSelected.bind(this)}
+                onCellClicked={this.onCellClicked.bind(this)}
+
+                // binding to properties within React State or Props
+                showToolPanel={this.state.showToolPanel}
+                quickFilterText={this.state.quickFilterText}
+                icons={this.state.icons}
+
+                // column definitions and row data are immutable, the grid
+                // will update when these lists change
+                columnDefs={this.state.columnDefs}
+                rowData={this.state.rowData}
+
+                // or provide props the old way with no binding
+                rowSelection="multiple"
+                enableSorting="true"
+                enableFilter="true"
+                rowHeight="22"
+            />
+        );
+    }
+~~~
+
 
 ag-Grid then goes one step further, it embraces React for rendering. That means you can use React for custom cell rendering inside the grid. You provide ag-Grid with the React component and it knows what to do with to seamlessly integrate. No other grid on the market is both agnostic and still allows you to use React for rendering.
 
