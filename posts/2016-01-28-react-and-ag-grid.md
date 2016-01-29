@@ -22,12 +22,11 @@ React Components follow standard DOM interaction patterns using properties, even
 
 To demonstrate, lets break down the provided
 [example React and ag-Grid on Github](https://github.com/ceolter/ag-grid-react-example).
-(note: the example can be found running [on this page](https://www.ag-grid.com/best-react-grid/index.php))
+(note: the example can be found running [here](https://www.ag-grid.com/best-react-grid/index.php))
 
 ~~~js
     render() {
         return (
-            // ag-Grid comes with a React Component waiting to be used
             <AgGridReact
 
                 // listen for events with React callbacks
@@ -58,7 +57,7 @@ To demonstrate, lets break down the provided
 
 The AgGridReact class is the React Component that provides the interface into ag-Grid.
 
-### Setup maps to Props
+### Configuration mapped to Props
 
 All of the configuration for ag-Grid is done through React props, as always taking values
 from the parent state and props. For example, the data to display is provided as the
@@ -77,7 +76,7 @@ ag-Grid, behaving like a typical React application, treats rowData as immutable.
 so you replace the rowData with a new array of data, the grid will pick this up
 automatically.
 
-### Events map to Callbacks
+### Events mapped to Callbacks
 
 The ag-Grid component generates events to inform when things happen in the grid, such
 as rows are selected, cells are clicked etc. These events map onto React callbacks
