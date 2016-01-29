@@ -22,7 +22,7 @@ React Components follow standard DOM interaction patterns using properties, even
 
 To demonstrate, lets break down the provided
 [example React and ag-Grid on Github](https://github.com/ceolter/ag-grid-react-example).
-(note: the example can be found running (on this page)[https://www.ag-grid.com/best-react-grid/index.php] )
+(note: the example can be found running [on this page](https://www.ag-grid.com/best-react-grid/index.php))
 
 ~~~js
     render() {
