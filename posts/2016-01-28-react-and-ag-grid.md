@@ -70,7 +70,7 @@ rowData property:
     ...
 ~~~
 
-Refer to [Properties documentation](https://www.ag-grid.com/javascript-grid-properties/index.php) for all the properties.
+Refer to [properties documentation](https://www.ag-grid.com/javascript-grid-properties/index.php) for all the properties.
 
 ag-Grid, behaving like a typical React application, treats rowData as immutable. So
 so you replace the rowData with a new array of data, the grid will pick this up
@@ -90,7 +90,7 @@ when you provide the callback through one of the props.
     ...
 ~~~
 
-Refer to [Events documentation](https://www.ag-grid.com/javascript-grid-events/index.php) for all the events.
+Refer to [events documentation](https://www.ag-grid.com/javascript-grid-events/index.php) for all the events.
 
 ### API
 
