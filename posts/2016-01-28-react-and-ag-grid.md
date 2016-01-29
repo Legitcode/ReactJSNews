@@ -20,8 +20,9 @@ Now ag-Grid is providing an optional React component and React rendering. ag-Grd
 
 React Components follow standard DOM interaction patterns using properties, events (callbacks) and an optional API for interacting with the components. React also uses immutability to assist state management. ag-Grid uses the same principles. ag-Grid's core interface maps directly onto what is required by React making ag-Grid and React match perfectly.
 
-To demonstrate, lets take an example of the provided example
-[example React and ag-Grid on Github](https://github.com/ceolter/ag-grid-react-example)
+To demonstrate, lets break down the provided
+[example React and ag-Grid on Github](https://github.com/ceolter/ag-grid-react-example).
+(note: the example can be found running (on this page)[https://www.ag-grid.com/best-react-grid/index.php] )
 
 ~~~js
     render() {
@@ -53,9 +54,100 @@ To demonstrate, lets take an example of the provided example
     }
 ~~~
 
+### Component
 
-ag-Grid then goes one step further, it embraces React for rendering. That means you can use React for custom cell rendering inside the grid. You provide ag-Grid with the React component and it knows what to do with to seamlessly integrate. No other grid on the market is both agnostic and still allows you to use React for rendering.
+The AgGridReact class is the React Component that provides the interface into ag-Grid.
 
-ag-Grid's future is bright. It's abaility to integrate with the different frameworks makes it strongly positioned to be the enterprise level data grid everyone was waiting for. You won't need to throw away your grid next time you want to move to a different framework.
+### Setup maps to Props
+
+All of the configuration for ag-Grid is done through React props, as always taking values
+from the parent state and props. For example, the data to display is provided as the
+rowData property:
+
+~~~js
+<AgGridReact
+    ...
+    rowData={this.state.rowData}
+    ...
+~~~
+
+Refer to (Properties documentation)[https://www.ag-grid.com/javascript-grid-properties/index.php] for all the properties.
+
+ag-Grid, behaving like a typical React application, treats rowData as immutable. So
+so you replace the rowData with a new array of data, the grid will pick this up
+automatically.
+
+### Events map to Callbacks
+
+The ag-Grid component generates events to inform when things happen in the grid, such
+as rows are selected, cells are clicked etc. These events map onto React callbacks
+when you provide the callback through one of the props.
+
+~~~js
+<AgGridReact
+    ...
+    onRowSelected={this.onRowSelected.bind(this)}
+    onCellClicked={this.onCellClicked.bind(this)}
+    ...
+~~~
+
+Refer to (Events documentation)[https://www.ag-grid.com/javascript-grid-events/index.php] for all the events.
+
+### API
+
+The grid is a stateful component and needs to allow you to change it's state. For example,
+the grid keeps state as to what rows are selected, and you need to tell it to change
+this state by telling it what rows to select. To do this, you use the grid's API.
+
+When the grid initialises it fires a 'ready' event that, as well as telling you the
+grid is ready, provides you with a reference to the API.
+
+~~~js
+<AgGridReact
+    ...
+    onReady={this.onReady.bind(this)}
+    ...
+
+onReady(params) {
+    //store the api
+    this.gridApi = params.api;
+}
+
+    // then sometime  later
+    this.gridApi.selectAll();
+~~~
+
+Refer to (API documentation)[https://www.ag-grid.com/angular-grid-api/index.php] for the full API.
+
+### In Grid Rendering
+
+And then ag-Grid then goes further, it embraces React for rendering. That means you can 
+use React for custom cell rendering inside the grid. You provide ag-Grid with the React component
+and it knows what to do with to seamlessly integrate.
+
+The following shows the skills cellRenderer from the sample application. As you can see,
+it's pure React, short, to the point, compact, nice!
+
+~~~jf
+export default class SkillsCellRenderer extends React.Component {
+
+    render() {
+        var skills = [];
+        var rowData = this.props.params.data;
+        RefData.IT_SKILLS.forEach( (skill) => {
+            if (rowData.skills[skill]) {
+                skills.push(<img key={skill} src={'images/skills/' + skill + '.png'} width={16} title={skill} />);
+            }
+        });
+
+        return <span>{skills}</span>;
+    }
+
+}
+~~~
+
+### Summary
+
+ag-Grid and React match up perfectly, giving you an enterprise data grid for use inside you React application.
 
 To find out more about ag-Grid, visit [www.ag-grid.com](http://www.ag-grid.com/).
