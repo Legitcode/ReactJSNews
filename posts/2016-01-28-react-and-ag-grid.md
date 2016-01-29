@@ -72,8 +72,8 @@ rowData property:
 
 Refer to [properties documentation](https://www.ag-grid.com/javascript-grid-properties/index.php) for all the properties.
 
-ag-Grid, behaving like a typical React application, treats rowData as immutable. So
-so you replace the rowData with a new array of data, the grid will pick this up
+ag-Grid, behaving like a typical React application, treats rowData as immutable. So when
+you replace the rowData with a new array of data, the grid will pick this up
 automatically.
 
 ### Events mapped to Callbacks
@@ -127,7 +127,7 @@ and it knows what to do with to seamlessly integrate.
 The following shows the skills cellRenderer from the sample application. As you can see,
 it's pure React, short, to the point, compact, nice!
 
-~~~jf
+~~~js
 export default class SkillsCellRenderer extends React.Component {
 
     render() {
