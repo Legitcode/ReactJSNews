@@ -119,11 +119,11 @@ new webpack.optimize.UglifyJsPlugin({
 
 My bundle looked like this:
 
-![Webpack Output](http://reactjsnews.com/img/webpack-production/before.png)
+![Webpack Output](https://reactjsnews.com/img/webpack-production/before.png)
 
 That's pretty huge if you think about it. And I'm not talking about the amount of bundles. I'm talking about the file size. After searching everywhere for a solution to get the bundle size down further, I found webpack's [AggressiveMergingPlugin](https://webpack.github.io/docs/list-of-plugins.html#aggressivemergingplugin). This thing is a life saver. As you may have seen from the tweet, the output turns into this:
 
-![Webpack Output](http://reactjsnews.com/img/webpack-production/after.png)
+![Webpack Output](https://reactjsnews.com/img/webpack-production/after.png)
 
 Just having the main, vendor, and one other bundle brings the whole site under 1MB. I'm using the plugin to only merge files if the size reduction is more than 50%, which is the default. 
 
