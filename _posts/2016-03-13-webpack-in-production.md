@@ -8,13 +8,13 @@ published: true
 categories: react, webpack
 ---
 
-I've been working on a pretty large [react-router](https://github.com/reactjs/react-router) codebase at work. Currently it has around 50~ code splits, which as you can imagine, is a lot of routes. This is going to be a post on the things I've learned throught building out my development / production config and how we are using webpack in production. 
+I've been working on a pretty large [react-router](https://github.com/reactjs/react-router) codebase at work. Currently it has around 50~ code splits, which as you can imagine, is a lot of routes. This is going to be a post on the things I've learned throughout building out my development / production config and how we are using webpack in production. 
 
 <!--more-->
 
 ###Initial Setup
 
-Before I really dive in to how my webpack config is setup and the problems I've found, I'll quickly go over how this app is setup. Currently, there's one entry point and it looks like this:
+Before I really dive into how my webpack config is setup and the problems I've found, I'll quickly go over how this app is setup. Currently, there's one entry point and it looks like this:
 
 ```js
 import React from 'react'
@@ -40,7 +40,9 @@ match({ routes, location }, () => {
 
 ```
 
-It looks like a standard react-router setup, except a couple things are different. For one, there's way too many routes to have them all in this file, so we are importing the main route object into this file. Second, we are using `match` on the client side. Without matching first, the client side would try to render before the splits were downloaded causing an error. You can read a little more about match on the client [here](https://github.com/reactjs/react-router/issues/1990#issuecomment-141350392).
+It looks like a standard react-router setup, except a couple things are different. For one, there's way too many routes to have them all in this file, so we are importing the main route object into this file. Second, we are using `match` on the client side. Without matching first, the client side would try to render before the splits were downloaded causing an error. You can read a little more about match on the client [here](https://github.com/reactjs/react-router/issues/1990#issuecomment-141350392). 
+
+Next, we are using Ryan Florence's awesome [async-props](https://github.com/ryanflorence/async-props) library for loading data into components. It allows me to load data from an api before the server renders components. It will pass the data down to the client for the client-side render, and then data will load as you navigate to new pages automatically.
 
 ###Routes
 
@@ -60,8 +62,8 @@ export default {
 }
 ```
 
-There's a lot more require's in our app of course. And these are nested pretty deep. The files references in the root file have more child routes, and those use 
-`require.ensure` which you can read about in the webpack docs on [code splitting](https://webpack.github.io/docs/code-splitting.html). It will have webpack make a new bundle, and then load that bundle when require.ensure is called on the client. Here's an example:
+There's a lot more require's in our app of course. And these are nested pretty deep. The files referenced in the root file have more child routes, and those use 
+`require.ensure` which you can read about in the webpack docs on [code splitting](https://webpack.github.io/docs/code-splitting.html). It tells webpack to make a new bundle, and then load that bundle when require.ensure is called on the client. Here's an example:
 
 ```js
 if(typeof require.ensure !== "function") require.ensure = function(d, c) { c(require) }
@@ -79,7 +81,7 @@ module.exports = {
 }
 ```
 
-There's a few things going on here. First, we have a function at the top that will polyfill `require.ensure`. Why? Well, on this project we are server rendering our whole site as well, which I would rather not do, but due to the type of site we are building we have to. The next thing is the relative require path. I'm using this awesome [babel resolver plugin](https://github.com/jshanson7/babel-plugin-resolver) along with webpack's [resolve paths](https://webpack.github.io/docs/configuration.html#resolve) so that I can import files like this:
+There's a few things going on here. First, we have a function at the top that will polyfill `require.ensure`. Why? Well, on this project we are server rendering our whole site as well, which I would rather not do, but due to the type of site we are building: we have to. The next thing is the relative require path. I'm using this awesome [babel resolver plugin](https://github.com/jshanson7/babel-plugin-resolver) along with webpack's [resolve paths](https://webpack.github.io/docs/configuration.html#resolve) so that I can import files like this:
 
 ```js
 import Header from '../../master/header'
@@ -125,7 +127,7 @@ That's pretty huge if you think about it. And I'm not talking about the amount o
 
 Just having the main, vendor, and one other bundle brings the whole site under 1MB. I'm using the plugin to only merge files if the size reduction is more than 50%, which is the default. 
 
-People talk about code splitting in webpack and think it's really amazing to load the JS for the page you're on and nothing more. It sounds great. The problem is that the file size is immensely bigger. If someone more familiar with webpack has a better idea as to why this is, I'd like a better explanation. It just isn't feasable to keep the splits instead of merging them. This site is pretty large, which a lot of routes as you can tell from the screenshots, but codesplitting without merging would cause way more waiting on the client side every time you navigate to a new page. Even if the JS was heavily cached, the first time you hit these pages it will have to load a 300kb bundle for some of them.
+People talk about code splitting in webpack and think it's really amazing to load the JS for the page you're on and nothing more. It sounds great. The problem is that the file size is immensely bigger. If someone more familiar with webpack has a better idea as to why this is, I'd like a better explanation. It isn't feasable to keep the splits instead of merging them. This site is pretty large, with a lot of routes as you can tell from the screenshots. Codesplitting without merging would cause way more waiting on the client side every time you navigate to a new page. Even if the JS was heavily cached, the first time you hit these pages it will have to load a 300kb bundle for some of them.
 
 ##Caching
 
