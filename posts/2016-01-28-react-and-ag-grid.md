@@ -14,6 +14,8 @@ categories: react
 
 ag-Grid is an enterprise JavaScript data grid with zero library dependencies, including no dependency for it's rendering. You can build an application using just JavaScript and ag-Grid alone. The 'ag' stands for framework AGnostic.
 
+<!--more-->
+
 ### And React?
 
 Now ag-Grid is providing an optional React component and React rendering. ag-Grd is fully in bed with React and treats React as a first class component - meaning if you are using React, ag-Grid is NOT using any other framework to get the job done.
