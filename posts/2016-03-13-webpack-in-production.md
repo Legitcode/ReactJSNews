@@ -145,6 +145,22 @@ output: {
 This is in the production config of course. This way I can cache the files and when I update the code, the hash will change and the browser won't be caching the old code. I pass in the hash as an env variable at runtime to that the server has the correct path to the assets folder.
 
 
+##Problems
+
+There were a few big problems I came across while building out a server rendered app with dynamic routes. The first was page titles. How am I supposed to have the right title on the client and on the initial server render? Thankfully, Ryan has yet another solution. [react-title-component](https://github.com/ryanflorence/react-title-component) solves this perfectly. 
+
+The next was, how do I hit an api, wait for the response on server render, load new data on route changes, and of course, do this at the component level. As I mentioned before, [async-props](https://github.com/ryanflorence/async-props) solves this problem too. It will give you route info so that you can make requests based on things in the url.
+
+The next problem is one that I haven't fully solved. Webpack is getting really slow. It takes around 20 seconds on a maxed out macbook 15" to build code in production. On the server, it takes more like a minute! If I'm in development mode, it takes around 10 seconds to make the initial build, and sometimes it lags on building the splits on code change. If anyone has insight into this I would love to hear it.
+
+This one goes along with the webpack one, and it is reloading the server. I haven't tried to webpack the server but I hear doing so works great for this. I don't think it would fix the problem with webpack being slow though, and in fact it would probably make it even slower.
+
+
+##Folder structure
+
+I almost forgot to throw this one in here! I'm really happy with the structure of this project. I have a views folder that has all of the same folders and file names as the routes folder. It makes it really easy to find things. These also correspond with the URL to the page. `/account/settings` will be in `views/account/settings.jsx` and `routes/account/settings.js`. The same is true for my tests folder.
+
+
 ##Conclusion
 
-I hope this gave you a good glimpse at how webpack and react router work at a larger scale than you see most blog posts cover. If you have any questions or things that you would like me to talk about that I haven't already, please leave a comment below and I will update this post!
+I hope this gave you a good glimpse at how webpack and react router work at a larger scale than you see most blog posts cover. If you have any questions or things that you would like me to talk about that I haven't already, please leave a comment below and I will update this post! I'm sure that I forgot a few problems and tips writing this. I was thinking this would be a short post but it blew up on me!
