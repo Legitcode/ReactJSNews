@@ -38,7 +38,11 @@ const store = createStore(
 Whaaa? `store => next => action =>` I know that looks confusing. Essentially you are building a chain of functions, it will look like this when it gets called:
 
 ```js
-const dispatch = customMiddleware(store)(actionAttempt => dispatched = actionAttempt)
+//next looks something like this:
+let dispatched = null
+let next = actionAttempt => dispatched = actionAttempt 
+
+const dispatch = customMiddleware(store)(next)
 
 dispatch({
   type: 'custom',
@@ -110,4 +114,4 @@ Now in the callback, we can do:
 
 ```
 
-As you can see, middleware is very easy to write in redux. If you need any help or if I didn't go into detail enough, feel free to leave a comment below!
+As you can see, middleware is very easy to write in redux. You can pass store state back to actions, and so much more. If you need any help or if I didn't go into detail enough, feel free to leave a comment below!
