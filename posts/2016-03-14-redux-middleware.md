@@ -64,8 +64,6 @@ There should be some way to tell what actions should go through your middleware.
 
 The official guide on [redux middleware](http://redux.js.org/docs/advanced/Middleware.html) covers a few examples on this, I'm going to try to explain it in a more simple way.
 
-###Getting store state
-
 Say we want an action like this:
 
 ```js
