@@ -71,18 +71,16 @@ dispatch({
   type: 'ajax',
   url: 'http://api.com',
   method: 'POST',
-  body: state => {
-    return {
-      title: state.title
-      description: state.description
-    }
-  },
+  body: state => ({
+    title: state.title
+    description: state.description
+  }),
   cb: response => console.log('finished!', response)
 })
 
 ```
 
-We want this to do a post request, and then call the `then` function. It would look something like this:
+We want this to do a post request, and then call the `cb` function. It would look something like this:
 
 ```js
 import fetch from 'isomorphic-fetch'
@@ -99,7 +97,7 @@ const ajaxMiddleware = store => next => action => {
 }
 ```
 
-It's pretty simple really. You have access to every method redux offers in middleware. What if we wanted the `then` function to have access to dispatching more actions? We could change that last line of the fetch function to this: 
+It's pretty simple really. You have access to every method redux offers in middleware. What if we wanted the `cb` function to have access to dispatching more actions? We could change that last line of the fetch function to this: 
 
 ```js
 .then(json => action.cb(json, store.dispatch))
