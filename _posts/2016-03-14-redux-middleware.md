@@ -4,7 +4,7 @@ title:  "Building Redux Middleware"
 date:   2016-03-14 12:00:09 +1300
 excerpt_separator: <!--more-->
 author: Zach Silveira
-published: false
+published: true
 categories: react, webpack
 ---
 
