@@ -256,19 +256,19 @@ If you run `npm start` in your root directory and navigate to `http://localhost:
 
 We're one small step from adding todos to this thing. Let's make another stateless component that will handle adding todos.
 
-`components/newTodo.jsx`
+`components/NewTodo.jsx`
 
 ```js
 import React from 'react'
 
-const newTodo = ({onChange}) => (
+const NewTodo = ({onChange}) => (
   <div>
     <h3>New</h3>
     <input type="text" onKeyUp={onChange}/>
   </div>
 )
 
-export default newTodo
+export default NewTodo
 ```
 
 Pretty self explanatory. When the value changes, we will call a function that we will pass into it. Go back to `components/todos.jsx`. Then inside of the component, add it in. It should look like this:
@@ -277,7 +277,7 @@ Pretty self explanatory. When the value changes, we will call a function that we
 import React from 'react'
 import { connect } from 'react-redux'
 
-import NewTodo from './newTodo'
+import NewTodo from './NewTodo'
 import { addTodo } from '../actions'
 
 const Todos = ({todos, dispatch}) => (
