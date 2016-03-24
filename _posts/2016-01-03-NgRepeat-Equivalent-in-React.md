@@ -55,7 +55,7 @@ Then, in your view, you could use the `ng-repeat` directive like this:
 
 ##### React Alternative to `ng-repeat`
 
-To perform the same task in React you just need to think natively. Under the hood `ng-repeat` is just using a native Javascript iterator. You can use the same sort of native iterator directly in React. For just example, I`ll use `Array.map`. Here's an example:
+To perform the same task in React you just need to think natively. Under the hood `ng-repeat` is just using a native Javascript iterator. You can use the same sort of native iterator directly in React. For just example, I'll use `Array.map`. Here's an example:
 
 ```javascript
 var RepeatModule = React.createClass({
@@ -73,16 +73,14 @@ var RepeatModule = React.createClass({
     });
 
     return (
-      <div>
         <ul>
           {listItems}
         </ul>
-      </div>
     );
   }
 });
 ```
 
-In this example, `Array.map` iterates through every item contained in `items` and executes a function that returns a DOM element. _(Technically, it's a virtual DOM element, but that's a different discussion.)_ &nbsp; Every `li` that is returned from inside of the map function gets added to a new array and finally returned as the value of the `Array.map()` function. The result of that function is stored in the `listItems`variable. When React calls the render method on our component, we generate an array of list items and then insert them into our`ul` using a single pair of enclosing curly braces.
+In this example, `Array.map` iterates through every item contained in `items` and executes a function that returns a DOM element. _(Technically, it's a virtual DOM element, but that's a different discussion.)_ &nbsp; Every `li` that is returned from inside of the map function gets added to a new array and finally returned as the value of the `Array.map()` function. The result of that function is stored in the `listItems` variable. When React calls the render method on our component, we generate an array of list items and then insert them into our `ul` using a single pair of enclosing curly braces.
 
 ##### Try It Out Yourself Using [This JSFiddle](http://jsfiddle.net/zqef96hu/2/)
