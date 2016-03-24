@@ -325,7 +325,53 @@ Now if you reload the page, you'll see that when you hit enter (that's keyCode 1
 
 ###How does this work?
 
-This is about the end of our tutorial. I've set you up to build out the rest of this app. You know how to dispatch actions and see the state change. I'll recap one more time as to how this is working. When you dispatch a new todo, it is sent to the reducer, which adds it to our [Immutable List](https://facebook.github.io/immutable-js/docs/#/List). If you remember what I said earlier, Lists in Immutable have the same syntax as a plain array. This is why we can map it just like we would with a normal array! Sorry for that little tangent... After going through the reducer, the state tree is then updated and the Provide component will pass in the new state from redux as props!
+This is about the end of our tutorial. I've set you up to build out the rest of this app. You know how to dispatch actions and see the state change. I'll recap one more time as to how this is working. When you dispatch a new todo, it is sent to the reducer, which adds it to our [Immutable List](https://facebook.github.io/immutable-js/docs/#/List). If you remember what I said earlier, Lists in Immutable have the same syntax as a plain array. This is why we can map it just like we would with a normal array! Sorry for that little tangent... After going through the reducer, the state tree is then updated and the **Provider** component, which wraps around the main **Todos** component, will pass in the new state from redux as props!
+
+###Delete a todo from list
+
+As you see from adding a-todo step from above, you have to follow this procedure to get it done.
+
+1.  define the action, in this case, it is `deleteTodo` already.
+2.  tell the reducer what to do with the `deleteTodo` action.
+3.  setup a trigger to dispatch.
+
+Since, todo index is being as the key (*in real-world application, you should use an unique key*), so you have to return a new todo list that does not contain the one is being asked to delete.
+
+```js
+export default (state = Immutable.List(['Code More!']), action) => {
+  switch(action.type) {
+    case 'addTodo':
+      return state.unshift(action.todo)
+    case 'deleteTodo':
+      return state.filter((todo, index) => index !== action.index)
+    default:
+      return state
+  }
+}
+```
+
+Array **filter()** works fine for this simple example, and it returns a new todo list without the todo at the specified index providing through action.
+
+Final step is to set up a trigger point, and I think it should be a simple delete button right next to each todo item. Each item will be configured with its own `onClick()` event, which triggers when user clicks on it, and so, make it dispatch the right action, `deleteTodo`.
+
+```js
+const Todos = ({todos, dispatch}) => (
+  <div>
+    <h1>Todos</h1>
+    <NewTodo onChange={e => {
+      if(e.keyCode == 13){
+        dispatch(addTodo(e.target.value))
+        e.target.value = ''
+      }
+    }}/>
+    {todos.map((todo, index) => <p key={index}>{todo} <button onClick={e => {
+      dispatch(deleteTodo(index))
+    }}>X</button></p>)}
+  </div>
+)
+```
+
+Alright, just launch the browser, you'll see a X button right next to each item, then click on it to remove.
 
 ##Conclusion
 
