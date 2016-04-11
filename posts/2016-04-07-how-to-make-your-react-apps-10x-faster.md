@@ -12,6 +12,8 @@ Without any modifications, React is really fast. However, there are a few things
 
 <!--more-->
 
+Without any modifications, React is really fast. However, there are a few things you can to improve performance. I work at HelloSign, where I quickly discovered some quick fixes which made our apps incredibly snappy. With these changes, I was able to reduce render time from over 3000 milliseconds to less than 200 milliseconds.
+
 **Editor's Note:**
 
 Check out our upcoming [workshops](http://www.reactuniversity.com/training). Our next workshop is [React 2016](http://www.reactuniversity.com/react-2016 "React 2016") on April 23 in San Francisco. It's a deep dive into creating modern Single-Page Applications (SPA) using React, Redux, React Router, Immutable.js, and Webpack. We also have a workshop coming up called [React and D3](http://www.reactuniversity.com/react-and-d3) which teaches how to get React and D3 to play together to build awesome data visualizations.
