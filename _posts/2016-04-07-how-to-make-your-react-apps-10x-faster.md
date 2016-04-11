@@ -8,7 +8,7 @@ published: true
 categories: react, performance, webpack, babel
 ---
 
-Without any modifications, React is really fast as is. However, there are a few things you can to improve performance. At my job at HelloSign, I quickly discovered some quick fixes which made our apps incredibly snappy. With these changes, I was able to reduce the time it took to render our application from over 3000 milliseconds to less that 200 milliseconds.
+Without any modifications, React is really fast. However, there are a few things you can to improve performance. I work at HelloSign, where I quickly discovered some quick fixes which made our apps incredibly snappy. With these changes, I was able to reduce render time from over 3000 milliseconds to less than 200 milliseconds.
 
 <!--more-->
 
@@ -17,8 +17,6 @@ Without any modifications, React is really fast as is. However, there are a few 
 Check out our upcoming [workshops](http://www.reactuniversity.com/training). Our next workshop is [React 2016](http://www.reactuniversity.com/react-2016 "React 2016") on April 23 in San Francisco. It's a deep dive into creating modern Single-Page Applications (SPA) using React, Redux, React Router, Immutable.js, and Webpack. We also have a workshop coming up called [React and D3](http://www.reactuniversity.com/react-and-d3) which teaches how to get React and D3 to play together to build awesome data visualizations.
 
 ## Introduction
-
-Without any extra modifications, React is really fast as it. However, there are a few things you can to to improve performance. At my job as a Front-End Engineer at [HelloSign](https://www.hellosign.com/), I quickly discovered some quick fixes which made our apps incredibly snappy. With these changes, I was able to reduce the overall time it took to render our application from over 3000 milliseconds to less than 200 milliseconds!
 
 HelloSign is a cloud based electronic signature tool founded in 2010. As you can imagine, HelloSign is a very JavaScript heavy codebase. A lot of client-side behavior is necessary to create a rich signing experience. Lately, we've moved a lot of our codebase toward React. In many places, we've broken up our codebase to be several single page applications written in React.
 
@@ -32,7 +30,7 @@ Thankfully, Chrome has excellent developer tools for this purpose. One little us
 
 There's actually a really awesome video on Chrome's DevTools which goes into the "Timeline" feature as well. You can view it [here](http://forwardjs.com/university/real-time-performance-audit-with-chrome-devtools).
 
-The area we choose to measure is how long it took from initial paint of our signer page to it actually finishes rendering the entire page. The initial download of our bundles still needs some optimization, but we're not going to mess with that nor measure it. It's fairly easy and consistent to test render time rather than trying to click areas around the page and try to measure its performance in a repeatable way. Then all we needed to do is go to the signer page, open Chrome's DevTools "Timeline" tab, and refresh the page.
+The area we choose to measure is time from initial paint to the entire page being rendered. The initial download of our bundles still needs some optimization, but we're not going to mess with that nor measure it. It's fairly easy and consistent to test render time rather than trying to click areas around the page and try to measure its performance in a repeatable way. Then all we needed to do is go to the page, open Chrome's DevTools "Timeline" tab, and refresh the page.
 
 As a side note, make sure that when you're performing this test to check the "Paint" and "Screenshots" checkboxes so you can see what the user sees as the page is being rendered.
 
