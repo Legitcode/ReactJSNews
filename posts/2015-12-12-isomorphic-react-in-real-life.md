@@ -8,7 +8,7 @@ published: true
 categories: react, redux, isomorphic
 ---
 
-This post is not a tutorial. There are enough of them on the Internet. It is always more interesting to look at a real production app. A lot of tutorials and boilerplates show how to write isomorphic ReactJS applications, but they do not cover a lot of real-life problems we've faced in production (styling, data-fetching, vendor-prefixes, configutation etc). So we decided to share our experience at github and develop the app in a [public repo](https://github.com/webbylab/itsquiz-wall). The post describes all the issues and howto to deal with them. 
+This post is not a tutorial. There are enough of them on the Internet. It is always more interesting to look at a real production app. A lot of tutorials and boilerplates show how to write isomorphic ReactJS applications, but they do not cover a lot of real-life problems we've faced in production (styling, data-fetching, vendor-prefixes, configutation etc). So we decided to share our experience at github and develop the app in a [public repo](https://github.com/webbylab/itsquiz-wall). The post describes all the issues and howto to deal with them.
 
 <!--more-->
 
@@ -231,6 +231,27 @@ You can find whole [production config on github](https://github.com/WebbyLab/its
 
 Alternative solution is to create a plugin for babel that will just return "{}" on the server. I am not sure that it possible to do. If you can create babel-stub-plugin - it will be awesome.
 
+**UPDATE: We've switched to the alternative solution after migrating to Babel 6**
+
+We use [babel-plugin-transform-require-ignore](https://www.npmjs.com/package/babel-plugin-transform-require-ignore) plugin for Babel 6. Special thanks to @morlay (Morlay Null) for the plugin.
+
+All you need is to configure file extentions that should be ignored by babel in  [.babelrc](https://github.com/WebbyLab/itsquiz-wall/blob/master/.babelrc)
+
+
+```javascript
+"env": {
+   "node": {
+     "plugins": [
+       [
+         "babel-plugin-transform-require-ignore", { "extensions": [".less", ".css"] }
+       ]
+     ]
+   }
+}
+```
+
+and set environment variable BABEL_ENV='node' before starting your app. So, you can start your app like that [`cross-env BABEL_ENV='node' nodemon server/runner.js`](https://github.com/WebbyLab/itsquiz-wall/blob/7fb861ca09a4759b1b3622ab69d0cd610303da8e/package.json#L14).
+
 #### Pain #3: Material UI uses vendor prefixing based on browser DOM
 
 Ok. Let's go further. We managed our styles. And it seems that the problems with styles are solved. We use [Material UI](http://material-ui.com/) components library for our UI and we like it. But the problem with it is that it uses the same approach to vendor autoprefixing as Radium.
@@ -414,30 +435,54 @@ In browser the wrapper component will call action creators in **componentDidMoun
 
 *IMPORTANT: componentWillMount is not suitable for this because it will be invoked on the client and server. componentDidMount will be invoked only on the client.*
 
-On the server we do this in a different way. We have a function ["fetchComponentsData"](https://github.com/WebbyLab/itsquiz-wall/blob/master/server/utils.js#L4) which takes an array of components you are going to render and calls static method "fetchData" on each. One important thing is a usage of promises. We use promises to postpone rendering until the required data is fetched and saved to the redux store.
+On the server we do this in a different way. We have a function ["fetchComponentsData"](https://github.com/WebbyLab/itsquiz-wall/blob/master/server/utils.js#L12) which takes an array of components you are going to render and calls static method "fetchData" on each. One important thing is a usage of promises. We use promises to postpone rendering until the required data is fetched and saved to the redux store.
 
 "connectDataFetchers" is extremely simple:
 
 ```javascript
-import React   from 'react';
-import Promise from 'bluebird';
+
+import React from 'react';
+
+let IS_FIRST_MOUNT_AFTER_LOAD = true;
 
 export default function connectDataFetchers(Component, actionCreators) {
     return class DataFetchersWrapper extends React.Component {
-        static fetchData(dispatch, params = {}, query = {}) {
+        static fetchData({ dispatch, params = {}, query = {} }) {
             return Promise.all(
-                actionCreators.map( actionCreator =>
-                    dispatch( actionCreator(params, query) )
-                )
+                actionCreators.map(actionCreator => dispatch(actionCreator({ params, query })))
             );
         }
 
         componentDidMount() {
-            DataFetchersWrapper.fetchData(
-                this.props.dispatch,
-                this.props.params,
-                this.props.location.query
-            );
+            // If the component is mounted first time
+            // do no fetch data as it is already fetched on the server.
+            if (!IS_FIRST_MOUNT_AFTER_LOAD) {
+                this._fetchDataOnClient();
+            }
+
+            IS_FIRST_MOUNT_AFTER_LOAD = false;
+        }
+
+        componentDidUpdate(prevProps) {
+            // Refetch data if url was changed but the component is the same
+
+            const { location } = this.props;
+            const { location: prevLocation } = prevProps;
+
+            const isUrlChanged = (location.pathname !== prevLocation.pathname)
+                              || (location.search !== prevLocation.search);
+
+            if (isUrlChanged) {
+                this._fetchDataOnClient();
+            }
+        }
+
+        _fetchDataOnClient() {
+            DataFetchersWrapper.fetchData({
+                dispatch : this.props.dispatch,
+                params   : this.props.params,
+                query    : this.props.location.query
+            });
         }
 
         render() {
@@ -449,6 +494,8 @@ export default function connectDataFetchers(Component, actionCreators) {
 }
 
 ```
+
+[Production version](https://github.com/WebbyLab/itsquiz-wall/blob/master/shared/lib/connectDataFetchers.jsx) a little bit longer. It passes locale information and has propTypes described.
 
 So, on server our code looks like:
 
@@ -494,12 +541,14 @@ We load out config on the server and return it in index.html
 <div id="react-view">${componentHTML}</div>
 
 <script type="application/javascript">
-    window.__CONFIG__ = ${JSON.stringify(config)};
-    window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
+    window.__CONFIG__ = ${serializeJs(config, { isJSON: true })};
+    window.__INITIAL_STATE__ = ${serializeJs(initialState, { isJSON: true })};
 </script>
 
 <script type="application/javascript" src="${config.staticUrl}/static/build/main.js"></script>
 ```
+
+*IMPORTANT:  Serialization of initialState with JSON.stringify will make your application vulnerable to XSS attacks!!! You should use [serialize-javascript](https://github.com/yahoo/serialize-javascript) instead!*
 
 
 But depending on a global variable in your code is not a good idea. So, we create "config.js" module that just exports global variable. And our code depends on "config.js" module.  Our "config.js" should be isomorphic, so on the server we just require json file.
@@ -538,4 +587,3 @@ Very few tutorials explain how to deal with localization in a regular SPA. No tu
 * Server specific code - 139 SLOC (5.4%)
 
 While all codebase growths, isomorphic part of the code growths the most. So, code reuse rate will become higher with time.
-
