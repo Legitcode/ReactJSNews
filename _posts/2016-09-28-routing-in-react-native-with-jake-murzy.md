@@ -8,7 +8,7 @@ published: true
 categories: react, react-native
 ---
 
-**Jake Murzy** has been hard at work creating a new navigational library for React Native over the last couple of months.  While React JS has the benefit of the highly-regarded React Router, such a comprehensive routing solution doesn’t exist yet in the React Native community.  In fact, React Native’s routing landscape has been in constant upheaval for the last year.  The library itself has official three ‘navigators’ for handling decision making on which components to show the user, including ‘NavigatorIOS’, ‘Navigator’, and - more recently - ‘NavigatorExperimental’.  The open source community likewise has the packages ‘React Native Router Flux’, ‘React Native Router Native’, and ‘React Native Redux Router’, which of which are in various states of completion, or, more commonly, disrepair.
+Jake Murzy has been hard at work creating a new navigational library for React Native over the last couple of months.  While React JS has the benefit of the highly-regarded React Router, such a comprehensive routing solution doesn’t exist yet in the React Native community.  In fact, React Native’s routing landscape has been in constant upheaval for the last year.  The library itself has official three ‘navigators’ for handling decision making on which components to show the user, including ‘NavigatorIOS’, ‘Navigator’, and - more recently - ‘NavigatorExperimental’.  The open source community likewise has the packages ‘React Native Router Flux’, ‘React Native Router Native’, and ‘React Native Redux Router’, which of which are in various states of completion, or, more commonly, disrepair.
 
 [React Router Native](https://github.com/jmurzy/react-router-native) appears to focus on matching the API of the immensely popular React Router package, even going as far as introducing the concept of a URL into React Native, which bucks the notion that only web applications need or deserve a URL.
 
@@ -32,7 +32,7 @@ Most apps do not have deep-linking capabilities because implementing it for each
 
 That being said, we’re still in the early days of React Native figuring out the right abstractions. Navigation on mobile is a challenging task, and having different flavors is only healthier as the community weighs the pros and cons of each approach rather than second guessing best-practices. So I’m hoping to get the community involved to shape the direction of the project.
 
-** Q:  Is React Router Native designed to be used with any of the official Navigation components written by the React Native team? **
+**Q:  Is React Router Native designed to be used with any of the official Navigation components written by the React Native team?**
 
 Absolutely. One of the primary goals of the project is that we follow React’s “learn once, write anywhere” principle. So you can use the community maintained components, interpolators and pan responders from React Native, and everything is highly customizable if you need instruct NavigationExperimental to do fancy transition animations, etc.
 
@@ -41,7 +41,7 @@ Absolutely. One of the primary goals of the project is that we follow React’s 
 React Router v4 is a complete rewrite. There was a lot of head-scratching on Twitter over the entire new set of breaking changes. Many people thought v4 should at best have been released under a different name. I'm not sure if I agree with that sentiment though, I understand where it is coming from. React Router v4 is a preview release, and in my opinion, it’s really hard to argue against replacing a foreign API with simple React components. I do hope to keep the library at parity with React Router, and to be honest, v4’s new everything-is-a-component approach makes the integration even easier. So over the next few weeks I’ll be working on v4 support.
 
 
-** Q: If you were new to React Native, which routing solution would you use?  Why?**
+**Q: If you were new to React Native, which routing solution would you use?  Why?**
 
 This is a hard one to answer. Eric Vicenti has done a great job on NavigationExperimental and most of the issues have been sorted out by the community over the last few months. So if you’re familiar with Redux concepts and comfortable writing your own reducers to manage navigation state, NavigationExperimental is a great choice.
 
