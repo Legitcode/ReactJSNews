@@ -10,6 +10,8 @@ categories: react, react-native
 
 Jake Murzy has been hard at work creating a new navigational library for React Native over the last couple of months.  While React JS has the benefit of the highly-regarded React Router, such a comprehensive routing solution doesn’t exist yet in the React Native community.  In fact, React Native’s routing landscape has been in constant upheaval for the last year.  The library itself has official three ‘navigators’ for handling decision making on which components to show the user, including ‘NavigatorIOS’, ‘Navigator’, and - more recently - ‘NavigatorExperimental’.  The open source community likewise has the packages ‘React Native Router Flux’, ‘React Native Router Native’, and ‘React Native Redux Router’, which of which are in various states of completion, or, more commonly, disrepair.
 
+<!--more-->
+
 [React Router Native](https://github.com/jmurzy/react-router-native) appears to focus on matching the API of the immensely popular React Router package, even going as far as introducing the concept of a URL into React Native, which bucks the notion that only web applications need or deserve a URL.
 
 ---
