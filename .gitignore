@@ -1,6 +1,8 @@
-_site
-.sass-cache
-.DS_Store
-
 # Ignore the config file that's used for gh-pages.
 _config.gh-pages.yml
+_site/
+.sass-cache/
+node_modules/
+.DS_Store
+Gemfile.lock
+npm-debug.log
