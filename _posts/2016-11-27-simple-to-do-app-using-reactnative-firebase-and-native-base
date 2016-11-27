@@ -8,9 +8,9 @@ published: true
 categories: react
 ---
 
-Reactnative is increasing being used in the development of JS native apps.With the release of firebase it has become quite easier for
-developers can have easier integration of authentication,users and data into there applications.Nativebase is set of UI components that
-you can use in your reactnative applications.
+Reactnative is increasing being used in the development of JS native apps.Firebase allows us to effortlessly integrate authentication of users,
+store database entries and scale up based on our project needs.
+Nativebase is set of UI components that you can use in your reactnative applications.
 The purpose of this tutorial is to get you acquainted with the basics of using reactnative with firebase and using nativebase to 
 build ui elements of mobile application. 
 This is two part series to create a simple todo app in reactnative using firebase.
