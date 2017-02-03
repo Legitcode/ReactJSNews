@@ -15,7 +15,7 @@ I'll be going over a few community-built components that help you create modals.
 There's been a few times I've needed a modal in the app I'm building. Thankfully the community has made a few really good components for this.
 Let's jump right in to the first:
 
-###Elemental UI's modal
+### Elemental UI's modal
 
 You can check out a demo of it right [here](http://elemental-ui.com/modal). The markup is straight forward:
 
@@ -39,7 +39,7 @@ You can check out a demo of it right [here](http://elemental-ui.com/modal). The 
 You can place things in the header or footer just as easily as the body which is nice. I also like the look of it, and Elemental UI as a whole.
 My biggest gripe about this modal component is that on scrolling the page it disappears.
 
-###React Bootstrap
+### React Bootstrap
 
 This is probably one that everyone has heard of, as it is one of the oldest React projects. You can find documentation [here](http://react-bootstrap.github.io/components.html#modals). It consists of a couple sub components for the header and footer as well.
 The root `modal` component expects two props, a boolean called `show`, and a function to be called `onHide`.
@@ -66,7 +66,7 @@ close(){
 }
 ~~~
 
-###Rackt's Modal
+### Rackt's Modal
 
 Rackt's modal is much simpler than the other two, as seen on the [github page](https://github.com/rackt/react-modal).
 
@@ -100,7 +100,7 @@ Those are the top three modal components out there. At my work, we use popovers 
 
 The props are very self explanatory, except for toggleButton. It expects a component or some jsx to be passed into it.
 
-###Boron Modal
+### Boron Modal
 
 [Boron](http://madscript.com/boron/) comes out of the box with some animations.
 
@@ -163,7 +163,7 @@ class Button extends React.Component {
 
 Thanks for checking out the post, don't forget to follow [@ReactJSNews](http://twitter.com/reactjsnews) for more content! Leave a comment if you have any suggestions. As always, you're welcome to modify this post (or write your own!) by sending in a pull request on [github](http://github.com/legitcode/reactjsnews)!
 
-###Simple React Modal
+### Simple React Modal
 
 After writing this post, I realized many of these modals have limitations and force things on you. In my case, most forced some css rules that I could not override. For this reason, I [made my own](https://github.com/zackify/simple-react-modal). You can view a demo [here](http://zach.codes/simple-react-modal/) with the default styling.
 
