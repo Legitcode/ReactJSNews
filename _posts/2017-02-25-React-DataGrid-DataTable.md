@@ -11,7 +11,7 @@ categories: react
 ReactJS is an excellent library for building dynamic interfaces. However, it does not ship with a UI component set. 
 There are number of community driven options available, including material-ui, react-bootstrap, and more. 
 However, none of these component sets come with a fully featured DataGrid component. Here at [reactdatagrid](http://reactdatagrid.com) 
-we are tyring to provide this important building block to React Enterprise application developers.
+we are trying to provide this important building block to React Enterprise application developers.
 
 <!--more-->
 
