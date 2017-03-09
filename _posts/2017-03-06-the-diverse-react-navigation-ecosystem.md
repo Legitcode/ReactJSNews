@@ -3,7 +3,7 @@ layout: post
 title:  "The Diverse React Navigation Ecosystem"
 date:   2017-03-06 17:00
 excerpt_separator: <!--more-->
-author: Stephn Grider
+author: Stephen Grider
 published: true
 categories: react, react native
 ---
