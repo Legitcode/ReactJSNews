@@ -18,6 +18,13 @@ With that said, here are a few options.
 
 <!--more-->
 
+You won’t find as many styling solutions for React Native as you will for React JS. This stems from two simple realities:
+
+1. React Native is a much smaller target for component libraries than traditional CSS frameworks. In other words, Bootstrap CSS can be used with any web framework, whereas component libraries for React Native only work with…you guessed it…React Native.
+2. Customizing React Native styling isn’t the easiest thing in the world. Many apps demand custom styling, which makes component kits not too useful. In addition, it is challenging to customize each and every component, as the flexibility that you gain with traditional CSS on the web doesn’t carry over easily to component libraries.
+
+With that said, here are a few options.
+
 ### NativeBase - [Essential cross-platform UI components for React Native](http://nativebase.io/)
 
 A huge collection of components, most of which look quite nice. That’s the plus side. The down side is that some of the components are somewhat buggy. No offense to the library authors, its just the state of the library - it needs a bit of work. For example, here’s an issue I opened a few days ago when I discovered the swipe deck component crashed when only a single data element was provided: [DeskSwiper throws on single element lists · Issue #562 · GeekyAnts/NativeBase](https://github.com/GeekyAnts/NativeBase/issues/562). The authors fixed it up awfully fast, but, hey, that’s a bug that seems like it could have been caught earlier.
