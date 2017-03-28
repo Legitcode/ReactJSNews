@@ -12,6 +12,7 @@ One of the most common problems that I run into when using Redux is trying to fi
 
 
 <!--more-->
+One of the most common problems that I run into when using Redux is trying to figure out why an action is not being captured by a reducer.  For someone just getting starting with Redux, debugging this issue can be especially overwhelming because of how Redux manages data flow.  So before you start pouring over configuration code, or the logic contained in your action creators and reducers, please, make sure your action types are defined and spelled correctly.
 
 In any application that I have built, most bugs that I have run into are simply due to typos.  However, the solution to this particular problem is harder to spot because no errors are raised when the application is run.  Take a look at the snippet below.
 
