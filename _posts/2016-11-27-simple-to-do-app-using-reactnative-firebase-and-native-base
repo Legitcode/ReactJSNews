@@ -1,0 +1,25 @@
+---
+layout: post
+title:  "Simple Todo app using reactnative,firebase and nativebase"
+excerpt_separator: <!--more-->
+author: Saurabh Mhatre
+date: 2016-11-27 12:59
+published: true
+categories: react
+---
+
+Reactnative is increasing being used in the development of JS native apps.Firebase allows us to effortlessly integrate authentication of users,
+store database entries and scale up based on our project needs.
+Nativebase is set of UI components that you can use in your reactnative applications.
+The purpose of this tutorial is to get you acquainted with the basics of using reactnative with firebase and using nativebase to 
+build ui elements of mobile application. 
+This is two part series to create a simple todo app in reactnative using firebase.
+In the first part we are going to create simple email based authentication for the user to Log in or Sign up.
+We are going to learn about using email authentication method of firebase to authenticate the user and nativebase to create ui of the login form. 
+The link to the first part of the tutorial is:[here](https://medium.com/@smhatre59/simple-login-system-using-reactnative-firebase-and-nativestack-1e54b70869c4#.ue5fa0b58)
+
+In the second part we are going to create a task manager in which we can add a new task or remove completed ones.
+We will use real time database functionality provided by firebase to store tasks of users and retrieve them from remote database.
+The link to the second part of the tutorial can be found [here](https://medium.com/@smhatre59/simple-todo-app-using-reactnative-firebase-and-nativebase-560b818b0d62#.589cfnb3h)
+
+
