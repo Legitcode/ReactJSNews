@@ -8,10 +8,10 @@ published: true
 categories: react, es6, component, singleton, mobx
 ---
 
-When building react applications we generally need to use modal boxes in our application, however it's not always clear how we render the modal box. Should we render it in the page? or render it once in our layout and re-use it? This is a companion post for a [video episode on youtube](https://www.youtube.com/watch?v=j5Kjtme9BNw&index=35&list=PLjQo0sojbbxU6Yl9l-38gOyeQYjqXefq7)
+When building react applications we generally need to use modal boxes in our application, however it's not always clear how we render the modal box. Should we render it in the page? or render it once in our layout and re-use it? This is a companion post for a [free video episode](https://www.codemy.net/posts/react-rendering-the-modal-in-the-layout)
 
 <!--more-->
-When building react applications we generally need to use modal boxes in our application, however it's not always clear how we render the modal box. Should we render it in the page? or render it once in our layout and re-use it? This is a companion post for a [video episode on youtube](https://www.youtube.com/watch?v=j5Kjtme9BNw&index=35&list=PLjQo0sojbbxU6Yl9l-38gOyeQYjqXefq7)
+When building react applications we generally need to use modal boxes in our application, however it's not always clear how we render the modal box. Should we render it in the page? or render it once in our layout and re-use it? This is a companion post for a [free video episode](https://www.codemy.net/posts/react-rendering-the-modal-in-the-layout)
 
 Modal boxes are what I consider 'singletons' which means only 1 instance should be rendered at any time. There should not be many instances of it on the page, however if we render it locally in our component we could have mulitple modal boxes overlapping each other if they're not well managed. We eliminate this problem by rendering only 1 instance of the modal box and sharing it across multiple pages of our application.
 
@@ -80,4 +80,4 @@ Whenever we need to access the modal we can simply de-structure the `props` like
 
 This pattern is a much cleaner way to render components that need to be shared. We're using mobx's observable to set the reference to the node and then we can access it across components very easily.
 
-This is just one of the many episodes we have in the React Foundation series, have a look at our [playlist here on youtube](https://www.youtube.com/playlist?list=PLjQo0sojbbxU6Yl9l-38gOyeQYjqXefq7)
+This is just one of the many episodes we have in the [React Foundation](https://www.codemy.net/channels/react-foundation) series.
