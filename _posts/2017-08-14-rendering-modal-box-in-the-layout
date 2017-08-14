@@ -13,7 +13,7 @@ When building react applications we generally need to use modal boxes in our app
 <!--more-->
 When building react applications we generally need to use modal boxes in our application, however it's not always clear how we render the modal box. Should we render it in the page? or render it once in our layout and re-use it? This is a companion post for a [video episode on youtube](https://www.youtube.com/watch?v=j5Kjtme9BNw&index=35&list=PLjQo0sojbbxU6Yl9l-38gOyeQYjqXefq7)
 
-Modal boxes are what I consider 'singletons' which means only 1 of it can be rendered at any time. There should not be many instances of it on the page, however if we render it locally in our component we could have mulitple modal boxes overlapping each other if they're not well managed. We eliminate this problem by rendering only 1 instance of the modal box and sharing it across multiple pages of our application.
+Modal boxes are what I consider 'singletons' which means only 1 instance should be rendered at any time. There should not be many instances of it on the page, however if we render it locally in our component we could have mulitple modal boxes overlapping each other if they're not well managed. We eliminate this problem by rendering only 1 instance of the modal box and sharing it across multiple pages of our application.
 
 We start off by defining an observable like so.
 
@@ -28,7 +28,7 @@ const layout = observable({
 export default { layout };
 ```
 
-We can then import the settings file and use it in our applicatin via the provider.
+We can then import the settings file and use it in our application via the provider.
 
 ``` js
 // app index.js
@@ -44,7 +44,7 @@ render(
 );
 ```
 
-Then in our shared layout we just use `@inject` to get the settings in our layout component like so.
+Then in our shared layout or main `Application` component we just use `@inject` to make the settings available in our layout component like so.
 
 ``` js
 @inject('settings') @observer
@@ -68,7 +68,15 @@ Once we render the `Modal` component we use the `ref` callback to set the modal 
 
 Now whenever we need to use the modal all we have to do is `@inject('settings')` in the component and we will have access to the modal node via the props.
 
-We can then call `modal.open()` or `modal.setContent()` whenever we need.
+Whenever we need to access the modal we can simply de-structure the `props` like so.
+
+```js
+  someFunction = (args) => {
+    const { modal } = this.props.settings.layout;
+    modal.setContent();
+    modal.open();
+  }
+```
 
 This pattern is a much cleaner way to render components that need to be shared. We're using mobx's observable to set the reference to the node and then we can access it across components very easily.
 
