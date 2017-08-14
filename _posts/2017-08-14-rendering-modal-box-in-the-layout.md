@@ -80,4 +80,4 @@ Whenever we need to access the modal we can simply de-structure the `props` like
 
 This pattern is a much cleaner way to render components that need to be shared. We're using mobx's observable to set the reference to the node and then we can access it across components very easily.
 
-This is just one of the many episodes we have in the React Foundation series, have a look at our [playlist here on youtube](https://www.youtube.com/watch?v=j5Kjtme9BNw&index=35&list=PLjQo0sojbbxU6Yl9l-38gOyeQYjqXefq7)
+This is just one of the many episodes we have in the React Foundation series, have a look at our [playlist here on youtube](https://www.youtube.com/playlist?list=PLjQo0sojbbxU6Yl9l-38gOyeQYjqXefq7)
